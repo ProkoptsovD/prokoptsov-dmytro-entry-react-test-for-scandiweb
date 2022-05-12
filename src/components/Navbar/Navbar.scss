@@ -17,14 +17,15 @@
     }
 
     &__link {
-        display: block;
+        display: inline-block;
         
+        text-align: center;
+        text-shadow: 0 0 1px transparent; //prevents content shifting
         line-height: 1.2;
         text-transform: uppercase;
         
         color: inherit;
 
-        transition: color var(--duration-normal) var(--timing-func-normal);
         cursor: pointer;
 
         &:hover,
@@ -35,23 +36,29 @@
         &:visited {
             color: inherit;
         }
-    }
-}
 
-// ============ for current page ============//
-.current {
-    font-weight: var(--fw-600);
-    color: var(--clr-accent-100);
+        &::after {
+            @extend %hidden;
 
-    &::after {
-        position: absolute;
-        bottom: calc(-100% - 11px);
-        left: 0;
+            position: absolute;
+            bottom: calc(-100% - 11px);
+            left: 0;
 
-        content: '';
-        width: 100%;
-        height: 2px;
+            content: '';
+            width: 100%;
+            height: 2px;
 
-        background-color: var(--clr-accent-100);
+            background-color: var(--clr-accent-100);
+        }
+
+        // =========== for current link ==========//
+        &.current {
+            font-weight: var(--fw-600);
+            color: var(--clr-accent-100);
+        }
+
+        &.current::after {
+            @extend %visible;
+        }
     }
 }
