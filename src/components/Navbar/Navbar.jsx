@@ -14,9 +14,6 @@ class Navbar extends React.Component {
                 key={category}
                 className="navbar__item">
                 <a
-                    onClick={(e) => {
-                        e.target.classList.toggle('current');
-                    }}
                     href="#"
                     className={`navbar__link ${!index ? 'current' : ''}`}
                 >
