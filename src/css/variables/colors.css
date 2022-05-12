@@ -1,0 +1,16 @@
+:root {
+    --clr-accent-100: #5ECE7B;
+
+    --clr-dark-100: #8D8F9A;
+    --clr-dark-200: #43464E;
+    --clr-dark-300: #1D1F22;
+    --clr-dark-400: #000000ba;
+
+    --clr-light-100: #ffffff;
+    --clr-light-200: #ffffff80;
+    
+    --clr-neutral-300: #39374838;
+    --clr-neutral-400: #E5E5E5;
+    --clr-neutral-500: #EEEEEE;
+    --clr-neutral-600: #C4C4C4;
+}

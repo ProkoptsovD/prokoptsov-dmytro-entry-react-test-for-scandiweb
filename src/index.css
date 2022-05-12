@@ -1,4 +1,4 @@
-@import './sass/_reset-default.scss';
-@import './sass/utils/_container.scss';
-@import './sass/utils/_base.scss';
-
+@import './css/styles.css';
+@import './sass/reset-default.scss';
+@import './sass/utils/base.scss';
+@import './sass/utils/container.scss';

@@ -1,0 +1,9 @@
+@use '../../css/variables/transitions.css';
+
+%visible {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: initial;
+
+    transition: all var(--duration-normal) var(--timing-func-normal);
+}

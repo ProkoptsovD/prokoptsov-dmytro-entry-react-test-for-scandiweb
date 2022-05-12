@@ -1,0 +1,23 @@
+.button-svg-only {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    border: none;
+    background-color: transparent;
+
+    & > svg {
+        width: 20px;
+        height: 20px;
+
+        fill: var(--clr-dark-200);
+
+        &:hover {
+            cursor: pointer;
+        }
+
+        &:active {
+            transform: scale(0.9);
+        }
+    }
+}
