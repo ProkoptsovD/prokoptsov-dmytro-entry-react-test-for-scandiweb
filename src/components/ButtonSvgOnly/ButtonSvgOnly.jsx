@@ -5,6 +5,8 @@ import './ButtonSvgOnly.scss';
 class ButtonSvgOnly extends React.Component {
     constructor(props) {
         super(props);
+
+        this.props = props;
     }
 
     render() {
@@ -15,7 +17,7 @@ class ButtonSvgOnly extends React.Component {
             >
                 <svg>
                     <use
-                        href={icons + '#cart'}
+                        href={icons + `${this.props.icon || '#cart'}`}
                     ></use>
                 </svg>
             </button>
