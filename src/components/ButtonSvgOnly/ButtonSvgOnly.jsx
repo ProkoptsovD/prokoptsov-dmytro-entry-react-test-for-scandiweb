@@ -12,7 +12,8 @@ class ButtonSvgOnly extends React.Component {
     render() {
         return (
             <button
-                className={'button-svg-only' + ' ' + this.props.className}
+                onClick={this.props.onClick || (() => {})}
+                className={`button-svg-only ${this.props.className}`}
                 type="button"
             >
                 <svg>
@@ -20,6 +21,7 @@ class ButtonSvgOnly extends React.Component {
                         href={icons + `${this.props.icon || '#cart'}`}
                     ></use>
                 </svg>
+                {this.props.children || null}
             </button>
         );
     }

@@ -1,5 +1,20 @@
 .action-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    
+    width: min-content;
+
+    //temp 
+    // outline: 1px solid skyblue;
+
     &__item {
         position: relative;
+
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        width: 100%;
     }
 }
