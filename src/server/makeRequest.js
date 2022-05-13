@@ -14,5 +14,7 @@ const requestParams = {
  * @param {Object} requestConfig // object with request parametrs
  * @returns {Promise} not parsed promise with data from server
  */
-export const makeRequest = async (url, requestConfig = requestParams) =>
+const makeRequest = async (url, requestConfig = requestParams) =>
 	fetch(url, requestConfig);
+
+export default makeRequest;

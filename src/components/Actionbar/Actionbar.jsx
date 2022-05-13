@@ -6,7 +6,6 @@ class Actionbar extends React.Component {
         super(props);
 
         this.props = props;
-        console.log(this.props);
     }
     renderChildren = (child, index) => {
         return (

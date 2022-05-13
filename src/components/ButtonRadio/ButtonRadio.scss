@@ -1,0 +1,45 @@
+@use '../../sass/placeholders/visually-hidden.scss';
+
+.button-radio {
+    position: relative;
+
+    display: block;
+
+    width: 63px;
+    height: 44px;
+
+    border: 1px solid var(--clr-dark-300);
+    background-color: var(--clr-light-100);
+
+    &__text, &__input {
+        position: absolute;
+        inset: 0;
+
+        cursor: pointer;
+    }
+    &__text {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        font-family: var(--ff-3);
+        line-height: 1.12;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+
+        transition: background-color var(--duration-normal) var(--timing-func-normal),
+                color var(--duration-normal) var(--timing-func-normal);
+
+        .button-radio__input:checked + & {
+            color: var(--clr-light-100);
+            background-color: var(--clr-dark-300);
+        }
+    }
+    &__input {
+        @extend %visually-hidden;
+        margin: 0;
+        padding: 0;
+
+        z-index: -1;
+    }
+}

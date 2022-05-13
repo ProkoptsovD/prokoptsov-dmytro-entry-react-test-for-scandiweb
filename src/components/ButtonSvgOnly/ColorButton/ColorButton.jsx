@@ -1,7 +1,8 @@
 import React from "react";
 import ButtonRadio from "../../ButtonRadio/ButtonRadio.jsx";
+import './ColorButton.scss';
 
-class SizeButton extends React.Component {
+class ColorButton extends React.Component {
     constructor(props) {
         super(props);
 
@@ -11,10 +12,12 @@ class SizeButton extends React.Component {
     render() {
         return (
             <ButtonRadio
-                text={this.props.text}
+                className={"color-btn"}
+                classNameInput={"color-btn__input"}
+                classNameText={"color-btn__text"}
             />
         )
     }
 }
 
-export default SizeButton;
+export default ColorButton;
