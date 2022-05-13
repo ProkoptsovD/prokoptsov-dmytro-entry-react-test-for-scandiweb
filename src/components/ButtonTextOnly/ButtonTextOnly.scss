@@ -1,0 +1,16 @@
+.button-text-only {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    font-family: inherit;
+    font-size: var(--fs-400);
+    font-weight: var(--fw-600);
+
+    border: none;
+
+    background-color: var(--clr-accent-100);
+    color: var(--clr-light-100);
+
+    cursor: pointer;
+}

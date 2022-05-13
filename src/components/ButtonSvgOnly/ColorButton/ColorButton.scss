@@ -1,17 +1,23 @@
 .color-btn {
-    width: 32px;
-    height: 32px;
+    width: 36px;
+    height: 36px;
     border: none;
 
-    background-color: var(--clr-light-100);
-
     &__text {
-        inset: 2px;
+        outline: 1px solid;
+        outline-color: var(--clr-light-100);
+        
+        transition: outline-color var(--duration-normal) var(--timing-func-normal);
     }
+    &__text::after {
+        position: absolute;
+        inset: 2px;
+        content: '';
 
-    &__input:checked + .color-btn__text {
-        outline: 1px solid var(--clr-accent-100);
-        background-color: blue;
-        clip-path: content-box;
+        background-color: #333;
+    }
+    &__input:checked + &__text {
+        outline-color: var(--clr-accent-100);
+        background-color: var(--clr-light-100);
     }
 }
