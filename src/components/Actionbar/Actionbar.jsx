@@ -8,12 +8,10 @@ class Actionbar extends React.Component {
         this.props = props;
         console.log(this.props);
     }
-    renderChildren = (child) => {
-        let key = 0;
-
+    renderChildren = (child, index) => {
         return (
             <li
-                key={key++}
+                key={index}
                 className={"action-bar__item"}
             >
                 {child}

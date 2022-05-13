@@ -1,4 +1,6 @@
 .action-bar {
+    --gap: 22px;
+
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -16,5 +18,9 @@
         justify-content: space-between;
 
         width: 100%;
+
+        &:not(:last-child) {
+            margin-right: var(--gap);
+        }
     }
 }

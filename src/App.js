@@ -1,5 +1,6 @@
 import './App.css';
 import Actionbar from './components/Actionbar/Actionbar.jsx';
+import CartButtonAction from './components/CartButtonAction/CartButtonAction.jsx';
 import CurrencySwitcher from './components/CurrencySwitcher/CurrencySwitcher.jsx';
 import Header from './components/Header/Header.jsx';
 import Logo from './components/Logo/Logo.jsx';
@@ -39,8 +40,7 @@ function App() {
 				<Logo />
 				<Actionbar>
 					<CurrencySwitcher currency={currency} />
-					{/* <CurrencySwitcher currency={currency} />
-					<CurrencySwitcher currency={currency} /> */}
+					<CartButtonAction />
 				</Actionbar>
 			</Header>
 			<main>

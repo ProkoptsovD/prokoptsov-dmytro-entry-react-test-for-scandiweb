@@ -86,7 +86,9 @@
         text-align: center;
 
         & > span {
-            display: block;
+            display: flex;
+            align-items: center;
+            justify-content: center;
 
             width: calc(var(--btn-size-w) - 6px);
             height: 100%;
@@ -97,6 +99,8 @@
 
             width: var(--svg-size-w);
             height: var(--svg-size-h);
+
+            margin-top: 7px;
 
             transform: rotate(180deg);
         }
