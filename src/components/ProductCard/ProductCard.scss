@@ -1,0 +1,9 @@
+.product-card {
+    &__wrapper-outer {
+        display: flex;
+    }
+    &__wrapper-inner {
+        display: flex;
+        margin-top: 16px;
+    }
+}

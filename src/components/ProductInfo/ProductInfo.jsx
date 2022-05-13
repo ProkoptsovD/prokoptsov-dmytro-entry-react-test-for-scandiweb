@@ -18,7 +18,7 @@ class ProductInfo extends React.Component {
             <>
                 <div className={"product-info"}>
                     <p className={"product-info__brand"}>
-                        brand
+                        Brand
                     </p>
                     <h2 className={"product-info__title"}>
                         Running short

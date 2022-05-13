@@ -14,10 +14,10 @@ class Gallery extends React.Component {
 
     render() {
         return (
-            <ul>
-                <li>pic-1</li>
-                <li>pic-2</li>
-                <li>pic-3</li>
+            <ul className={"gallery"}>
+                <li className={"gallery__item"}>pic-1</li>
+                <li className={"gallery__item"}>pic-2</li>
+                <li className={"gallery__item"}>pic-3</li>
             </ul>
         )
     }

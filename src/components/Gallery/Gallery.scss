@@ -1,0 +1,10 @@
+.gallery {
+    width: 79px;
+    height: 80px;
+    margin-right: 40px;
+
+
+    &__item:not(:last-child) {
+        margin-bottom: 40px;
+    }
+}
