@@ -1,5 +1,5 @@
 import React from "react";
-import ColorButton from "../ButtonSvgOnly/ColorButton/ColorButton";
+import ColorButton from "../ButtonRadio/ColorButton/ColorButton.jsx";
 import './ColorPicker.scss';
 
 class ColorPicker extends React.Component {

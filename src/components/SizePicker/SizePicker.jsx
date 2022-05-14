@@ -1,5 +1,5 @@
 import React from "react";
-import SizeButton from "../ButtonSvgOnly/SizeButton/SizeButton.jsx";
+import SizeButton from "../ButtonRadio/SizeButton/SizeButton.jsx";
 import './SizePicker.scss';
 
 class SizePicker extends React.Component {

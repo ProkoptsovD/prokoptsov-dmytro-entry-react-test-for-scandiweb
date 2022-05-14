@@ -9,16 +9,12 @@
         font-size: var(--fs-500);
         text-transform: uppercase;
     }
-
     &__btn-list {
         display: flex;
         align-items: center;
-        justify-content: center;
 
         width: 100%;
-    
     }
-
     &__item:not(:last-child) {
         margin-right: 8px;
     }

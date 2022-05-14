@@ -1,5 +1,5 @@
 import React from "react";
-import ButtonRadio from "../../ButtonRadio/ButtonRadio.jsx";
+import ButtonRadio from "../ButtonRadio.jsx";
 
 class SizeButton extends React.Component {
     constructor(props) {
@@ -11,6 +11,7 @@ class SizeButton extends React.Component {
     render() {
         return (
             <ButtonRadio
+                name={'size'}
                 text={this.props.text}
             />
         )

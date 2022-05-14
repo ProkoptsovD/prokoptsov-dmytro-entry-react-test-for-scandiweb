@@ -1,5 +1,5 @@
 import React from "react";
-import ButtonRadio from "../../ButtonRadio/ButtonRadio.jsx";
+import ButtonRadio from "../ButtonRadio.jsx";
 import './ColorButton.scss';
 
 class ColorButton extends React.Component {
@@ -12,6 +12,7 @@ class ColorButton extends React.Component {
     render() {
         return (
             <ButtonRadio
+                name={"color"}
                 className={"color-btn"}
                 classNameInput={"color-btn__input"}
                 classNameText={"color-btn__text"}
