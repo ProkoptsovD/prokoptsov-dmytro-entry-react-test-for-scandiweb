@@ -9,9 +9,9 @@ class CartButton extends React.Component {
 
     render() {
         return (
-            <ButtonSvgOnly
-                className={'cart-button'}
-            />
+            <div className="cart-button">
+                <ButtonSvgOnly />
+            </div>
         )
     }
 }

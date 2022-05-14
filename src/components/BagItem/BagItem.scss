@@ -14,9 +14,6 @@
         margin-bottom: 8px;
         font-weight: var(--fw-500);
     }
-    & .color-picker {
-        margin-bottom: 0;
-    }
     & .add-remove-item-bar {
         margin-right: 8px;
     }
@@ -40,11 +37,15 @@
             font-size: var(--fs-300);
         }
     }
-    &__color-picker {
-        width: var(--color-picker-btn-size);
-        height: var(--color-picker-btn-size);
+    & .color-picker {
+        margin-bottom: 0;
+
+        & .button-radio {
+            width: var(--color-picker-btn-size);
+            height: var(--color-picker-btn-size);
+        }
     }
-    &__size-picker-title, &__color-picker-title {
+    & .size-picker__title, & .color-picker__title {
         text-transform: initial;
     }
     //==================== end of other components styles ===================//

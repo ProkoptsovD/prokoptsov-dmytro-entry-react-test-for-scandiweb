@@ -4,6 +4,7 @@
     --btn-size-h: 43px;
 
     &__title {
+        margin-bottom: var(--margin-gap);
         line-height: 1.6;
     }
     &__title-number, &__title-items {

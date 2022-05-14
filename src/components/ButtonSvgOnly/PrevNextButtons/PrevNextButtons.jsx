@@ -11,7 +11,7 @@ class PrevNextButtons extends React.Component {
 
     render() {
         return (
-            <div className={"prev-next-buttons"}>
+            <div className="prev-next-buttons">
                 <ButtonSvgOnly 
                     icon={"#chevron"}
                 />

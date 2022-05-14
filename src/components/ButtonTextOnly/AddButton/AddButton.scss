@@ -11,6 +11,8 @@
     background-color: var(--clr-light-100);
     color: var(--clr-dark-300);
 
+    cursor: pointer;
+
     transition: background-color var(--duration-fast) var(--timing-func-normal),
             box-shadow var(--duration-fast) var(--timing-func-normal),
             outline var(--duration-fast) var(--timing-func-normal);

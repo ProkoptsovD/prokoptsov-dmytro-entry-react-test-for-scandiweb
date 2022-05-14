@@ -2,27 +2,29 @@
 @use '../../../sass/placeholders/visible.scss';
 
 .cart-button {
-    @extend %hidden;
+        & .button-svg-only {
+            @extend %hidden;
+            
+            position: absolute;
+            right: 31px;
+            bottom: 72px;
 
-    position: absolute;
-    right: 31px;
-    bottom: 72px;
+            width: 52px;
+            height: 52px;
+            
+            border-radius: 50%;
+            background-color: var(--clr-accent-100);
+            
+        & > svg {
+            width: 24px;
+            height: 24px;
 
-    width: 52px;
-    height: 52px;
+            fill: var(--clr-light-100);
+        }
 
-    border-radius: 50%;
-    background-color: var(--clr-accent-100);
-    
-    & > svg {
-        width: 24px;
-        height: 24px;
-
-        fill: var(--clr-light-100);
-    }
-
-    .card-in-grid__link:hover &,
-    .card-in-grid__link:focus & {
-        @extend %visible;
+        .card-in-grid__link:hover &,
+        .card-in-grid__link:focus & {
+                @extend %visible;
+        }
     }
 }

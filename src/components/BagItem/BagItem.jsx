@@ -26,10 +26,10 @@ class BagItem extends React.Component {
                         $50.00
                     </strong>
                     <SizePicker />
-                    {/* <ColorPicker
+                    <ColorPicker
                         pickerTitle={"bag-item__color-picker-title"}
                         className={"bag-item__color-picker"}
-                    /> */}
+                    />
                 </div>
                 <AddRemoveItemBar />
                 <ProductImage />

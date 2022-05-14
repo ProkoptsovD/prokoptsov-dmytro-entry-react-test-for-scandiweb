@@ -49,10 +49,10 @@ function App() {
 				</Actionbar>
 			</Header>
 			<main>
-				{/* <CategoryPage />
-				<ProductPage data={data} /> */}
+				<CategoryPage />
+				<ProductPage data={data} />
 				<CartOverlay />
-				{/* <CartPage /> */}
+				<CartPage />
 			</main>
 		</div>
 	);

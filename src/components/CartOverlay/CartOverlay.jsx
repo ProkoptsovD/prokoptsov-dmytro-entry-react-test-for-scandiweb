@@ -11,8 +11,8 @@ class CartOverlay extends React.Component {
 
     render() {
         return (
-            <div className={"cart-overlay"}>
-                <div className={"modal"}>
+            <div className="cart-overlay">
+                <div className="modal">
                     <MiniCart />
                 </div>
             </div>

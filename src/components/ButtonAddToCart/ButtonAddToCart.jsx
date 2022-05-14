@@ -12,7 +12,7 @@ class ButtonAddToCart extends React.Component {
     render() {
         return (
             <ButtonTextOnly
-                className={"add-to-cart-btn"}
+                className="add-to-cart-btn"
             >
                 Add to cart
             </ButtonTextOnly>

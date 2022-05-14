@@ -1,5 +1,4 @@
 import React from "react";
-import ButtonTextOnly from "../ButtonTextOnly.jsx";
 import './AddButton.scss';
 
 class AddButton extends React.Component {
@@ -11,11 +10,12 @@ class AddButton extends React.Component {
 
     render() {
         return (
-                <ButtonTextOnly
-                    className={"add-btn"}
-                >
-                    <span>✕</span>
-                </ButtonTextOnly>
+            <button
+                type="button"
+                className="add-btn"
+            >
+                <span>✕</span>
+            </button>
         )
     }
 }
