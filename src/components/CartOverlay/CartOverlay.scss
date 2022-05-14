@@ -1,0 +1,21 @@
+.cart-overlay {
+    position: absolute;
+    inset: var(--header-height) 0 0 0;
+    
+    padding-right: 72px;
+
+    background-color: var(--clr-neutral-300);
+    
+    pointer-events: none;
+}
+
+.modal {
+    width: 325px;
+
+    margin-left: auto;
+    padding: 32px 16px;
+
+    background-color: var(--clr-light-100);
+
+    pointer-events: all;
+}

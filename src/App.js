@@ -1,6 +1,7 @@
 import './App.css';
 import Actionbar from './components/Actionbar/Actionbar.jsx';
 import CartButtonAction from './components/CartButtonAction/CartButtonAction.jsx';
+import CartOverlay from './components/CartOverlay/CartOverlay';
 import CurrencySwitcher from './components/CurrencySwitcher/CurrencySwitcher.jsx';
 import Header from './components/Header/Header.jsx';
 import Logo from './components/Logo/Logo.jsx';
@@ -47,8 +48,9 @@ function App() {
 				</Actionbar>
 			</Header>
 			<main>
-				<CategoryPage />
-				<ProductPage data={data} />
+				{/* <CategoryPage />
+				<ProductPage data={data} /> */}
+				<CartOverlay />
 			</main>
 		</div>
 	);
