@@ -1,9 +1,9 @@
 import React from "react";
 import ButtonAddToCart from "../ButtonAddToCart/ButtonAddToCart.jsx";
-import Colorbar from "../Colorbar/Colorbar.jsx";
+import ColorPicker from "../ColorPicker/ColorPicker.jsx";
 import Description from "../Description/Description.jsx";
 import Pricebar from "../Pricebar/Pricebar.jsx";
-import Sizebar from "../Sizebar/Sizebar.jsx";
+import SizePicker from "../SizePicker/SizePicker.jsx";
 import './ProductInfo.scss';
 
 class ProductInfo extends React.Component {
@@ -23,8 +23,8 @@ class ProductInfo extends React.Component {
                     <h2 className={"product-info__title"}>
                         Running short
                     </h2>
-                    <Sizebar />
-                    <Colorbar />
+                    <SizePicker />
+                    <ColorPicker />
                     <Pricebar />
                     <ButtonAddToCart />
                     <Description

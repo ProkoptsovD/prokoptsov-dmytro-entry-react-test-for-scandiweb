@@ -1,8 +1,8 @@
 import React from "react";
 import ColorButton from "../ButtonSvgOnly/ColorButton/ColorButton";
-import './Colorbar.scss';
+import './ColorPicker.scss';
 
-class Colorbar extends React.Component {
+class ColorPicker extends React.Component {
     constructor(props) {
         super(props);
 
@@ -11,18 +11,18 @@ class Colorbar extends React.Component {
 
     render() {
         return (
-            <div className={"color-bar"}>
-                <b className={"color-bar__title"}>
+            <div className={"color-picker"}>
+                <b className={"color-picker__title"}>
                     Color:
                 </b>
-                <ul className={"color-bar__btn-list"}>
-                    <li className={"color-bar__item"}>
+                <ul className={"color-picker__btn-list"}>
+                    <li className={"color-picker__item"}>
                         <ColorButton />
                     </li>
-                    <li className={"color-bar__item"}>
+                    <li className={"color-picker__item"}>
                         <ColorButton />
                     </li>
-                    <li className={"color-bar__item"}>
+                    <li className={"color-picker__item"}>
                         <ColorButton />
                     </li>
                 </ul>
@@ -31,4 +31,4 @@ class Colorbar extends React.Component {
     }
 }
 
-export default Colorbar;
+export default ColorPicker;

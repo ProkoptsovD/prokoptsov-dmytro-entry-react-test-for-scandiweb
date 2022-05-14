@@ -1,8 +1,8 @@
 import React from "react";
 import SizeButton from "../ButtonSvgOnly/SizeButton/SizeButton.jsx";
-import './Sizebar.scss';
+import './SizePicker.scss';
 
-class Sizebar extends React.Component {
+class SizePicker extends React.Component {
     constructor(props) {
         super(props);
 
@@ -11,21 +11,21 @@ class Sizebar extends React.Component {
 
     render() {
         return (
-            <div className={"size-bar"}>
-                <b className={"size-bar__title"}>
+            <div className={"size-picker"}>
+                <b className={"size-picker__title"}>
                     Size:
                 </b>
-                <ul className={"size-bar__btn-list"}>
-                    <li className={"size-bar__btn"}>
+                <ul className={"size-picker__btn-list"}>
+                    <li className={"size-picker__btn"}>
                         <SizeButton text={'xs'}/>
                     </li>
-                    <li className={"size-bar__btn"}>
+                    <li className={"size-picker__btn"}>
                         <SizeButton text={'s'}/>
                     </li>
-                    <li className={"size-bar__btn"}>
+                    <li className={"size-picker__btn"}>
                         <SizeButton text={'m'}/>
                     </li>
-                    <li className={"size-bar__btn"}>
+                    <li className={"size-picker__btn"}>
                         <SizeButton text={'l'}/>
                     </li>
                 </ul>
@@ -34,4 +34,4 @@ class Sizebar extends React.Component {
     }
 }
 
-export default Sizebar;
+export default SizePicker;
