@@ -11,11 +11,8 @@ class SizeButton extends React.Component {
 
     render() {
         return (
-            <ButtonRadio
-                className={this.props.className}
-                classNameInput={this.props.classNameInputInput}
-                classNameText={this.props.classNameText}
-                name={`${this.props.name ? this.props.name : 'size'}`}
+            <ButtonRadio     
+                name={this.props.name}
                 text={this.props.text}
             />
         )

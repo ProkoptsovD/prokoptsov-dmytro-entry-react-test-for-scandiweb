@@ -11,44 +11,32 @@ class SizePicker extends React.Component {
 
     render() {
         return (
-            <div className={"size-picker"}>
-                <b className={`size-picker__title ${this.props.pickerTitle ? this.props.pickerTitle : ''}`}>
+            <div className="size-picker">
+                <b className="size-picker__title">
                     Size:
                 </b>
-                <ul className={"size-picker__btn-list"}>
-                    <li className={`size-picker__btn ${this.props.liItem ? this.props.liItem : ''}`}>
+                <ul className="size-picker__btn-list">
+                    <li className="size-picker__btn">
                         <SizeButton
-                            className={this.props.className}
-                            classNameInput={this.props.classNameInputInput}
-                            classNameText={this.props.classNameText}
-                            name={`${this.props.name ? this.props.name : 'size'}`}
+                            name="size"
                             text={`${this.props.text ? this.props.text : 'xs'}`}
                         />
                     </li>
-                    <li className={`size-picker__btn ${this.props.liItem ? this.props.liItem : ''}`}>
+                    <li className="size-picker__btn">
                         <SizeButton
-                            className={this.props.className}
-                            classNameInput={this.props.classNameInputInput}
-                            classNameText={this.props.classNameText}
-                            name={`${this.props.name ? this.props.name : 'size'}`}
+                            name="size"
                             text={`${this.props.text ? this.props.text : 's'}`}
                         />
                     </li>
-                    <li className={`size-picker__btn ${this.props.liItem ? this.props.liItem : ''}`}>
+                    <li className="size-picker__btn">
                         <SizeButton
-                            className={this.props.className}
-                            classNameInput={this.props.classNameInputInput}
-                            classNameText={this.props.classNameText}
-                            name={`${this.props.name ? this.props.name : 'size'}`}
+                            name="size"
                             text={`${this.props.text ? this.props.text : 'm'}`}
                         />
                     </li>
-                    <li className={`size-picker__btn ${this.props.liItem ? this.props.liItem : ''}`}>
+                    <li className="size-picker__btn">
                         <SizeButton
-                            className={this.props.className}
-                            classNameInput={this.props.classNameInputInput}
-                            classNameText={this.props.classNameText}
-                            name={`${this.props.name ? this.props.name : 'size'}`}
+                            name="size"
                             text={`${this.props.text ? this.props.text : 'l'}`}
                         />
                     </li>

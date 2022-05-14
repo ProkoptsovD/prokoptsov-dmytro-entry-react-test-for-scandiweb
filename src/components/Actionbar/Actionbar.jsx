@@ -11,7 +11,7 @@ class Actionbar extends React.Component {
         return (
             <li
                 key={index}
-                className={"action-bar__item"}
+                className="action-bar__item"
             >
                 {child}
             </li>

@@ -51,8 +51,8 @@ function App() {
 			<main>
 				{/* <CategoryPage />
 				<ProductPage data={data} /> */}
-				{/* <CartOverlay /> */}
-				<CartPage />
+				<CartOverlay />
+				{/* <CartPage /> */}
 			</main>
 		</div>
 	);

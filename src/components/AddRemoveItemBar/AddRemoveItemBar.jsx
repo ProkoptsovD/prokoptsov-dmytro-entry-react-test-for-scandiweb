@@ -12,9 +12,9 @@ class AddRemoveItemBar extends React.Component {
 
     render() {
         return (
-            <div className={"add-remove-item-bar"}>
+            <div className="add-remove-item-bar">
                 <AddButton />
-                <span className={"add-remove-item-bar__total"}>
+                <span className="add-remove-item-bar__total">
                     0
                 </span>
                 <RemoveButton />

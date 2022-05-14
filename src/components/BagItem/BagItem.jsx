@@ -14,27 +14,22 @@ class BagItem extends React.Component {
 
     render() {
         return (
-            <div className={"bag-item"}>
-                <div className={"bag-item__wrapper-inner"}>
-                    <p className={"bag-item__brand"}>
+            <div className="bag-item">
+                <div className="bag-item__wrapper-inner">
+                    <p className="bag-item__brand">
                         Apollo
                     </p>
-                    <h4 className={"bag-item__title"}>
+                    <h4 className="bag-item__title">
                         Running Short
                     </h4>
-                    <strong className={"bag-item__price"}>
+                    <strong className="bag-item__price">
                         $50.00
                     </strong>
-                    <SizePicker
-                        pickerTitle={"bag-item__size-picker-title"}
-                        className={"bag-item__size-picker"}
-                        classNameText={"bag-item__size-picker-text"}
-                        liItem={"bag-item__size-picker-list-item"}
-                    />
-                    <ColorPicker
+                    <SizePicker />
+                    {/* <ColorPicker
                         pickerTitle={"bag-item__color-picker-title"}
                         className={"bag-item__color-picker"}
-                    />
+                    /> */}
                 </div>
                 <AddRemoveItemBar />
                 <ProductImage />

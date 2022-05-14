@@ -10,13 +10,13 @@ class ButtonRadio extends React.Component {
 
     render() {
         return (
-            <label className={`button-radio ${this.props.className ? this.props.className : ''}`}>
+            <label className="button-radio">
                 <input
                     value={this.props.text || ''}
-                    name={this.props.name || "parent"}
-                    className={`button-radio__input ${this.props.classNameInput ? this.props.classNameInput : ''}`}
+                    name={this.props.name || "radio"}
+                    className="button-radio__input"
                     type="radio" />
-                <span className={`button-radio__text ${this.props.classNameText ? this.props.classNameText : ''}`}>
+                <span className="button-radio__text">
                     {this.props.text || ''}
                 </span>
             </label>
