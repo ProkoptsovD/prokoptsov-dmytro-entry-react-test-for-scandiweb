@@ -1,6 +1,7 @@
 import React from "react";
 import AddRemoveItemBar from "../AddRemoveItemBar/AddRemoveItemBar.jsx";
 import ColorPicker from "../ColorPicker/ColorPicker.jsx";
+import ProductImage from "../ProductImage/ProductImage.jsx";
 import SizePicker from "../SizePicker/SizePicker.jsx";
 import './BagItem.scss';
 
@@ -24,10 +25,19 @@ class BagItem extends React.Component {
                     <strong className={"bag-item__price"}>
                         $50.00
                     </strong>
-                    <SizePicker />
-                    <ColorPicker />
+                    <SizePicker
+                        pickerTitle={"bag-item__size-picker-title"}
+                        className={"bag-item__size-picker"}
+                        classNameText={"bag-item__size-picker-text"}
+                        liItem={"bag-item__size-picker-list-item"}
+                    />
+                    <ColorPicker
+                        pickerTitle={"bag-item__color-picker-title"}
+                        className={"bag-item__color-picker"}
+                    />
                 </div>
                 <AddRemoveItemBar />
+                <ProductImage />
             </div>
         )
     }

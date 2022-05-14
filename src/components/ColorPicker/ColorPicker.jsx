@@ -12,18 +12,33 @@ class ColorPicker extends React.Component {
     render() {
         return (
             <div className={"color-picker"}>
-                <b className={"color-picker__title"}>
+                <b className={`"color-picker__title" ${this.props.pickerTitle ? this.props.pickerTitle : ''}`}>
                     Color:
                 </b>
                 <ul className={"color-picker__btn-list"}>
                     <li className={"color-picker__item"}>
-                        <ColorButton />
+                        <ColorButton
+                            className={this.props.className}
+                            classNameInput={this.props.classNameInput}
+                            classNameText={this.props.classNameText}
+                            name={this.props.name}
+                        />
                     </li>
                     <li className={"color-picker__item"}>
-                        <ColorButton />
+                        <ColorButton
+                            className={this.props.className}
+                            classNameInput={this.props.classNameInput}
+                            classNameText={this.props.classNameText}
+                            name={this.props.name}
+                        />
                     </li>
                     <li className={"color-picker__item"}>
-                        <ColorButton />
+                        <ColorButton
+                            className={this.props.className}
+                            classNameInput={this.props.classNameInput}
+                            classNameText={this.props.classNameText}
+                            name={this.props.name}
+                        />
                     </li>
                 </ul>
             </div>

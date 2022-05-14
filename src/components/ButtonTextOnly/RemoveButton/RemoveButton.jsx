@@ -14,7 +14,7 @@ class RemoveButton extends React.Component {
                 <ButtonTextOnly
                     className={"remove-btn"}
                 >
-                    -
+                    <span>—</span>
                 </ButtonTextOnly>
         )
     }

@@ -1,0 +1,25 @@
+.remove-btn {
+    --size: 24px;
+
+    width: var(--size);
+    height: var(--size);
+
+    border: 1px solid var(--clr-dark-300);
+
+    background-color: var(--clr-light-100);
+    color: var(--clr-dark-300);
+
+    transition: background-color var(--duration-fast) var(--timing-func-normal),
+                box-shadow var(--duration-fast) var(--timing-func-normal),
+                outline var(--duration-fast) var(--timing-func-normal);
+
+    &>span {
+        font-weight: 700;
+        font-size: 8px;
+    }
+    &:active {
+        background: #e5e5e5;
+        box-shadow: inset 0px 0px 5px #c1c1c1;
+        outline: none;
+    }
+}

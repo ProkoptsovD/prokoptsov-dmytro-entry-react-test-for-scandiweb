@@ -12,10 +12,10 @@ class ColorButton extends React.Component {
     render() {
         return (
             <ButtonRadio
-                name={"color"}
-                className={"color-btn"}
-                classNameInput={"color-btn__input"}
-                classNameText={"color-btn__text"}
+                name={`${this.props.name ? this.props.name : 'color'}`}
+                className={`${this.props.className ? this.props.className : 'color-btn'}`}
+                classNameInput={`${this.props.classNameInput ? this.props.classNameInput : 'color-btn__input'}`}
+                classNameText={`${this.props.classNameText ? this.props.classNameText : 'color-btn__text'}`}
             />
         )
     }

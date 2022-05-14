@@ -1,5 +1,6 @@
 import React from "react";
 import ButtonRadio from "../ButtonRadio.jsx";
+import './SizeButton.scss';
 
 class SizeButton extends React.Component {
     constructor(props) {
@@ -11,7 +12,10 @@ class SizeButton extends React.Component {
     render() {
         return (
             <ButtonRadio
-                name={'size'}
+                className={this.props.className}
+                classNameInput={this.props.classNameInputInput}
+                classNameText={this.props.classNameText}
+                name={`${this.props.name ? this.props.name : 'size'}`}
                 text={this.props.text}
             />
         )

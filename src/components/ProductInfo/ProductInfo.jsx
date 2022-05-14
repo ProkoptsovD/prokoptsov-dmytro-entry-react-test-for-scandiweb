@@ -24,7 +24,12 @@ class ProductInfo extends React.Component {
                         Running short
                     </h2>
                     <SizePicker />
-                    <ColorPicker />
+                    <ColorPicker
+                        name={"color"}
+                        className={"color-btn"}
+                        classNameInput={"color-btn__input"}
+                        classNameText={"color-btn__text"}
+                    />
                     <Pricebar />
                     <ButtonAddToCart />
                     <Description
