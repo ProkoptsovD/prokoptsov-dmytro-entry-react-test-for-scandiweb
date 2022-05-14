@@ -16,20 +16,15 @@ class ProductInfo extends React.Component {
     render() {
         return (
             <>
-                <div className={"product-info"}>
-                    <p className={"product-info__brand"}>
+                <div className="product-info">
+                    <p className="product-info__brand">
                         Brand
                     </p>
-                    <h2 className={"product-info__title"}>
+                    <h2 className="product-info__title">
                         Running short
                     </h2>
                     <SizePicker />
-                    <ColorPicker
-                        name={"color"}
-                        className={"color-btn"}
-                        classNameInput={"color-btn__input"}
-                        classNameText={"color-btn__text"}
-                    />
+                    <ColorPicker />
                     <Pricebar />
                     <ButtonAddToCart />
                     <Description

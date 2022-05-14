@@ -12,7 +12,7 @@ class ProductPage extends React.Component {
     render() {
         return (
             <section
-                className={"product-page"}
+                className="product-page"
             >
                 <h1>Product page</h1>
                 <div className="container">

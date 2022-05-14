@@ -13,13 +13,13 @@ class CartPage extends React.Component {
 
     render() {
         return (
-            <section className={"cart-page"}>
+            <section className="cart-page">
                 <div className="container">
-                    <h1 className={"cart-page__title"}>
+                    <h1 className="cart-page__title">
                         Cart
                     </h1>
-                    <ul className={"cart-page__list"}>
-                        <li className={"cart-page__list-item"}>
+                    <ul className="cart-page__list">
+                        <li className="cart-page__list-item">
                             <BagItem />
                         </li> 
                     </ul>

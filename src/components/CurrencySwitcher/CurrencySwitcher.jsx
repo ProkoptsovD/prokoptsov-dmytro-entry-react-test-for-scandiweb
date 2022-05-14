@@ -15,12 +15,12 @@ class CurrencySwitcher extends React.Component {
     renderCurrency = ({symbol, label}) => {
         return (
             <li key={label}
-                className={"currency-switcher__item"}
+                className="currency-switcher__item"
             >
                 <input
                     id={label}
                     name="currency"
-                    className={"currency-switcher__input"}
+                    className="currency-switcher__input"
                     type="radio"
                     value={symbol}
                     defaultChecked={symbol === '$'}
@@ -55,11 +55,11 @@ class CurrencySwitcher extends React.Component {
         return (        
             <form
                 onClick={this.setCurrency}
-                className={"currency-switcher"}
+                className="currency-switcher"
                 role="group">
                 <ButtonSvgOnly
                     onClick={this.showCurrenciesList}
-                    className={"currency-switcher__btn"}
+                    className="currency-switcher__btn"
                     icon={'#chevron'}
                 >
                     <span>
@@ -67,7 +67,7 @@ class CurrencySwitcher extends React.Component {
                     </span>
                 </ButtonSvgOnly>
                 <ul aria-label="currency"
-                    className={"currency-switcher__list"}
+                    className="currency-switcher__list"
                     data-currencies-list
                 >
                     {this.props.currency.map(this.renderCurrency)}

@@ -11,10 +11,10 @@ class Pricebar extends React.Component {
     render() {
         return (
             <>
-                <b className={"price__title"}>
+                <b className="price__title">
                     Price:
                 </b>
-                <strong className={"price"}>
+                <strong className="price">
                     $50.00
                 </strong>
             </>

@@ -13,7 +13,7 @@ class ProductCard extends React.Component {
 
     render() {
         return (
-            <div className={"product-card__wrapper-outer"}>
+            <div className="product-card__wrapper-outer">
                 <Gallery
                     images={this.props.data}
                 />
