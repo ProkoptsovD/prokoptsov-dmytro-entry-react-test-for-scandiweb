@@ -1,11 +1,23 @@
 .product-image {
     width: 100%;
+
     &__wrapper {
+        position: relative;
         // temp
         outline: 1px solid red;
 
         width: 610px;
         margin-right: 100px;
         // height: 497px;
+        
+        & .prev-next-buttons {
+            position: absolute;
+            
+            right: 16px;
+            bottom: 16px;
+        }
     }
+
+    //================= prev-next-buttons styles ======================//
+    
 }

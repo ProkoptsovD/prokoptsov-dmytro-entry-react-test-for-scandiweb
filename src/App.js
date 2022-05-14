@@ -6,6 +6,7 @@ import CurrencySwitcher from './components/CurrencySwitcher/CurrencySwitcher.jsx
 import Header from './components/Header/Header.jsx';
 import Logo from './components/Logo/Logo.jsx';
 import Navbar from './components/Navbar/Navbar.jsx';
+import CartPage from './pages/CartPage/CartPage.jsx';
 import CategoryPage from './pages/CategoryPage/CategoryPage.jsx';
 import ProductPage from './pages/ProductPage/ProductPage.jsx';
 
@@ -50,7 +51,8 @@ function App() {
 			<main>
 				{/* <CategoryPage />
 				<ProductPage data={data} /> */}
-				<CartOverlay />
+				{/* <CartOverlay /> */}
+				<CartPage />
 			</main>
 		</div>
 	);

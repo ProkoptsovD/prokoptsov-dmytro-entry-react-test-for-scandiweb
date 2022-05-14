@@ -14,7 +14,7 @@ class AddButton extends React.Component {
                 <ButtonTextOnly
                     className={"add-btn"}
                 >
-                    <span>✖</span>
+                    <span>✕</span>
                 </ButtonTextOnly>
         )
     }

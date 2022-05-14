@@ -12,7 +12,7 @@ class ColorPicker extends React.Component {
     render() {
         return (
             <div className={"color-picker"}>
-                <b className={`"color-picker__title" ${this.props.pickerTitle ? this.props.pickerTitle : ''}`}>
+                <b className={`color-picker__title ${this.props.pickerTitle ? this.props.pickerTitle : ''}`}>
                     Color:
                 </b>
                 <ul className={"color-picker__btn-list"}>

@@ -1,4 +1,5 @@
 import React from "react";
+import PrevNextButtons from '../ButtonSvgOnly/PrevNextButtons/PrevNextButtons.jsx';
 import './ProductImage.scss';
 
 class ProductImage extends React.Component {
@@ -17,6 +18,7 @@ class ProductImage extends React.Component {
                         alt="product"
                         className={"product-image"}
                     />
+                    <PrevNextButtons />
                 </div>
             </>
         )
