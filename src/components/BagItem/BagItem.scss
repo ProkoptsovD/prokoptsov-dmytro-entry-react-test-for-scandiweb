@@ -6,9 +6,11 @@
 
     &__wrapper-inner {
         margin-right: 4px;
-
-        font-weight: var(--fw-300);
         line-height: 1.6;
+    }
+    &__title {
+        font-weight: var(--fw-300);
+        margin-bottom: 4px;
     }
     &__price {
         margin-bottom: 8px;
@@ -26,6 +28,14 @@
     & .size-picker {
         margin-bottom: 8px;
 
+        &__title {
+            font-weight: var(--fw-400);
+            font-size: var(--fs-300);
+            line-height: 1;
+        
+            text-transform: initial;
+        }
+
         & .button-radio {
             width: var(--size-picker-btn-size);
             height: var(--size-picker-btn-size);
@@ -40,13 +50,22 @@
     & .color-picker {
         margin-bottom: 0;
 
+        font-weight: var(--fw-400);
+        font-size: var(--fs-300);
+        line-height: 1;
+
+        &__title {
+            font-weight: var(--fw-400);
+            font-size: var(--fs-300);
+            line-height: 1;
+
+            text-transform: initial;
+        }
+
         & .button-radio {
             width: var(--color-picker-btn-size);
             height: var(--color-picker-btn-size);
         }
-    }
-    & .size-picker__title, & .color-picker__title {
-        text-transform: initial;
     }
     //==================== end of other components styles ===================//
 }

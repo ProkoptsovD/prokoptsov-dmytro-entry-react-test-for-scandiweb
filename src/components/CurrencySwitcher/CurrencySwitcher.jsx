@@ -1,5 +1,5 @@
 import React from "react";
-import ButtonSvgOnly from "../ButtonSvgOnly/ButtonSvgOnly";
+import icons from '../../icons/icons.svg';
 import './CurrencySwitcher.scss';
 
 class CurrencySwitcher extends React.Component {
@@ -54,18 +54,19 @@ class CurrencySwitcher extends React.Component {
     render() {
         return (        
             <form
-                onClick={this.setCurrency}
                 className="currency-switcher"
                 role="group">
-                <ButtonSvgOnly
-                    onClick={this.showCurrenciesList}
-                    className="currency-switcher__btn"
-                    icon={'#chevron'}
+                <button
+                    className="button-svg-only currency-switcher__btn"
+                    type="button"
                 >
+                    <svg>
+                        <use href={`${icons}#chevron`}></use>
+                    </svg>
                     <span>
                         {this.state.currency}
                     </span>
-                </ButtonSvgOnly>
+                </button>
                 <ul aria-label="currency"
                     className="currency-switcher__list"
                     data-currencies-list
