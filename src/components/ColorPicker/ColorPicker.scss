@@ -1,4 +1,11 @@
+@use '../../sass/mixins/grid-tmpl-mixin.scss' as color-picker-grid;
+
 .color-picker {
+    --c-btn-size-w: 36px;
+    --c-btn-size-h: 36px;
+    --c-grid-gap-size: 4px;
+    --c-grid-margin-quantaty: 8;
+
     margin-bottom: 44px;
     
     &__title {
@@ -10,29 +17,30 @@
         text-transform: uppercase;
     }
     &__btn-list {
+        @include color-picker-grid.parent(var(--c-grid-gap-size));
+
         display: flex;
         align-items: center;
-
         width: 100%;
     }
-    &__item:not(:last-child) {
-        margin-right: 8px;
+    &__item {
+        @include color-picker-grid.child(var(--c-grid-gap-size), var(--c-grid-margin-quantaty));
     }
 
     & .button-radio {
-        width: 36px;
-        height: 36px;
+        width: var(--c-btn-size-w);
+        height: var(--c-btn-size-h);
         border: none;
 
         &__text {
-            outline: 1px solid;
+            outline: 2px solid;
             outline-color: var(--clr-light-100);
     
             transition: outline-color var(--duration-normal) var(--timing-func-normal);
         }
         &__text::after {
             position: absolute;
-            inset: 2px;
+            inset: 1px;
             content: '';
 
             background-color: #333;

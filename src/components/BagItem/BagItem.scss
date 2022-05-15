@@ -3,10 +3,11 @@
     --color-picker-btn-size: 20px;
 
     display: flex;
-
+    
     &__wrapper-inner {
         margin-right: 4px;
         line-height: 1.6;
+        min-width: 136px;
     }
     &__title {
         font-weight: var(--fw-300);
@@ -35,13 +36,9 @@
         
             text-transform: initial;
         }
-
         & .button-radio {
             width: var(--size-picker-btn-size);
             height: var(--size-picker-btn-size);
-        }
-        &__btn:not(:last-child) {
-            margin-right: 8px;
         }
         & .button-radio__text {
             font-size: var(--fs-300);
@@ -61,7 +58,6 @@
 
             text-transform: initial;
         }
-
         & .button-radio {
             width: var(--color-picker-btn-size);
             height: var(--color-picker-btn-size);

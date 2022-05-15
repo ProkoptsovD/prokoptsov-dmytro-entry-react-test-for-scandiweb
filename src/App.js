@@ -11,7 +11,7 @@ import CategoryPage from './pages/CategoryPage/CategoryPage.jsx';
 import ProductPage from './pages/ProductPage/ProductPage.jsx';
 
 import data from './server/dataFromServer.js';
-console.log(data);
+console.log(data.data.categories[2].products);
 
 const cats = [{ name: 'all' }, { name: 'tech' }, { name: 'clothes' }];
 const currency = [
