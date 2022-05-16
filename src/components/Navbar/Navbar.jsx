@@ -9,14 +9,14 @@ class Navbar extends React.Component {
         this.props = props;
     }
 
-    renderLinksMarkup = ({ name: category }, index) => {
+    renderLinksMarkup = ({ name: category }) => {
         return (
             <li
                 key={category}
                 className="navbar__item">
                 <NavLink
                     to={category}
-                    className={`navbar__link ${!index ? 'current' : ''}`}
+                    className={`navbar__link`}
                 >
                     {category}
                 </NavLink>

@@ -50,15 +50,15 @@
 
             background-color: var(--clr-accent-100);
         }
-
-        // =========== for current link ==========//
-        &.current {
-            font-weight: var(--fw-600);
-            color: var(--clr-accent-100);
-        }
-
-        &.current::after {
-            @extend %visible;
-        }
     }
+}
+
+// =========== for current link ==========//
+.active {
+    font-weight: var(--fw-600);
+    color: var(--clr-accent-100);
+}
+
+.active::after {
+    @extend %visible;
 }
