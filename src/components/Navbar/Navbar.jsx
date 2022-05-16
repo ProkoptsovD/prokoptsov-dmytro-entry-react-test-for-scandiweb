@@ -1,4 +1,5 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
 import './Navbar.scss';
 
 class Navbar extends React.Component {
@@ -13,12 +14,12 @@ class Navbar extends React.Component {
             <li
                 key={category}
                 className="navbar__item">
-                <a
-                    href="#"
+                <NavLink
+                    to={category}
                     className={`navbar__link ${!index ? 'current' : ''}`}
                 >
                     {category}
-                </a>
+                </NavLink>
             </li>
         )
     }
