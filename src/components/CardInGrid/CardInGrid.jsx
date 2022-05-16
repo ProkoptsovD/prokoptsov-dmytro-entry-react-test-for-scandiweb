@@ -1,21 +1,23 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import CartButton from "../ButtonSvgOnly/CartButton/CartButton";
 import './CardInGrid.scss';
 
 class CardInGrid extends React.Component {
 
     render() {
-        const { brand, name, id, inStock, prices, gallery } = this.props.product;
+        const { brand, name, id, inStock, prices, gallery, category } = this.props.product;
         const [previewImageUrl] = gallery;
         const {amount: cost, currency} = prices[0];
-
+        console.log(this.props.product);
         return (
             <article
                 key={id}
                 data-id={id}
                 className="card-in-grid">
-                <a className={`card-in-grid__link ${!inStock ? 'out-of-stock' : ''}`}
-                    href="">
+                <Link
+                    to={`/${category}/${id}`}
+                    className={`card-in-grid__link ${!inStock ? 'out-of-stock' : ''}`}>
                     <img
                         className="card-in-grid__image"
                         src={previewImageUrl}
@@ -27,7 +29,7 @@ class CardInGrid extends React.Component {
                         {currency.symbol}{cost}
                     </p>
                     <CartButton />
-                </a>
+                </Link>
             </article>
         )
     }

@@ -11,6 +11,7 @@ import LayoutProductListPage from './components/Layouts/LayoutProductListPage';
 // import Navbar from './components/Navbar/Navbar.jsx';
 import CartPage from './pages/CartPage/CartPage.jsx';
 import CategoryPage from './pages/CategoryPage/CategoryPage.jsx';
+import NotFoundPage from './pages/NotFoundPage/NotFoundPage';
 import ProductPage from './pages/ProductPage/ProductPage.jsx';
 // import { fetchData } from './redux/thunks/fetchData';
 import response from './server/dataFromServer.js';
@@ -45,7 +46,7 @@ class App extends React.Component {
 		const filteredByCategory = products.filter(
 			({ category }) => category === name
 		);
-		const a = (
+		const allCategoryPage = (
 			<Route
 				key={name}
 				index
@@ -57,7 +58,7 @@ class App extends React.Component {
 				}
 			></Route>
 		);
-		const b = (
+		const otherCategotiesPages = (
 			<Route
 				key={name}
 				path={`/${name}`}
@@ -70,17 +71,18 @@ class App extends React.Component {
 			></Route>
 		);
 
-		return isCategoryNameAll ? a : b;
+		return isCategoryNameAll ? allCategoryPage : otherCategotiesPages;
 	};
 
 	render() {
 		return (
 			<Routes>
 				<Route
-					to="/"
+					path="/"
 					element={<LayoutProductListPage cats={cats} currency={currency} />}
 				>
 					{response.data.categories.map(this.renderLayoutProductListPageRoutes)}
+					<Route path="*" element={<NotFoundPage />}></Route>
 				</Route>
 			</Routes>
 		);
