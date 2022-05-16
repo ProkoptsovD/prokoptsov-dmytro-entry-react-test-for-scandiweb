@@ -7,12 +7,24 @@ class ProductCardsGrid extends React.Component {
         return (
             <>
                 <ul className="product-cards-grid">
-                    <CardInGrid />
-                    <CardInGrid />
-                    <CardInGrid />
-                    <CardInGrid />
-                    <CardInGrid />
-                    <CardInGrid />
+                    <li className="product-cards-grid__item">
+                        <CardInGrid />
+                    </li>
+                    <li className="product-cards-grid__item">
+                        <CardInGrid />
+                    </li>
+                    <li className="product-cards-grid__item">
+                        <CardInGrid />
+                    </li>
+                    <li className="product-cards-grid__item">
+                        <CardInGrid />
+                    </li>
+                    <li className="product-cards-grid__item">
+                        <CardInGrid />
+                    </li>
+                    <li className="product-cards-grid__item">
+                        <CardInGrid />
+                    </li>
                 </ul>
             </>
         )

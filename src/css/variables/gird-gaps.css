@@ -1,5 +1,6 @@
 :root {
     /* ========== products list page gaps */
-    --grid-gap-size: 3;
-    --grid-gap: 40px;
+    --PLP-grid-gap-size: 20px;
+    --PLP-grid-gaps-quantaty-in-row: 6;
+    --PLP-grid-items-quantaty-in-row: 3
 }

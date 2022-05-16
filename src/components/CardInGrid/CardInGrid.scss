@@ -1,14 +1,4 @@
 .card-in-grid {
-    flex-basis: calc((100% - var(--grid-row) * var(--grid-gap)) / var(--grid-row));
-
-    // temp, delete
-    width: 386px;
-    height: 444px;
-    // outline: 2px solid limegreen;
-
-    margin-top: var(--grid-gap);
-    margin-left: var(--grid-gap);
-
     &__link {
         position: relative;
 

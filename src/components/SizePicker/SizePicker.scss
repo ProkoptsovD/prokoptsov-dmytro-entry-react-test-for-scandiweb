@@ -1,8 +1,7 @@
-@use '../../sass/mixins/grid-tmpl-mixin.scss' as size-picker-grid;
+@use '../../sass/mixins/pickers-layout-mixin.scss' as size-picker-grid;
 
 .size-picker {
-    --s-grid-margin-quantaty: 8;
-    --s-grid-gap: 4px;
+    --gap-size: 4px;
 
     display: inline-block;
     width: 100%;
@@ -18,13 +17,13 @@
         text-transform: uppercase;
     }
     &__btn-list {
-        @include size-picker-grid.parent(var(--s-grid-gap));
+        @include size-picker-grid.list(var(--gap-size));
         
         display: flex;
         align-items: center;      
         width: 100%;     
     }
     &__btn {
-        @include size-picker-grid.child(var(--s-grid-gap), var(--s-grid-margin-quantaty));
+        @include size-picker-grid.items-in-list(var(--gap-size));
     }
 }
