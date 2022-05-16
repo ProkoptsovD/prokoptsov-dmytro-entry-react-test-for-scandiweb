@@ -15,7 +15,7 @@ class Navbar extends React.Component {
                 key={category}
                 className="navbar__item">
                 <NavLink
-                    to={category}
+                    to={category === 'all' ? '/' : category}
                     className={`navbar__link`}
                 >
                     {category}

@@ -45,8 +45,19 @@ class App extends React.Component {
 		const filteredByCategory = products.filter(
 			({ category }) => category === name
 		);
-
-		return (
+		const a = (
+			<Route
+				key={name}
+				index
+				element={
+					<CategoryPage
+						category={name}
+						products={isCategoryNameAll ? products : filteredByCategory}
+					/>
+				}
+			></Route>
+		);
+		const b = (
 			<Route
 				key={name}
 				path={`/${name}`}
@@ -58,6 +69,8 @@ class App extends React.Component {
 				}
 			></Route>
 		);
+
+		return isCategoryNameAll ? a : b;
 	};
 
 	render() {
