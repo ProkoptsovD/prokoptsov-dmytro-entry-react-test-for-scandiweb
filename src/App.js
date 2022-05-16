@@ -40,6 +40,26 @@ const currency = [
 ];
 
 class App extends React.Component {
+	renderLayoutProductListPageRoutes = ({ name, products }) => {
+		const isCategoryNameAll = name === 'all';
+		const filteredByCategory = products.filter(
+			({ category }) => category === name
+		);
+
+		return (
+			<Route
+				key={name}
+				path={`/${name}`}
+				element={
+					<CategoryPage
+						category={name}
+						products={isCategoryNameAll ? products : filteredByCategory}
+					/>
+				}
+			></Route>
+		);
+	};
+
 	render() {
 		return (
 			<Routes>
@@ -47,25 +67,7 @@ class App extends React.Component {
 					to="/"
 					element={<LayoutProductListPage cats={cats} currency={currency} />}
 				>
-					{response.data.categories.map(({ name, products }) => {
-						const isCategoryNameAll = name === 'all';
-						const filteredByCategory = products.filter(
-							({ category }) => category === name
-						);
-
-						return (
-							<Route
-								key={name}
-								path={`/${name}`}
-								element={
-									<CategoryPage
-										category={name}
-										products={isCategoryNameAll ? products : filteredByCategory}
-									/>
-								}
-							></Route>
-						);
-					})}
+					{response.data.categories.map(this.renderLayoutProductListPageRoutes)}
 				</Route>
 			</Routes>
 		);
