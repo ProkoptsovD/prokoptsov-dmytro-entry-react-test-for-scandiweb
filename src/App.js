@@ -13,8 +13,10 @@ import CartPage from './pages/CartPage/CartPage.jsx';
 import CategoryPage from './pages/CategoryPage/CategoryPage.jsx';
 import NotFoundPage from './pages/NotFoundPage/NotFoundPage';
 import ProductPage from './pages/ProductPage/ProductPage.jsx';
-// import { fetchData } from './redux/thunks/fetchData';
 import response from './server/dataFromServer.js';
+
+import { getProductById } from './server/query';
+import { makeRequest, serverURL } from './server/makeRequest';
 
 const cats = [{ name: 'all' }, { name: 'tech' }, { name: 'clothes' }];
 const currency = [
@@ -75,6 +77,8 @@ class App extends React.Component {
 	};
 
 	render() {
+		// makeRequest(serverURL, { getProductById, variables }).then(console.log);
+
 		return (
 			<Routes>
 				<Route

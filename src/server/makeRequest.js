@@ -1,4 +1,3 @@
-import { query } from './query';
 import serverURL from './serverURL';
 
 /**
@@ -6,8 +5,8 @@ import serverURL from './serverURL';
  * @param {Object} requestConfig // object with request parametrs
  * @returns {Promise} not parsed promise with data from server
  */
-const makeRequest = async (url, queryParam = query) => {
-	const requestParams = {
+const makeRequest = async (url, queryParam) => {
+	const headers = {
 		method: 'POST',
 		headers: {
 			'Content-Type': 'application/json',
@@ -15,8 +14,7 @@ const makeRequest = async (url, queryParam = query) => {
 		},
 		body: JSON.stringify(queryParam),
 	};
-
-	return fetch(url, requestParams);
+	return fetch(url, headers);
 };
 
 export { makeRequest, serverURL };

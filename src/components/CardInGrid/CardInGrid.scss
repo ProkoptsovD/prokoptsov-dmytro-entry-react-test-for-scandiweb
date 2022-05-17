@@ -1,15 +1,11 @@
 .card-in-grid {
-    width: 100%;
     height: 100%;
 
     &__link {
         position: relative;
 
         display: block;
-
-        width: 100%;
         height: 100%;
-
         padding: 16px;
 
         color: inherit;
@@ -31,6 +27,7 @@
         height: 338px;
         
         margin-bottom: 24px;
+        object-fit: contain;
     }
 
     &__title, &__price {
@@ -68,4 +65,9 @@
         background-color: var(--clr-light-200);
         color: var(--clr-dark-100);
     }
+}
+
+// ================ hide cart button when out of stock ==================//
+.hide-cart-button {
+    display: none;
 }

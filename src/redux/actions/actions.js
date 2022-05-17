@@ -1,6 +1,6 @@
-import { INIT_PRODUCT_LIST_PAGE } from '../types/types';
+import { INIT_PRODUCTS_LIST_PAGE } from '../types/types';
 
-export const initProductPage = (dataFromServer) => ({
-	type: INIT_PRODUCT_LIST_PAGE,
+export const initProductListPage = (dataFromServer) => ({
+	type: INIT_PRODUCTS_LIST_PAGE,
 	payload: dataFromServer,
 });
