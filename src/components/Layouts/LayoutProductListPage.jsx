@@ -6,6 +6,7 @@ import Actionbar from '../Actionbar/Actionbar';
 import CurrencySwitcher from '../CurrencySwitcher/CurrencySwitcher';
 import CartButtonAction from '../CartButtonAction/CartButtonAction';
 import { Outlet } from 'react-router-dom';
+import CurrencySwitcherContainer from '../CurrencySwitcher/CurrencySwitcherContainer';
 
 class LayoutProductListPage extends React.Component {
 	render() {
@@ -15,7 +16,7 @@ class LayoutProductListPage extends React.Component {
 					<Navbar cats={this.props.cats} />
 					<Logo />
 					<Actionbar>
-						<CurrencySwitcher currency={this.props.currency} />
+						<CurrencySwitcherContainer />
 						<CartButtonAction />
 					</Actionbar>
 				</Header>

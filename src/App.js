@@ -42,48 +42,37 @@ const currency = [
 ];
 
 class App extends React.Component {
-	renderLayoutProductListPageRoutes = ({ name, products }) => {
-		const isCategoryNameAll = name === 'all';
-		const filteredByCategory = products.filter(
-			({ category }) => category === name
-		);
-		const allCategoryPage = (
-			<Route
-				key={name}
-				element={
-					<CategoryPage
-						category={name}
-						products={isCategoryNameAll ? products : filteredByCategory}
-					/>
-				}
-			></Route>
-		);
-		const otherCategotiesPages = (
-			<Route
-				key={name}
-				path={`/${name}`}
-				element={
-					<CategoryPage
-						category={name}
-						products={isCategoryNameAll ? products : filteredByCategory}
-					/>
-				}
-			></Route>
-		);
+	renderLayoutProductListPageRoutes = (categories) =>
+		categories.map(({ name, products }) => {
+			const isCategoryNameAll = name === 'all';
+			const filteredByCategory = products.filter(
+				({ category }) => category === name
+			);
+			const allCategoryPage = (
+				<Route
+					key={name}
+					index
+					element={<CategoryPage category={name} products={products} />}
+				></Route>
+			);
+			const otherCategotiesPages = (
+				<Route
+					key={name}
+					path={`/${name}`}
+					element={
+						<CategoryPage category={name} products={filteredByCategory} />
+					}
+				></Route>
+			);
 
-		return isCategoryNameAll ? allCategoryPage : otherCategotiesPages;
-	};
+			return isCategoryNameAll ? allCategoryPage : otherCategotiesPages;
+		});
 
 	render() {
-		// makeRequest(serverURL, { getProductById, variables }).then(console.log);
-
 		return (
 			<Routes>
-				<Route
-					path="/"
-					element={<LayoutProductListPage cats={cats} currency={currency} />}
-				>
-					{response.data.categories.map(this.renderLayoutProductListPageRoutes)}
+				<Route path="/" element={<LayoutProductListPage cats={cats} />}>
+					{this.renderLayoutProductListPageRoutes(response.data.categories)}
 					<Route path="*" element={<NotFoundPage />}></Route>
 				</Route>
 			</Routes>

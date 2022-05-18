@@ -1,8 +1,6 @@
 import React from "react";
 import ProductCardsGrid from "../../components/ProductCardsGrid/ProductCardsGrid";
 import './CategoryPage.scss';
-import { store } from '../../redux/store';
-import { fetchCurrencies } from "../../redux/thunks/fetchCurrencies";
 
 
 class CategoryPage extends React.Component {
@@ -11,10 +9,9 @@ class CategoryPage extends React.Component {
 
         this.props = props;
     }
-    componentDidMount() {
-        store.dispatch(fetchCurrencies());
-        console.log(store.getState());
-    }
+    // componentDidMount() {
+    //     store.dispatch(fetchCurrencies());
+    // }
     render() {
         return (
             <section className="category-page">

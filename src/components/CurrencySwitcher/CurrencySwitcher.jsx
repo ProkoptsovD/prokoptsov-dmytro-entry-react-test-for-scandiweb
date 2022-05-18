@@ -3,16 +3,7 @@ import icons from '../../icons/icons.svg';
 import './CurrencySwitcher.scss';
 
 class CurrencySwitcher extends React.Component {
-    constructor(props) {
-        super(props);
-
-        this.props = props;
-        this.state = {
-            currency: '$',
-        };
-    }
-
-    renderCurrency = ({symbol, label}) => {
+    renderCurrencies = (currenciesArr) => currenciesArr.map(({ symbol, label }) => {
         return (
             <li key={label}
                 className="currency-switcher__item"
@@ -23,7 +14,8 @@ class CurrencySwitcher extends React.Component {
                     className="currency-switcher__input"
                     type="radio"
                     value={symbol}
-                    defaultChecked={symbol === '$'}
+                    defaultChecked={symbol === this.props.actualCurrency.symbol}
+                    data-js='currency-input'
                 />
                 <label
                     htmlFor={label}
@@ -34,44 +26,75 @@ class CurrencySwitcher extends React.Component {
                 </label>
             </li>
         )
+    });
+    toggleCurrenciesVisibility = () => {
+        const currenciesList = document.querySelector('[data-currencies-list]');   
+        currenciesList.classList.toggle('show-currencies');
     }
-    setCurrency = (e) => {
-        const currenciesList = document.querySelector('[data-currencies-list]');
-        currenciesList.classList.remove('show-currencies');
+    rotateArrow = () => {
+        const UP = 'up';
+        const DOWN = 'down';
 
-        if (e.target.nodeName === 'INPUT') {
-            const currency = e.target.value;
+        const arrow = document.querySelector('[data-arrow]');
+        const arrowPosition = arrow.dataset.arrow;
 
-            this.setState({
-                currency,
-            });
-        };
+        switch (arrowPosition) {
+            case UP:
+                arrow.classList.remove('rotate-arrow');
+                arrow.dataset.arrow = DOWN;
+                break;
+            case DOWN:
+                arrow.classList.add('rotate-arrow');
+                arrow.dataset.arrow = UP;
+                break;
+            default:
+                return;
+        }
     }
-    showCurrenciesList = () => {
-        const currenciesList = document.querySelector('[data-currencies-list]');
-        currenciesList.classList.add('show-currencies');
+    handleBtnClick = () => {
+        this.rotateArrow();
+        this.toggleCurrenciesVisibility();
+    }
+    handleFormInputClick = (e) => {
+        const CURRENCY_INPUT = 'currency-input';
+        const isInputClicked = e.target.dataset.js === CURRENCY_INPUT;
+        const currencyToSet = {
+            label: e.target.id,
+            symbol: e.target.value,
+        }
+        if (!isInputClicked) return;
+
+        this.props.switchActualCurrency(currencyToSet);
+        this.rotateArrow();
+        this.toggleCurrenciesVisibility();
+    }
+    componentDidMount() {
+        this.props.setCurrencies();
     }
     render() {
         return (        
             <form
+                onClick={this.handleFormInputClick}
                 className="currency-switcher"
                 role="group">
                 <button
                     className="button-svg-only currency-switcher__btn"
                     type="button"
+                    onClick={this.handleBtnClick}
                 >
-                    <svg>
+                    <svg data-arrow="down">
                         <use href={`${icons}#chevron`}></use>
                     </svg>
                     <span>
-                        {this.state.currency}
+                        {this.props.actualCurrency.symbol}
                     </span>
                 </button>
-                <ul aria-label="currency"
+                <ul
+                    aria-label="currency"
                     className="currency-switcher__list"
                     data-currencies-list
                 >
-                    {this.props.currency.map(this.renderCurrency)}
+                    {this.renderCurrencies(this.props.allCurrencies)}
                 </ul> 
             </form>
         )
