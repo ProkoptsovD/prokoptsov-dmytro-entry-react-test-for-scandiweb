@@ -1,6 +1,8 @@
 import { combineReducers } from 'redux';
-import { initProductListPage } from './actions/actions';
+import { currencyReducer } from './reducers/currencyReducer';
+import { productsListPageReducer } from './reducers/productListPageReducer';
 
 export const rootReducer = combineReducers({
-	initProductListPage,
+	currency: currencyReducer,
+	category: productsListPageReducer,
 });

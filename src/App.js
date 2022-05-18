@@ -13,10 +13,9 @@ import CartPage from './pages/CartPage/CartPage.jsx';
 import CategoryPage from './pages/CategoryPage/CategoryPage.jsx';
 import NotFoundPage from './pages/NotFoundPage/NotFoundPage';
 import ProductPage from './pages/ProductPage/ProductPage.jsx';
-import response from './server/dataFromServer.js';
-
-import { getProductById } from './server/query';
-import { makeRequest, serverURL } from './server/makeRequest';
+import response from './api/dataFromServer.js';
+import { getProductById } from './api/query';
+import { makeRequest, serverURL } from './api/makeRequest';
 
 const cats = [{ name: 'all' }, { name: 'tech' }, { name: 'clothes' }];
 const currency = [
@@ -51,7 +50,6 @@ class App extends React.Component {
 		const allCategoryPage = (
 			<Route
 				key={name}
-				index
 				element={
 					<CategoryPage
 						category={name}

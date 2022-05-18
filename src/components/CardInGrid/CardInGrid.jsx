@@ -9,7 +9,7 @@ class CardInGrid extends React.Component {
         const { brand, name, id, inStock, prices, gallery, category } = this.props.product;
         const [previewImageUrl] = gallery;
         const {amount: cost, currency} = prices[0];
-        console.log(this.props.product);
+
         return (
             <article
                 key={id}
@@ -28,7 +28,7 @@ class CardInGrid extends React.Component {
                     <p className="card-in-grid__price">
                         {currency.symbol}{cost}
                     </p>
-                    <CartButton />
+                    {inStock && <CartButton />}
                 </Link>
             </article>
         )

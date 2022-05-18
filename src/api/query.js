@@ -1,4 +1,5 @@
-export const getProductById = `
+export const getProductById = {
+	query: `
         query getProductById($id: String!) {
           product(id: $id) {
             id,
@@ -26,10 +27,12 @@ export const getProductById = `
             }
           } 
         }
-    `;
+    `,
+};
 export const id = JSON.stringify({ id: 'huarache-x-stussy-le' });
 
-export const getCategoryByName = `
+export const getCategoryByName = {
+	query: `
         query getCategoryByName($category:CategoryInput) {
           category(input:$category) {
             name,
@@ -49,19 +52,22 @@ export const getCategoryByName = `
             }
           }
         }
-`;
+`,
+};
 export const category = {
 	title: { title: 'tech' },
 };
 
-export const getCurrencies = `
-      query getCurrencies{
-        currencies{
+export const getCurrencies = {
+	query: `
+      query getCurrencies {
+        currencies {
           label,
           symbol,
         }
       }
-`;
+`,
+};
 // export const query1 = {
 // 	query: `
 //         query {

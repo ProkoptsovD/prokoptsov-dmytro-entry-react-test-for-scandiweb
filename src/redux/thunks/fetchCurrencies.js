@@ -1,13 +1,14 @@
-import { renderCurrencies } from '../actions/actions';
-import { makeRequest, serverURL } from '../../server/makeRequest';
-import { getCurrencies } from '../../server/query';
+import { initCurrencySwitcher } from '../actions/actions';
+import { makeRequest, serverURL } from '../../api/makeRequest';
+import { getCurrencies } from '../../api/query';
 
 export const fetchCurrencies = () => {
 	return (dispatch) => {
-		makeRequest(serverURL, { getCurrencies })
+		makeRequest(serverURL, getCurrencies)
 			.then((res) => res.json())
-			.then((currencies) => {
-				dispatch(renderCurrencies(currencies));
+			.then((data) => {
+				const { currencies } = data.data;
+				dispatch(initCurrencySwitcher(currencies));
 			})
 			.catch(console.log);
 	};
