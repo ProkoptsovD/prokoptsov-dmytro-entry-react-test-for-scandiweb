@@ -1,3 +1,26 @@
+export const getAllCategories = {
+	query: `
+        query {
+      categories {
+    name
+  }
+}
+  `,
+};
+export const getDataToInitApp = {
+	query: `
+        query getDataToInitApp {
+          categories {
+            name
+          }
+          currencies {
+          label,
+          symbol,
+        }
+      }
+  `,
+};
+
 export const getProductById = {
 	query: `
         query getProductById($id: String!) {

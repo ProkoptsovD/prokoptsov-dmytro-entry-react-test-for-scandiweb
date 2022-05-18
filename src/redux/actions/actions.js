@@ -4,11 +4,19 @@ import {
 	RENDER_PRODUCT_DESCRIPTION_PAGE,
 	INIT_CURRENCY_SWITCHER,
 	SWITCH_ACTUAL_CURRENCY,
+	INIT_NAVBAR,
+	INIT_APP,
 } from '../types/types';
 
-export const initProductListPage = (dataFromServer) => ({
+export const initApp = (initialData) => {
+	return {
+		type: INIT_APP,
+		payload: { initialData },
+	};
+};
+export const initProductListPage = (products) => ({
 	type: INIT_PRODUCTS_LIST_PAGE,
-	payload: { dataFromServer },
+	payload: { products },
 });
 export const initCurrencySwitcher = (currenciesList) => ({
 	type: INIT_CURRENCY_SWITCHER,
@@ -17,6 +25,10 @@ export const initCurrencySwitcher = (currenciesList) => ({
 export const switchActualCurrency = (newCurrency) => ({
 	type: SWITCH_ACTUAL_CURRENCY,
 	payload: { newCurrency },
+});
+export const initNavbar = (categories) => ({
+	type: INIT_NAVBAR,
+	payload: { categories },
 });
 
 // export const renderProductDescriptionPage = (productInfo) => ({

@@ -4,23 +4,16 @@ import './CategoryPage.scss';
 
 
 class CategoryPage extends React.Component {
-    constructor(props) {
-        super(props);
-
-        this.props = props;
-    }
-    // componentDidMount() {
-    //     store.dispatch(fetchCurrencies());
-    // }
     render() {
+        console.log(this.props);
         return (
             <section className="category-page">
                 <h1>Page with products</h1>
                 <div className="container">
                     <h2 className="category-page__title">
-                        {this.props.category}
+                        {/* {this.props} */}
                     </h2>
-                    <ProductCardsGrid products={this.props.products}/>
+                    {/* <ProductCardsGrid products={this.props.products}/> */}
                 </div>
             </section>
         )

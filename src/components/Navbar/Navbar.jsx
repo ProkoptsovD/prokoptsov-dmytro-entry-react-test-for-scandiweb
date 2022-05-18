@@ -3,12 +3,6 @@ import { NavLink } from "react-router-dom";
 import './Navbar.scss';
 
 class Navbar extends React.Component {
-    constructor(props) {
-        super(props);
-        
-        this.props = props;
-    }
-
     renderLinksMarkup = ({ name: category }) => {
         return (
             <li
@@ -23,13 +17,15 @@ class Navbar extends React.Component {
             </li>
         )
     }
-
+    componentDidMount() {
+        // this.props.setCategories();
+    }
     render() {
         return (
             <nav className="navbar">
                 <ul className="navbar__list">
                     {
-                        this.props.cats.map(this.renderLinksMarkup)
+                        this.props.categories.map(this.renderLinksMarkup)
                     }
                 </ul>
             </nav>

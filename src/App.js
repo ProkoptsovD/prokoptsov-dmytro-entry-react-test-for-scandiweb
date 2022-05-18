@@ -13,7 +13,6 @@ import CartPage from './pages/CartPage/CartPage.jsx';
 import CategoryPage from './pages/CategoryPage/CategoryPage.jsx';
 import NotFoundPage from './pages/NotFoundPage/NotFoundPage';
 import ProductPage from './pages/ProductPage/ProductPage.jsx';
-import response from './api/dataFromServer.js';
 import { getProductById } from './api/query';
 import { makeRequest, serverURL } from './api/makeRequest';
 
@@ -43,36 +42,25 @@ const currency = [
 
 class App extends React.Component {
 	renderLayoutProductListPageRoutes = (categories) =>
-		categories.map(({ name, products }) => {
-			const isCategoryNameAll = name === 'all';
-			const filteredByCategory = products.filter(
-				({ category }) => category === name
-			);
+		categories.map(({ name }) => {
+			const isCategoryNameAll = name === this.props.categorybyDefault;
 			const allCategoryPage = (
-				<Route
-					key={name}
-					index
-					element={<CategoryPage category={name} products={products} />}
-				></Route>
+				<Route key={name} index element={<CategoryPage />} />
 			);
 			const otherCategotiesPages = (
-				<Route
-					key={name}
-					path={`/${name}`}
-					element={
-						<CategoryPage category={name} products={filteredByCategory} />
-					}
-				></Route>
+				<Route key={name} path={`/${name}`} element={<CategoryPage />} />
 			);
 
 			return isCategoryNameAll ? allCategoryPage : otherCategotiesPages;
 		});
-
+	componentDidMount() {
+		this.props.getDataToInitApp(this.props.categorybyDefault);
+	}
 	render() {
 		return (
 			<Routes>
-				<Route path="/" element={<LayoutProductListPage cats={cats} />}>
-					{this.renderLayoutProductListPageRoutes(response.data.categories)}
+				<Route path="/" element={<LayoutProductListPage />}>
+					{/* {this.renderLayoutProductListPageRoutes(this.props.categories)} */}
 					<Route path="*" element={<NotFoundPage />}></Route>
 				</Route>
 			</Routes>
