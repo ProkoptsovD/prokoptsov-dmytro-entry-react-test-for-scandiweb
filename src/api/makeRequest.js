@@ -12,7 +12,7 @@ const makeRequest = async (url, queryParam) => {
 			'Content-Type': 'application/json',
 			Accept: 'application/json',
 		},
-		body: queryParam,
+		body: JSON.stringify(queryParam),
 	};
 	console.log(queryParam);
 	return fetch(url, headers);

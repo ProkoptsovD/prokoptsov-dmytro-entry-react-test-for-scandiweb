@@ -54,8 +54,7 @@ export const getProductById = {
 };
 export const id = JSON.stringify({ id: 'huarache-x-stussy-le' });
 
-export const getCategoryByName = {
-	query: `
+export const getCategoryByName = `
         query getCategoryByName($category:CategoryInput) {
           category(input:$category) {
             name,
@@ -75,8 +74,8 @@ export const getCategoryByName = {
             }
           }
         }
-`,
-};
+`;
+
 export const category = {
 	title: { title: 'tech' },
 };

@@ -3,14 +3,10 @@ import { getCategoryByName } from '../../api/query';
 import { initApp } from '../actions/actions';
 
 export const fetchDataToInitApp = (categoryName) => {
-	const category = JSON.stringify({ category: { title: 'tech' } });
-	const a = JSON.stringify({
-		getCategoryByName,
-		category: { title: 'tech' },
-	});
+	const query = { query: getCategoryByName, category: { title: categoryName } };
 
 	return (dispatch) => {
-		makeRequest(serverURL, a)
+		makeRequest(serverURL, query)
 			.then((response) => response.json())
 			.then((parsedData) => {
 				const { categories, currencies } = parsedData.data;
