@@ -9,12 +9,9 @@ class Header extends React.Component {
         return (
             <header className="header">
                 <div className="container header__container">
-                    <Navbar
-                        categories={this.props.categories}
-                        categorybyDefault={this.props.categorybyDefault}
-                    />
+                    <Navbar {...this.props}/>
 					<Logo />
-                    <Actionbar />
+                    <Actionbar updateCurrentCategoryPage={this.props.initCurrentCategory}/>
                 </div>
             </header>
         )

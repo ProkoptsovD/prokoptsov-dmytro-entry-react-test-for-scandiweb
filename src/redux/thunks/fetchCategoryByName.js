@@ -1,15 +1,17 @@
-import { initProductListPage } from '../actions/actions';
-import { makeRequest } from '../../server/makeRequest';
-import { getCategoryByName } from '../../server/query';
+import { renderCategoryPage } from '../actions/actions';
+import { makeRequest } from '../../api/makeRequest';
+import { getCategoryByName } from '../../api/query';
 
 export const fetchCategoryByName = (categoryName) => {
-	const categoryNameJSON = JSON.stringify({ categoryName });
-
 	return (dispatch) => {
-		makeRequest(serverURL, { getCategoryByName, categoryNameJSON })
+		makeRequest({
+			query: getCategoryByName,
+			category: { title: categoryName },
+		})
 			.then((res) => res.json())
-			.then((category) => {
-				dispatch(initProductListPage(category));
+			.then((parsedData) => {
+				const { products } = parsedData.data.category;
+				dispatch(renderCategoryPage(products));
 			})
 			.catch(console.log);
 	};

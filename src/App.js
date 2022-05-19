@@ -1,7 +1,7 @@
 import React from 'react';
-import { Route, Routes, parsePath } from 'react-router-dom';
+import { Navigate, Route, Routes } from 'react-router-dom';
 import './App.css';
-import LayoutProductListPage from './components/Layouts/LayoutProductListPage.jsx';
+import Header from './components/Header/Header';
 import CartPage from './pages/CartPage/CartPage.jsx';
 import CategoryPageContainer from './pages/CategoryPage/CategoryPageContainer';
 import NotFoundPage from './pages/NotFoundPage/NotFoundPage';
@@ -16,21 +16,31 @@ class App extends React.Component {
 			const otherCategotiesPages = (
 				<Route
 					key={name}
-					path={`/:${name}`}
+					path={`/${name}`}
 					element={<CategoryPageContainer />}
 				/>
 			);
 
+			return otherCategotiesPages;
 			return isCategoryNameAll ? allCategoryPage : otherCategotiesPages;
 		});
 	render() {
 		return (
-			<Routes>
-				<Route path="/" element={<LayoutProductListPage {...this.props} />}>
-					{this.renderRoutes(this.props.categories)}
-					<Route path="*" element={<NotFoundPage />}></Route>
-				</Route>
-			</Routes>
+			<>
+				<Header {...this.props} />
+				<main>
+					<Routes>
+						<Route
+							path="/"
+							element={
+								<Navigate replace to={`/${this.props.categorybyDefault}`} />
+							}
+						/>
+						{this.renderRoutes(this.props.categories)}
+						<Route path="*" element={<NotFoundPage />} />
+					</Routes>
+				</main>
+			</>
 		);
 	}
 }

@@ -1,11 +1,10 @@
 import {
-	INIT_PRODUCTS_LIST_PAGE,
-	RENDER_CURRENCIES,
-	RENDER_PRODUCT_DESCRIPTION_PAGE,
 	INIT_CURRENCY_SWITCHER,
 	SWITCH_ACTUAL_CURRENCY,
 	INIT_NAVBAR,
 	INIT_APP,
+	INIT_CURRENT_CATEGORY,
+	RENDER_CATEGORY_PAGE,
 } from '../types/types';
 
 export const initApp = (initialData) => {
@@ -14,8 +13,12 @@ export const initApp = (initialData) => {
 		payload: { initialData },
 	};
 };
-export const initProductListPage = (products) => ({
-	type: INIT_PRODUCTS_LIST_PAGE,
+export const initCurrentCategory = (currentPage) => ({
+	type: INIT_CURRENT_CATEGORY,
+	payload: { currentPage },
+});
+export const renderCategoryPage = (products) => ({
+	type: RENDER_CATEGORY_PAGE,
 	payload: { products },
 });
 export const initCurrencySwitcher = (currencyByDefault) => ({

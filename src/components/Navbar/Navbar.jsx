@@ -3,13 +3,19 @@ import { NavLink } from "react-router-dom";
 import './Navbar.scss';
 
 class Navbar extends React.Component {
+    setCurrentCategory = (e) => {
+        const category = e.target.pathname.slice(1);
+        // this.props.initCurrentCategory(category);
+        this.props.setCurrentCategory(category);
+    }
     renderLinksMarkup = ({ name: category }) => {
         return (
             <li
                 key={category}
                 className="navbar__item">
                 <NavLink
-                    to={category === this.props.categorybyDefault ? '/' : category}
+                    onClick={this.setCurrentCategory}
+                    to={`/${category}`}
                     className={`navbar__link`}
                 >
                     {category}
