@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Routes } from 'react-router-dom';
+import { Route, Routes, parsePath } from 'react-router-dom';
 import './App.css';
 import LayoutProductListPage from './components/Layouts/LayoutProductListPage.jsx';
 import CartPage from './pages/CartPage/CartPage.jsx';
@@ -16,7 +16,7 @@ class App extends React.Component {
 			const otherCategotiesPages = (
 				<Route
 					key={name}
-					path={`/${name}`}
+					path={`/:${name}`}
 					element={<CategoryPageContainer />}
 				/>
 			);

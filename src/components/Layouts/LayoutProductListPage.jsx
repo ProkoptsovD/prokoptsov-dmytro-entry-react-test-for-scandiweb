@@ -8,6 +8,7 @@ import CurrencySwitcherContainer from '../CurrencySwitcher/CurrencySwitcherConta
 
 class LayoutProductListPage extends React.Component {
 	render() {
+		console.log(this.props);
 		return (
 			<>
 				<Header {...this.props}/>
