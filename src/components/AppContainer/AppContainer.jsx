@@ -5,6 +5,7 @@ import App from '../../App';
 
 class AppContainer extends React.Component {
     componentDidMount() {
+        console.log(this.props);
         this.props.getDataToInitApp(this.props.categorybyDefault);
     }
 	render() {

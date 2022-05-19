@@ -5,7 +5,6 @@ import CategoryPage from "./CategoryPage";
 
 class CategoryPageContainer extends React.Component {
     render() {
-        console.log(this.props);
         return (
             <CategoryPage {...this.props}/>
         )
@@ -17,5 +16,4 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => {
 
 }
-withRouter(CategoryPageContainer);
 export default connect(mapStateToProps, mapDispatchToProps)(CategoryPageContainer);

@@ -5,7 +5,6 @@ import './CategoryPage.scss';
 
 class CategoryPage extends React.Component {
     render() {
-        console.log(this.props);
         return (
             <section className="category-page">
                 <h1>Page with products</h1>
