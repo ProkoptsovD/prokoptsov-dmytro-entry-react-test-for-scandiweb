@@ -11,7 +11,7 @@ class CategoryPage extends React.Component {
                 <h1>Page with products</h1>
                 <div className="container">
                     <h2 className="category-page__title">
-                        {/* {this.props} */}
+                        {this.props.categoryByDefault}
                     </h2>
                     {/* <ProductCardsGrid products={this.props.products}/> */}
                 </div>

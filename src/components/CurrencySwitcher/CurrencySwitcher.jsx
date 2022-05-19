@@ -68,9 +68,6 @@ class CurrencySwitcher extends React.Component {
         this.rotateArrow();
         this.toggleCurrenciesVisibility();
     }
-    componentDidMount() {
-        // this.props.setCurrencies();
-    }
     render() {
         return (        
             <form

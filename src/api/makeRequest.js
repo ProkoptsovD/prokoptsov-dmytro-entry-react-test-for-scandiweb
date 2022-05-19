@@ -5,17 +5,20 @@ import serverURL from './serverURL';
  * @param {Object} requestConfig // object with request parametrs
  * @returns {Promise} not parsed promise with data from server
  */
-const makeRequest = async (url, queryParam) => {
-	const headers = {
-		method: 'POST',
-		headers: {
-			'Content-Type': 'application/json',
-			Accept: 'application/json',
-		},
-		body: JSON.stringify(queryParam),
-	};
-	console.log(queryParam);
-	return fetch(url, headers);
+const makeRequest = async (queryParam) => {
+	try {
+		const headers = {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+				Accept: 'application/json',
+			},
+			body: JSON.stringify(queryParam),
+		};
+		return fetch(serverURL, headers);
+	} catch (err) {
+		console.log(err);
+	}
 };
 
 export { makeRequest, serverURL };

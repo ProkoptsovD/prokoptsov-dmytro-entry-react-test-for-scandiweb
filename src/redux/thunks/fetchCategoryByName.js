@@ -1,5 +1,5 @@
 import { initProductListPage } from '../actions/actions';
-import { makeRequest, serverURL } from '../../server/makeRequest';
+import { makeRequest } from '../../server/makeRequest';
 import { getCategoryByName } from '../../server/query';
 
 export const fetchCategoryByName = (categoryName) => {

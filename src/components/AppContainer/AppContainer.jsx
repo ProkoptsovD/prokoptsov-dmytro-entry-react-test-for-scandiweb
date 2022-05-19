@@ -4,6 +4,9 @@ import {fetchDataToInitApp} from '../../redux/thunks/fetchDataToInitApp'
 import App from '../../App';
 
 class AppContainer extends React.Component {
+    componentDidMount() {
+        this.props.getDataToInitApp(this.props.categorybyDefault);
+    }
 	render() {
 		return (
             <App {...this.props}/>
@@ -13,6 +16,8 @@ class AppContainer extends React.Component {
 const mapStateToProps = (state) => {
     return {
         categorybyDefault: state.initial.default.category,
+        categories: state.initial.categories,
+        currencies: state.initial.currencies,
     }
 }
 const mapDispatchToProps = (dispatch) => ({

@@ -7,8 +7,7 @@ export const getAllCategories = {
 }
   `,
 };
-export const getDataToInitApp = {
-	query: `
+export const getDataToInitApp = `
         query getDataToInitApp {
           categories {
             name
@@ -18,11 +17,9 @@ export const getDataToInitApp = {
           symbol,
         }
       }
-  `,
-};
+`;
 
-export const getProductById = {
-	query: `
+export const getProductById = `
         query getProductById($id: String!) {
           product(id: $id) {
             id,
@@ -50,8 +47,8 @@ export const getProductById = {
             }
           } 
         }
-    `,
-};
+    `;
+
 export const id = JSON.stringify({ id: 'huarache-x-stussy-le' });
 
 export const getCategoryByName = `

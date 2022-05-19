@@ -1,17 +1,20 @@
 import React from "react";
+import Navbar from '../Navbar/Navbar';
+import Logo from '../Logo/Logo';
+import Actionbar from '../Actionbar/Actionbar';
 import './Header.scss';
 
 class Header extends React.Component {
-    constructor(props) {
-        super(props);
-        this.props = props;
-    }
-
     render() {
         return (
             <header className="header">
                 <div className="container header__container">
-                    {this.props.children}
+                    <Navbar
+                        categories={this.props.categories}
+                        categorybyDefault={this.props.categorybyDefault}
+                    />
+					<Logo />
+                    <Actionbar />
                 </div>
             </header>
         )

@@ -9,7 +9,7 @@ class Navbar extends React.Component {
                 key={category}
                 className="navbar__item">
                 <NavLink
-                    to={category === 'all' ? '/' : category}
+                    to={category === this.props.categorybyDefault ? '/' : category}
                     className={`navbar__link`}
                 >
                     {category}
@@ -17,16 +17,11 @@ class Navbar extends React.Component {
             </li>
         )
     }
-    componentDidMount() {
-        // this.props.setCategories();
-    }
     render() {
         return (
             <nav className="navbar">
                 <ul className="navbar__list">
-                    {
-                        this.props.categories.map(this.renderLinksMarkup)
-                    }
+                    {this.props.categories.map(this.renderLinksMarkup)}
                 </ul>
             </nav>
         )

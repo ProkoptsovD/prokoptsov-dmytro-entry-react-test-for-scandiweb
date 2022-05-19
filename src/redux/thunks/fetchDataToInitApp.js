@@ -1,12 +1,12 @@
-import { makeRequest, serverURL } from '../../api/makeRequest';
-import { getCategoryByName } from '../../api/query';
+import { makeRequest } from '../../api/makeRequest';
+import { getDataToInitApp } from '../../api/query';
 import { initApp } from '../actions/actions';
 
 export const fetchDataToInitApp = (categoryName) => {
-	const query = { query: getCategoryByName, category: { title: categoryName } };
+	const query = { query: getDataToInitApp, category: { title: categoryName } };
 
 	return (dispatch) => {
-		makeRequest(serverURL, query)
+		makeRequest(query)
 			.then((response) => response.json())
 			.then((parsedData) => {
 				const { categories, currencies } = parsedData.data;

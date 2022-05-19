@@ -18,9 +18,9 @@ export const initProductListPage = (products) => ({
 	type: INIT_PRODUCTS_LIST_PAGE,
 	payload: { products },
 });
-export const initCurrencySwitcher = (currenciesList) => ({
+export const initCurrencySwitcher = (currencyByDefault) => ({
 	type: INIT_CURRENCY_SWITCHER,
-	payload: { currenciesList },
+	payload: { currencyByDefault },
 });
 export const switchActualCurrency = (newCurrency) => ({
 	type: SWITCH_ACTUAL_CURRENCY,
