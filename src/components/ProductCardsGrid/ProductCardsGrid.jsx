@@ -3,21 +3,22 @@ import CardInGrid from "../CardInGrid/CardInGrid";
 import './ProductCardsGrid.scss';
 
 class ProductCardsGrid extends React.Component {
-    renderProductCard = (product) => {
-        return (
+    renderProductCard = (productsArr) => productsArr.map(product => (
             <li
                 key={product.id}
                 className="product-cards-grid__item">
-                <CardInGrid product={product} />
+                <CardInGrid
+                    key={product.id}
+                    product={product}
+                    currency={this.props.currency} />
             </li>
-        );
-    }
+        ));
 
     render() {
         return (
             <>
                 <ul className="product-cards-grid">
-                    {this.props.products.map(this.renderProductCard)}
+                    {this.renderProductCard(this.props.products)}
                 </ul>
             </>
         )

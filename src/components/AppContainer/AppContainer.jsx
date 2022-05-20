@@ -1,14 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import {fetchDataToInitApp} from '../../redux/thunks/fetchDataToInitApp'
+import {initAppThunk} from '../../redux/thunks/initAppThunk'
 import App from '../../App';
-import { initCurrentCategory } from '../../redux/actions/actions';
-import { fetchCategoryByName } from '../../redux/thunks/fetchCategoryByName';
 
 class AppContainer extends React.Component {
     componentDidMount() {
-        console.log(this.props);
-        this.props.getDataToInitApp(this.props.categorybyDefault);
+        this.props.initApp();
     }
 	render() {
 		return (
@@ -24,14 +21,8 @@ const mapStateToProps = (state) => {
     }
 }
 const mapDispatchToProps = (dispatch) => ({
-    getDataToInitApp: (category) => {
-        dispatch(fetchDataToInitApp(category))
-    },
-    initCurrentCategory: (currentPage) => {
-        dispatch(initCurrentCategory(currentPage));
-    },
-    setCategoryProducts: (categoryName) => {
-        dispatch(fetchCategoryByName(categoryName));
+    initApp: () => {
+        dispatch(initAppThunk())
     },
 });
 

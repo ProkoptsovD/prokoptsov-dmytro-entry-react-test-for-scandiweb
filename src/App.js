@@ -8,22 +8,15 @@ import NotFoundPage from './pages/NotFoundPage/NotFoundPage';
 
 class App extends React.Component {
 	renderRoutes = (categories) =>
-		categories.map(({ name }) => {
-			const isCategoryNameAll = name === this.props.categorybyDefault;
-			const allCategoryPage = (
-				<Route key={name} index element={<CategoryPageContainer />} />
-			);
-			const otherCategotiesPages = (
-				<Route
-					key={name}
-					path={`/${name}`}
-					element={<CategoryPageContainer />}
-				/>
-			);
+		categories.map(({ name }) => (
+		<Route
+			key={name}
+			path={`/${name}`}
+			element={<CategoryPageContainer key={name} id={name} />}
+		/>
+		)
 
-			return otherCategotiesPages;
-			return isCategoryNameAll ? allCategoryPage : otherCategotiesPages;
-		});
+);
 	render() {
 		return (
 			<>

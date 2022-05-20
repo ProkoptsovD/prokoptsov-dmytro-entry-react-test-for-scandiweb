@@ -4,18 +4,20 @@ import './CategoryPage.scss';
 
 
 class CategoryPage extends React.Component {
-    componentDidMount() {
-        console.log(this.props.currentPage);
-    }
     render() {
+        console.log(this.props);
         return (
             <section className="category-page">
                 <h1>Page with products</h1>
                 <div className="container">
                     <h2 className="category-page__title">
-                        {this.props.currentPage}
+                        {this.props.products.name}
                     </h2>
-                    <ProductCardsGrid products={this.props.products}/>
+                    <ProductCardsGrid
+                        key={this.props.products.name}
+                        products={this.props.products}
+                        currency={this.props.currency}    
+                    />
                 </div>
             </section>
         )

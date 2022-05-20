@@ -1,28 +1,32 @@
 import React from "react";
 import { connect } from "react-redux";
 import { initCurrentCategory } from "../../redux/actions/actions";
-import { fetchCategoryByName } from "../../redux/thunks/fetchCategoryByName";
+import { setProductsToPageThunk } from "../../redux/thunks/setProductToPageThunk";
 import CategoryPage from "./CategoryPage";
+import { withRouter } from '../../hoc/withRouter';
 
 class CategoryPageContainer extends React.Component {
     componentDidMount() {
-        console.log(this.props.category);
+        const categoryName = this.props.router.location.pathname.slice(1);
+        this.props.setProductsToPage(categoryName);
     }
     render() {
         return (
-            <CategoryPage {...this.props}/>
+            <CategoryPage key={this.props.id} {...this.props}/>
         )
     }
 }
 const mapStateToProps = (state) => ({
-    currentPage: state.category.currentPage,
     currency: state.currency.actualCurrency,
     products: state.category.products,
 })
 const mapDispatchToProps = (dispatch) => ({
-    setCategoryProducts: (categoryName) => {
-        dispatch(fetchCategoryByName(categoryName));
+    setProductsToPage: (categoryName) => {
+        dispatch(setProductsToPageThunk(categoryName));
+    },
+        initCurrentCategory: (currentPage) => {
+        dispatch(initCurrentCategory(currentPage));
     },
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(CategoryPageContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(CategoryPageContainer));

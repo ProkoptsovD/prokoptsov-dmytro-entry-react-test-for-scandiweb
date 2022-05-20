@@ -15,7 +15,8 @@ export const categoryPageReducer = (state = initialState, action) => {
 		case RENDER_CATEGORY_PAGE:
 			return {
 				...state,
-				products: action.payload.products,
+				currentPage: action.payload.products.name,
+				products: action.payload.products.products,
 			};
 		default:
 			return state;

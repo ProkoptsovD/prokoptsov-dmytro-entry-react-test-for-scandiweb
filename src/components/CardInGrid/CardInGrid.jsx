@@ -4,11 +4,11 @@ import CartButton from "../ButtonSvgOnly/CartButton/CartButton";
 import './CardInGrid.scss';
 
 class CardInGrid extends React.Component {
-
     render() {
         const { brand, name, id, inStock, prices, gallery, category } = this.props.product;
         const [previewImageUrl] = gallery;
-        const {amount: cost, currency} = prices[0];
+        const {symbol: actualSymbol, label: actualLabel} = this.props.currency;
+        const [actualPrice] = prices.filter(price => price.currency.label === actualLabel && price.currency.symbol === actualSymbol); 
 
         return (
             <article
@@ -26,7 +26,7 @@ class CardInGrid extends React.Component {
                         {`${brand} ${name}`}
                     </h3>
                     <p className="card-in-grid__price">
-                        {currency.symbol}{cost}
+                        {actualPrice.currency.symbol}{actualPrice.amount}
                     </p>
                     {inStock && <CartButton />}
                 </Link>

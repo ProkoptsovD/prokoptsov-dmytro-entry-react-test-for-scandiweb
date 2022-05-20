@@ -7,6 +7,7 @@ import serverURL from './serverURL';
  */
 const makeRequest = async (queryParam) => {
 	try {
+		console.log(queryParam);
 		const headers = {
 			method: 'POST',
 			headers: {

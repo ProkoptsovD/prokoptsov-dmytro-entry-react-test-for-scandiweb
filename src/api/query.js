@@ -52,20 +52,18 @@ export const getProductById = `
 export const id = JSON.stringify({ id: 'huarache-x-stussy-le' });
 
 export const getCategoryByName = `
-        query getCategoryByName($category:CategoryInput) {
-          category(input:$category) {
+        query getCategoryByName($title:CategoryInput) {
+          category(input:$title) {
             name,
             products {
-              id,
-              brand,
-              name,
-              inStock,
-              gallery,
-              prices {
-                amount,
-                currency {
-                  label,
-                  symbol
+              attributes{
+                id,
+                name,
+                type,
+                items {
+                  id,
+                  displayValue,
+                  value
                 }
               }
             }
