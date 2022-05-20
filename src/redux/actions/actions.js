@@ -5,6 +5,10 @@ import {
 	INIT_APP,
 	INIT_CURRENT_CATEGORY,
 	RENDER_CATEGORY_PAGE,
+	ADD_ITEM_TO_CART,
+	REMOVE_ITEM_FROM_CART,
+	INCREASE_ITEMS_QUANTATY,
+	DECREASE_ITEMS_QUANTATY,
 } from '../types/types';
 
 export const initApp = (initialData) => {
@@ -34,11 +38,18 @@ export const initNavbar = (categories) => ({
 	payload: { categories },
 });
 
-// export const renderProductDescriptionPage = (productInfo) => ({
-// 	type: RENDER_PRODUCT_DESCRIPTION_PAGE,
-// 	payload: productInfo,
-// });
-// export const renderCurrencies = (currencies) => ({
-// 	type: RENDER_CURRENCIES,
-// 	payload: currencies,
-// });
+//=================== cart actions ================//
+export const addItemToCart = (item) => ({
+	type: ADD_ITEM_TO_CART,
+	payload: {item}
+})
+export const removeItemToCart = (itemId) => ({
+	type: REMOVE_ITEM_FROM_CART,
+	payload: {itemId}
+})
+export const increaseItemsQuantaty = () => ({
+	type: INCREASE_ITEMS_QUANTATY,
+})
+export const decreaseItemsQuantaty = () => ({
+	type: DECREASE_ITEMS_QUANTATY,
+})

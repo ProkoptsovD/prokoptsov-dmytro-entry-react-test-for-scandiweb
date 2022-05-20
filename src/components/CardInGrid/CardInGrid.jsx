@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import CartButton from "../ButtonSvgOnly/CartButton/CartButton";
+import CartButtonContainer from "../ButtonSvgOnly/CartButton/CartButtonContainer";
 import './CardInGrid.scss';
 
 class CardInGrid extends React.Component {
@@ -13,11 +13,12 @@ class CardInGrid extends React.Component {
         return (
             <article
                 key={id}
-                data-id={id}
                 className="card-in-grid">
                 <Link
                     to={`/${category}/${id}`}
-                    className={`card-in-grid__link ${!inStock ? 'out-of-stock' : ''}`}>
+                    className={`card-in-grid__link ${!inStock ? 'out-of-stock' : ''}`}
+                    id={id}
+                    >
                     <img
                         className="card-in-grid__image"
                         src={previewImageUrl}
@@ -28,7 +29,7 @@ class CardInGrid extends React.Component {
                     <p className="card-in-grid__price">
                         {actualPrice.currency.symbol}{actualPrice.amount}
                     </p>
-                    {inStock && <CartButton />}
+                    {inStock && <CartButtonContainer />}
                 </Link>
             </article>
         )
