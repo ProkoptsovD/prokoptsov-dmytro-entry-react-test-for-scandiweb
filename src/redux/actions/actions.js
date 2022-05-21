@@ -12,6 +12,7 @@ import {
 	OPEN_CART_OVERLAY,
 	CLOSE_CART_OVERLAY,
 	UPDATE_ACTUAL_CURRENCY_IN_CART,
+	SUM_TOTAL_PRICE,
 } from '../types/types';
 
 export const initApp = (initialData) => {
@@ -45,26 +46,29 @@ export const initNavbar = (categories) => ({
 export const addItemToCart = (item) => ({
 	type: ADD_ITEM_TO_CART,
 	payload: {item}
-})
+});
 export const removeItemToCart = (itemId) => ({
 	type: REMOVE_ITEM_FROM_CART,
 	payload: {itemId}
-})
+});
 export const increaseItemsQuantaty = () => ({
 	type: INCREASE_ITEMS_QUANTATY,
-})
+});
 export const decreaseItemsQuantaty = () => ({
 	type: DECREASE_ITEMS_QUANTATY,
-})
+});
 export const updateActualCurrencyInCart = (currency) => ({
 	type: UPDATE_ACTUAL_CURRENCY_IN_CART,
 	payload: {currency},
-})
+});
+export const sumTotalPrice = () => ({
+	type: SUM_TOTAL_PRICE,
+});
 
 //================== cart overlay actions =============//
 export const openCartOverlay = () => ({
 	type: OPEN_CART_OVERLAY,
-})
+});
 export const closeCartOverlay = () => ({
 	type: CLOSE_CART_OVERLAY,
-})
+});

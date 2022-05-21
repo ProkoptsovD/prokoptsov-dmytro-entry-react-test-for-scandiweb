@@ -35,7 +35,7 @@ class MiniCart extends React.Component {
                         Total
                     </b>
                     <strong className="mini-cart__total-sum">
-                        $200.00
+                        {this.props.cart.currency.symbol}{this.props.cart.priceTotal}
                     </strong>
                 </div>
                 <ButtonTextOnly

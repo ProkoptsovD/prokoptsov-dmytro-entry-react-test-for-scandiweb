@@ -12,7 +12,7 @@ class SizePicker extends React.Component {
                     <SizeButton
                         key={id}
                         id={id + this.props.name}
-                        name={this.props.name}
+                        name={id + this.props.name}
                         text={value}
                         value={displayValue}
                         isChecked={!index}

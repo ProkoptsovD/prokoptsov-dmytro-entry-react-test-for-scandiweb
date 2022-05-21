@@ -8,6 +8,7 @@ class CartButton extends React.Component {
         const itemToAdd = products.find(({id}) => id === this.props.id);
 
         this.props.addToCart(itemToAdd);
+        this.props.sumTotalPriceInCart();
     }
     render() {
         return (

@@ -12,7 +12,7 @@ class ColorPicker extends React.Component {
                     <ColorButton
                         key={id}
                         id={id + this.props.name}
-                        name={this.props.name}
+                        name={id + this.props.name}
                         backgroundColor={value}
                         value={displayValue}
                         isChecked={!index}

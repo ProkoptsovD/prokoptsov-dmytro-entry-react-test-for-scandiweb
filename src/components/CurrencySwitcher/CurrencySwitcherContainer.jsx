@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { initCurrencySwitcher, switchActualCurrency, updateActualCurrencyInCart } from "../../redux/actions/actions";
+import { initCurrencySwitcher, sumTotalPrice, switchActualCurrency, updateActualCurrencyInCart } from "../../redux/actions/actions";
 import CurrencySwitcher from "./CurrencySwitcher";
 
 class CurrencySwitcherContainer extends React.Component { 
@@ -8,6 +8,7 @@ class CurrencySwitcherContainer extends React.Component {
          const {currencyByDefault } = this.props;
         this.props.initSwitcher(currencyByDefault);
         this.props.updateCurrencyInCart(currencyByDefault);
+        this.props.sumTotalPriceInCart();
     }
     render() {
         return <CurrencySwitcher {...this.props} />
@@ -32,6 +33,9 @@ const mapDispatchToProps = (dispatch) => ({
     },
     updateCurrencyInCart: (currency) => {
         dispatch(updateActualCurrencyInCart(currency));
+    },
+    sumTotalPriceInCart: () => {
+        dispatch(sumTotalPrice());
     }
 })
 
