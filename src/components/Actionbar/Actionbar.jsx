@@ -11,8 +11,8 @@ class Actionbar extends React.Component {
                     <CurrencySwitcherContainer />
                 </li>
                 <li className="action-bar__item">
-                    <CartButtonAction 
-                        itemsInCart={this.props.cart.itemsTotal}
+                    <CartButtonAction
+                        itemsTotal={this.props.itemsTotal}
                         openMiniCart={this.props.openMiniCart}
                         closeMiniCart={this.props.closeMiniCart}
                         isMiniCartOpened={this.props.isMiniCartOpened}    

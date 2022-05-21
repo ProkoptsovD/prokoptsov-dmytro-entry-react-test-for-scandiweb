@@ -1,7 +1,7 @@
-import { ADD_ITEM_TO_CART, DECREASE_ITEMS_QUANTATY, INCREASE_ITEMS_QUANTATY, REMOVE_ITEM_FROM_CART } from "../types/types"
+import { ADD_ITEM_TO_CART, DECREASE_ITEMS_QUANTATY, INCREASE_ITEMS_QUANTATY, REMOVE_ITEM_FROM_CART, UPDATE_ACTUAL_CURRENCY_IN_CART } from "../types/types"
 
 const initialState = {
-    selectedCurrency: '',
+    currency: '',
     items: [],
     itemsTotal: 0,
     priceTotal: 0,
@@ -21,11 +21,10 @@ export const cartReducer = (state = initialState, action) => {
     switch(action.type) {
         case ADD_ITEM_TO_CART:
             if (!action.payload.item) return state;  
-            const [newItem] = action.payload.item;
 
             return {
                 ...state,
-                items: [...state.items, newItem],
+                items: [...state.items, action.payload.item],
                 itemsTotal: incrementItemsTotalAmount(state.itemsTotal),
             };
         case REMOVE_ITEM_FROM_CART:
@@ -45,6 +44,11 @@ export const cartReducer = (state = initialState, action) => {
             return {
                 ...state,
             };
+        case UPDATE_ACTUAL_CURRENCY_IN_CART:
+            return {
+                ...state,
+                currency: action.payload.currency,
+            }
         default:
             return state;
     }

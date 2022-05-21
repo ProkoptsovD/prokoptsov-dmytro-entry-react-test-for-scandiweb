@@ -25,9 +25,11 @@
         top: calc(100% + 7.5px);
         
         width: var(--currency-list);
+        background-color: var(--clr-light-100);
         
         box-shadow: var(--shadow-v1);
         pointer-events: none;
+        z-index: 4;
     }
     &__item {
         position: relative;

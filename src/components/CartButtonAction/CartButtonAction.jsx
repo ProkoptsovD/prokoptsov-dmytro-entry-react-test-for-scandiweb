@@ -27,8 +27,8 @@ class CartButtonAction extends React.Component {
         return (
             <ButtonSvgOnly
                 onClick={this.handleBtnClick}
-                className={`cart-btn-action ${!this.props.itemsInCart ? 'hidden' : ''}`}
-                dataContent={this.props.itemsInCart}
+                className={`cart-btn-action ${!this.props.itemsTotal ? 'hidden' : ''}`}
+                dataContent={this.props.itemsTotal}
             />
         )
     }

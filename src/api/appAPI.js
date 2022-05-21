@@ -35,6 +35,16 @@ class Api {
                               symbol
                             }
                           }
+                          attributes{
+                            id,
+                            name,
+                            type,
+                            items {
+                              id,
+                              displayValue,
+                              value
+                            }
+                          }
                         }
                     }
                 }`,

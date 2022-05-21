@@ -32,7 +32,11 @@ class App extends React.Component {
 						{this.renderRoutes(this.props.categories)}
 						<Route path="*" element={<NotFoundPage />} />
 					</Routes>
-					<CartOverlay isOpened={this.props.isMiniCartOpened}/>
+					<CartOverlay
+						isOpened={this.props.isMiniCartOpened}
+						closeMiniCart={this.props.closeMiniCart}
+						cart={this.props.cart}
+					/>
 				</main>
 			</>
 		);

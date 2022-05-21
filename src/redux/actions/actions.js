@@ -11,6 +11,7 @@ import {
 	DECREASE_ITEMS_QUANTATY,
 	OPEN_CART_OVERLAY,
 	CLOSE_CART_OVERLAY,
+	UPDATE_ACTUAL_CURRENCY_IN_CART,
 } from '../types/types';
 
 export const initApp = (initialData) => {
@@ -54,6 +55,10 @@ export const increaseItemsQuantaty = () => ({
 })
 export const decreaseItemsQuantaty = () => ({
 	type: DECREASE_ITEMS_QUANTATY,
+})
+export const updateActualCurrencyInCart = (currency) => ({
+	type: UPDATE_ACTUAL_CURRENCY_IN_CART,
+	payload: {currency},
 })
 
 //================== cart overlay actions =============//

@@ -2,15 +2,10 @@ import React from "react";
 import './ButtonTextOnly.scss';
 
 class ButtonTextOnly extends React.Component {
-    constructor(props) {
-        super(props);
-
-        this.props = props;
-    }
-
     render() {
         return (
             <button
+                onClick={this.props.onClick}
                 className={`button-text-only ${this.props.className}`}
                 type="button"
             >

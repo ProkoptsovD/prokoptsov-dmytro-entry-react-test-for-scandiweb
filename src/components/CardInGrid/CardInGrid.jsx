@@ -17,7 +17,6 @@ class CardInGrid extends React.Component {
                 <Link
                     to={`/${category}/${id}`}
                     className={`card-in-grid__link ${!inStock ? 'out-of-stock' : ''}`}
-                    id={id}
                     >
                     <img
                         className="card-in-grid__image"
@@ -29,7 +28,7 @@ class CardInGrid extends React.Component {
                     <p className="card-in-grid__price">
                         {actualPrice.currency.symbol}{actualPrice.amount}
                     </p>
-                    {inStock && <CartButtonContainer />}
+                    {inStock && <CartButtonContainer id={id}/>}
                 </Link>
             </article>
         )

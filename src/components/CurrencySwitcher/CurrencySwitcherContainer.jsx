@@ -1,7 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { initCurrencySwitcher, switchActualCurrency } from "../../redux/actions/actions";
-import { fetchCurrencies } from "../../redux/thunks/fetchCurrencies";
+import { initCurrencySwitcher, switchActualCurrency, updateActualCurrencyInCart } from "../../redux/actions/actions";
 import CurrencySwitcher from "./CurrencySwitcher";
 
 class CurrencySwitcherContainer extends React.Component { 
@@ -30,6 +29,9 @@ const mapDispatchToProps = (dispatch) => ({
     switchActualCurrency: (currencyToSet) => {
         dispatch(switchActualCurrency(currencyToSet));
     },
+    updateCurrencyInCart: (currency) => {
+        dispatch(updateActualCurrencyInCart(currency));
+    }
 })
 
 

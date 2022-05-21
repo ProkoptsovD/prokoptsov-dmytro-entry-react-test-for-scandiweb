@@ -12,7 +12,7 @@ class Header extends React.Component {
                     <Navbar categories={this.props.categories}/>
 					<Logo />
                     <Actionbar 
-                        cart={this.props.cart}
+                        itemsTotal={this.props.cart.itemsTotal}
                         openMiniCart={this.props.openMiniCart}
                         closeMiniCart={this.props.closeMiniCart}
                         isMiniCartOpened={this.props.isMiniCartOpened}

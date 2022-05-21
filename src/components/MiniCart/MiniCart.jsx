@@ -4,13 +4,8 @@ import ButtonTextOnly from "../ButtonTextOnly/ButtonTextOnly";
 import './MiniCart.scss';
 
 class MiniCart extends React.Component {
-    constructor(props) {
-        super(props);
-
-        this.props = props;
-    }
-
     render() {
+        console.log(this.props);
         return (
             <div className="mini-cart">
                 <div className="mini-cart__title">
@@ -36,11 +31,13 @@ class MiniCart extends React.Component {
                     </strong>
                 </div>
                 <ButtonTextOnly
+                    onClick={this.props.closeMiniCart}
                     className="mini-cart__btn-view-bag"
                 >
                     View bag
                 </ButtonTextOnly>
                 <ButtonTextOnly
+                    onClick={this.props.closeMiniCart}
                     className="mini-cart__btn-check-out"
                 >
                     Check out

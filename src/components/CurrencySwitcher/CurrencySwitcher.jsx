@@ -65,6 +65,7 @@ class CurrencySwitcher extends React.Component {
         if (!isInputClicked) return;
 
         this.props.switchActualCurrency(currencyToSet);
+        this.props.updateCurrencyInCart(currencyToSet);
         this.rotateArrow();
         this.toggleCurrenciesVisibility();
     }
