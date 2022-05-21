@@ -13,7 +13,7 @@
         height: var(--svg-size-h);
     }
 
-    &:after {
+    &::after {
         position: absolute;
         right: -4px;
         bottom: 13px;
@@ -34,5 +34,9 @@
         border-radius: 50%;
         background-color: var(--clr-dark-300);
         color: var(--clr-light-100);
+        
+    }
+    &.hidden::after {
+        display: none;
     }
 }

@@ -12,6 +12,7 @@ class CartButtonContainer extends React.Component {
 }
 const mapStateToProps = (state) => ({
     allProducts: state.category.products,
+    actualCurrency: state.currency.actualCurrency,
 })
 const mapDispatchToProps = (dispatch) => ({
     addToCart: (item) => {

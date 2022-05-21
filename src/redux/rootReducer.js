@@ -3,10 +3,12 @@ import { appReducer } from './reducers/appReducer';
 import { currencyReducer } from './reducers/currencyReducer';
 import { categoryPageReducer } from './reducers/categoryPageReducer';
 import { cartReducer } from './reducers/cartReducer';
+import { cartOverlayReducer } from './reducers/cartOverlayReducer';
 
 export const rootReducer = combineReducers({
 	initial: appReducer,
 	currency: currencyReducer,
 	category: categoryPageReducer,
 	cart: cartReducer,
+	cartOverlay: cartOverlayReducer,
 });

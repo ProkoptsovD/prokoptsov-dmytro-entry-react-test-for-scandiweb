@@ -9,6 +9,8 @@ import {
 	REMOVE_ITEM_FROM_CART,
 	INCREASE_ITEMS_QUANTATY,
 	DECREASE_ITEMS_QUANTATY,
+	OPEN_CART_OVERLAY,
+	CLOSE_CART_OVERLAY,
 } from '../types/types';
 
 export const initApp = (initialData) => {
@@ -52,4 +54,12 @@ export const increaseItemsQuantaty = () => ({
 })
 export const decreaseItemsQuantaty = () => ({
 	type: DECREASE_ITEMS_QUANTATY,
+})
+
+//================== cart overlay actions =============//
+export const openCartOverlay = () => ({
+	type: OPEN_CART_OVERLAY,
+})
+export const closeCartOverlay = () => ({
+	type: CLOSE_CART_OVERLAY,
 })

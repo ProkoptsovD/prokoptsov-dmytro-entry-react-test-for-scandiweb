@@ -19,6 +19,7 @@ class CategoryPageContainer extends React.Component {
 const mapStateToProps = (state) => ({
     currency: state.currency.actualCurrency,
     products: state.category.products,
+    isMiniCartOpened: state.cartOverlay.isOpened,
 })
 const mapDispatchToProps = (dispatch) => ({
     setProductsToPage: (categoryName) => {

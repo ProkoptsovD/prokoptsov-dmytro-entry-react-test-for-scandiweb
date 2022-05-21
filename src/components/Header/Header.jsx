@@ -9,9 +9,14 @@ class Header extends React.Component {
         return (
             <header className="header">
                 <div className="container header__container">
-                    <Navbar {...this.props}/>
+                    <Navbar categories={this.props.categories}/>
 					<Logo />
-                    <Actionbar updateCurrentCategoryPage={this.props.initCurrentCategory}/>
+                    <Actionbar 
+                        cart={this.props.cart}
+                        openMiniCart={this.props.openMiniCart}
+                        closeMiniCart={this.props.closeMiniCart}
+                        isMiniCartOpened={this.props.isMiniCartOpened}
+                        />
                 </div>
             </header>
         )

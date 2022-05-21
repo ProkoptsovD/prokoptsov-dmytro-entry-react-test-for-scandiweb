@@ -3,15 +3,9 @@ import MiniCart from "../MiniCart/MiniCart";
 import './CartOverlay.scss';
 
 class CartOverlay extends React.Component {
-    constructor(props) {
-        super(props);
-
-        this.props = props;
-    }
-
     render() {
         return (
-            <div className="cart-overlay">
+            <div className={`cart-overlay ${this.props.isOpened ? 'open' : ''}`}>
                 <div className="modal">
                     <MiniCart />
                 </div>

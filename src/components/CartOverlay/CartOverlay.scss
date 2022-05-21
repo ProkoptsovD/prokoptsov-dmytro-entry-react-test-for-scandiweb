@@ -1,3 +1,6 @@
+@use '../../sass/placeholders/hidden.scss';
+@use '../../sass/placeholders/visible.scss';
+
 .cart-overlay {
     position: absolute;
     inset: var(--header-height) 0 0 0;
@@ -6,15 +9,22 @@
     background-color: var(--clr-neutral-300);
     
     pointer-events: none;
-}
+    @extend %hidden;
+    transform: scale(1.1);
 
-.modal {
-    width: 325px;
+    .modal {
+        width: 325px;
+    
+        margin-left: auto;
+        padding: 32px 16px;
+    
+        background-color: var(--clr-light-100);
+    
+        pointer-events: all;
+    }
 
-    margin-left: auto;
-    padding: 32px 16px;
-
-    background-color: var(--clr-light-100);
-
-    pointer-events: all;
+    &.open {
+    @extend %visible;
+    transform: scale(1);
+    }
 }

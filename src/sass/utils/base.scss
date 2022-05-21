@@ -8,4 +8,9 @@ body {
 
     background-color: var(--clr-light-100);
     color: var(--clr-dark-300);
+    overflow-x: hidden;
+}
+
+.noscroll {
+    overflow-y: hidden;
 }

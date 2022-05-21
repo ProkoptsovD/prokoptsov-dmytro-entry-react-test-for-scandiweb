@@ -2,9 +2,9 @@ import React from 'react';
 import { Navigate, Route, Routes } from 'react-router-dom';
 import './App.css';
 import Header from './components/Header/Header';
-import CartPage from './pages/CartPage/CartPage.jsx';
 import CategoryPageContainer from './pages/CategoryPage/CategoryPageContainer';
 import NotFoundPage from './pages/NotFoundPage/NotFoundPage';
+import CartOverlay from './components/CartOverlay/CartOverlay';
 
 class App extends React.Component {
 	renderRoutes = (categories) =>
@@ -32,6 +32,7 @@ class App extends React.Component {
 						{this.renderRoutes(this.props.categories)}
 						<Route path="*" element={<NotFoundPage />} />
 					</Routes>
+					<CartOverlay isOpened={this.props.isMiniCartOpened}/>
 				</main>
 			</>
 		);

@@ -5,9 +5,10 @@ import './CategoryPage.scss';
 
 class CategoryPage extends React.Component {
     render() {
-        console.log(this.props);
         return (
-            <section className="category-page">
+            <section className={
+                `category-page ${this.props.isMiniCartOpened ? 'category-page__cart-is-opened' : ''}`
+                }>
                 <h1>Page with products</h1>
                 <div className="container">
                     <h2 className="category-page__title">

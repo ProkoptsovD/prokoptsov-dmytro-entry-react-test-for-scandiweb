@@ -3,16 +3,12 @@ import ButtonSvgOnly from "../ButtonSvgOnly";
 import './CartButton.scss';
 
 class CartButton extends React.Component {
-    constructor(props) {
-        super(props);
-
-        this.addToCartBinded = this.addToCart.bind(this, this.props.allProducts);
-    }
     addToCart = (e, products) => {
         e.preventDefault();
         const itemId = e.target.parentElement.parentElement.id;
-        const [itemToAdd] = products.filter(({id}) => id === itemId);
-        
+        const [item] = products.filter(({id}) => id === itemId);
+        const itemToAdd = [item, this.props.actualCurrency]
+
         this.props.addToCart(itemToAdd);
     }
     render() {

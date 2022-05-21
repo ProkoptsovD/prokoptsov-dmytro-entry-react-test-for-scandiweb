@@ -3,25 +3,32 @@ import ButtonSvgOnly from "../ButtonSvgOnly/ButtonSvgOnly";
 import './CartButtonAction.scss';
 
 class CartButtonAction extends React.Component {
-    constructor(props) {
+    constructor (props) {
         super(props);
 
-        this.props = props;
-        this.state = {
-            goodsInCart: 0,
+        this.body = document.body;
+    }
+    disableBodyScroll = () => {
+        this.body.classList.add('noscroll');
+    }
+    enableBodyScroll = () => {
+        this.body.classList.remove('noscroll');
+    } 
+    handleBtnClick = () => {
+        if (this.props.isMiniCartOpened) {
+            this.props.closeMiniCart();
+            this.enableBodyScroll();
+        } else {
+            this.props.openMiniCart();
+            this.disableBodyScroll();
         }
     }
-
     render() {
         return (
             <ButtonSvgOnly
-                onClick={() => {
-                    this.setState({
-                        goodsInCart: this.state.goodsInCart += 1,
-                    })
-                }}
-                className={'cart-btn-action'}
-                dataContent={this.state.goodsInCart}
+                onClick={this.handleBtnClick}
+                className={`cart-btn-action ${!this.props.itemsInCart ? 'hidden' : ''}`}
+                dataContent={this.props.itemsInCart}
             />
         )
     }
