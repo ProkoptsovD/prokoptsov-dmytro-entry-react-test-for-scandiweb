@@ -14,7 +14,6 @@ class BagItem extends React.Component {
     }
     render() {
         const { brand, name, id, prices, gallery} = this.props.product;
-        const [previewImageUrl] = gallery;
         const {symbol: actualSymbol, label: actualLabel} = this.props.currency;
         const actualPrice = prices.find(price => price.currency.label === actualLabel && price.currency.symbol === actualSymbol);
         console.log(this.props);
@@ -55,7 +54,7 @@ class BagItem extends React.Component {
                     })}
                 </div>
                 <AddRemoveItemBar />
-                <ProductImage />
+                <ProductImage gallery={gallery}/>
             </div>
         )
     }
