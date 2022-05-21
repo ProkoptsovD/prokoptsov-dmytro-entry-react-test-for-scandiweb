@@ -3,43 +3,38 @@ import SizeButton from "../ButtonRadio/SizeButton/SizeButton.jsx";
 import './SizePicker.scss';
 
 class SizePicker extends React.Component {
-    constructor(props) {
-        super(props);
-
-        this.props = props;
+    renderButtons = (attrArr) => {
+        return attrArr.map(({id, value, displayValue}, index) => {
+            return (
+                <li 
+                    key={id}
+                    className="size-picker__btn">
+                    <SizeButton
+                        key={id}
+                        id={id + this.props.name}
+                        name={this.props.name}
+                        text={value}
+                        value={displayValue}
+                        isChecked={!index}
+                    />
+                </li>
+            );
+        });
     }
+    componentDidMount() {
 
+    }
     render() {
         return (
             <div className="size-picker">
                 <b className="size-picker__title">
-                    Size:
+                    {`${this.props.name}:`}
                 </b>
-                <ul className="size-picker__btn-list">
-                    <li className="size-picker__btn">
-                        <SizeButton
-                            name="size"
-                            text={`${this.props.text ? this.props.text : 'xs'}`}
-                        />
-                    </li>
-                    <li className="size-picker__btn">
-                        <SizeButton
-                            name="size"
-                            text={`${this.props.text ? this.props.text : 's'}`}
-                        />
-                    </li>
-                    <li className="size-picker__btn">
-                        <SizeButton
-                            name="size"
-                            text={`${this.props.text ? this.props.text : 'm'}`}
-                        />
-                    </li>
-                    <li className="size-picker__btn">
-                        <SizeButton
-                            name="size"
-                            text={`${this.props.text ? this.props.text : 'l'}`}
-                        />
-                    </li>
+                <ul 
+                    className="size-picker__btn-list"
+                    data-element="size-picker"
+                >
+                    {this.renderButtons(this.props.attrItems)}
                 </ul>
             </div>
         )

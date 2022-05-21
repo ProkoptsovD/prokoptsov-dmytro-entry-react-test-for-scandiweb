@@ -5,22 +5,20 @@
 
     display: block;
 
-    width: 63px;
-    height: 44px;
-
     border: 1px solid var(--clr-dark-300);
     background-color: var(--clr-light-100);
 
     &__text, &__input {
-        position: absolute;
-        inset: 0;
-
         cursor: pointer;
     }
     &__text {
         display: flex;
         align-items: center;
         justify-content: center;
+
+        inset: 0;
+
+        padding: 2px;
 
         font-family: var(--ff-3);
         line-height: 1.12;

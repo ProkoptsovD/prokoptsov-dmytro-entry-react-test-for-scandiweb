@@ -4,8 +4,16 @@ import ButtonTextOnly from "../ButtonTextOnly/ButtonTextOnly";
 import './MiniCart.scss';
 
 class MiniCart extends React.Component {
+    renderAddedItems = (itemsArr) => itemsArr.map(product => {
+        return (
+            <BagItem
+                key={product.id}
+                currency={this.props.cart.currency}
+                product={product}
+            />
+        )
+    });
     render() {
-        console.log(this.props);
         return (
             <div className="mini-cart">
                 <div className="mini-cart__title">
@@ -14,14 +22,14 @@ class MiniCart extends React.Component {
                     </b>
                     &nbsp;
                     <span className="mini-cart__title-number">
-                        3
+                        {this.props.cart.itemsTotal}
                     </span>
                     &nbsp;
                     <span className="mini-cart__title-items">
                         items
                     </span>
                 </div>
-                <BagItem />
+                {this.renderAddedItems(this.props.cart.items)}
                 <div className="mini-cart__total">
                     <b className="mini-cart__total-title">
                         Total

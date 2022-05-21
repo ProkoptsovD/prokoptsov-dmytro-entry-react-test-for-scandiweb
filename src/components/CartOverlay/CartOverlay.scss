@@ -6,10 +6,14 @@
     inset: var(--header-height) 0 0 0;
     
     padding-right: 72px;
-    background-color: var(--clr-neutral-300);
+    padding-bottom: 20px;
     
-    pointer-events: none;
+    background-color: var(--clr-neutral-300);
     @extend %hidden;
+
+    overflow-y: scroll;
+    scroll-behavior: smooth;
+    pointer-events: none;
     transform: scale(1.1);
 
     .modal {

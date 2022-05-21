@@ -4,8 +4,6 @@
     --c-btn-size-w: 36px;
     --c-btn-size-h: 36px;
     --gap-size: 4px;
-
-    margin-bottom: 44px;
     
     &__title {
         display: inline-block;
@@ -42,7 +40,7 @@
             inset: 1px;
             content: '';
 
-            background-color: #333;
+            background-color: var(--color-picker-swatch-color);
         }
         &__input:checked + .button-radio__text {
             outline-color: var(--clr-accent-100);

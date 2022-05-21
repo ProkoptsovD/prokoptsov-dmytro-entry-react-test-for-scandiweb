@@ -3,28 +3,32 @@ import ColorButton from "../ButtonRadio/ColorButton/ColorButton.jsx";
 import './ColorPicker.scss';
 
 class ColorPicker extends React.Component {
-    constructor(props) {
-        super(props);
-
-        this.props = props;
+    renderColorPickerBtns = (attrArr) => {
+        return attrArr.map(({id, value, displayValue}, index) => {
+            return (
+                <li 
+                    key={id}
+                    className="color-picker__item">
+                    <ColorButton
+                        key={id}
+                        id={id + this.props.name}
+                        name={this.props.name}
+                        backgroundColor={value}
+                        value={displayValue}
+                        isChecked={!index}
+                    />
+                </li>
+            );
+        });
     }
-
     render() {
         return (
             <div className="color-picker">
                 <b className="color-picker__title">
-                    Color:
+                    {`${this.props.name}:`}
                 </b>
                 <ul className="color-picker__btn-list">
-                    <li className="color-picker__item">
-                        <ColorButton />
-                    </li>
-                    <li className="color-picker__item">
-                        <ColorButton />
-                    </li>
-                    <li className="color-picker__item">
-                        <ColorButton />
-                    </li>
+                    {this.renderColorPickerBtns(this.props.attrItems)}
                 </ul>
             </div>
         )

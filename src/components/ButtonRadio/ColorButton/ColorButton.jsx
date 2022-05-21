@@ -5,7 +5,7 @@ import './ColorButton.scss';
 class ColorButton extends React.Component {
     render() {
         return (
-            <ButtonRadio />
+            <ButtonRadio {...this.props}/>
         )
     }
 }

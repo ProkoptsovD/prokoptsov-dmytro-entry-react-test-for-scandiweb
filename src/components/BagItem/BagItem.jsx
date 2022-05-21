@@ -6,30 +6,53 @@ import SizePicker from "../SizePicker/SizePicker.jsx";
 import './BagItem.scss';
 
 class BagItem extends React.Component {
-    constructor(props) {
-        super(props);
-
-        this.props = props;
+    renderSizePicker = () => {
+        
     }
+    renderColorPicker = () => {
 
+    }
     render() {
+        const { brand, name, id, prices, gallery} = this.props.product;
+        const [previewImageUrl] = gallery;
+        const {symbol: actualSymbol, label: actualLabel} = this.props.currency;
+        const actualPrice = prices.find(price => price.currency.label === actualLabel && price.currency.symbol === actualSymbol);
+        console.log(this.props);
         return (
             <div className="bag-item">
                 <div className="bag-item__wrapper-inner">
                     <p className="bag-item__brand">
-                        Apollo
+                        {brand}
                     </p>
                     <h4 className="bag-item__title">
-                        Running Short
+                        {name}
                     </h4>
                     <strong className="bag-item__price">
-                        $50.00
+                        {actualPrice.currency.symbol}{actualPrice.amount}
                     </strong>
-                    <SizePicker />
-                    <ColorPicker
-                        pickerTitle={"bag-item__color-picker-title"}
-                        className={"bag-item__color-picker"}
-                    />
+                    {this.props.product.attributes.map(({name, items, type}) => {
+                        console.log(type);
+                        const SWATCH_TYPE = 'swatch';
+
+                        const sizePicker = (
+                            <SizePicker 
+                                key={name}
+                                name={name}
+                                attrItems={items}
+                            />
+                        );
+                        const colorPicker = (
+                            <ColorPicker
+                                key={name}
+                                pickerTitle={"bag-item__color-picker-title"}
+                                className={"bag-item__color-picker"}
+                                name={name}
+                                attrItems={items}
+                            />
+                        );
+
+                        return type === SWATCH_TYPE ? colorPicker : sizePicker;
+                    })}
                 </div>
                 <AddRemoveItemBar />
                 <ProductImage />

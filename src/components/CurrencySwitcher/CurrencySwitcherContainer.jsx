@@ -7,6 +7,7 @@ class CurrencySwitcherContainer extends React.Component {
     componentDidMount() {
          const {currencyByDefault } = this.props;
         this.props.initSwitcher(currencyByDefault);
+        this.props.updateCurrencyInCart(currencyByDefault);
     }
     render() {
         return <CurrencySwitcher {...this.props} />

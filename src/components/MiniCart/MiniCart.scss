@@ -2,6 +2,7 @@
     --margin-gap: 32px;
     --btn-size-w: 140px;
     --btn-size-h: 43px;
+    --gap-between-buttons: 12px;
 
     &__title {
         margin-bottom: var(--margin-gap);
@@ -50,7 +51,7 @@
         cursor: pointer;
     }
     &__btn-view-bag {
-        margin-right: 12px;
+        margin-right: var(--gap-between-buttons);
     }
     &__btn-view-bag:hover, &__btn-check-out:hover {
         border-color: var(--clr-accent-100);

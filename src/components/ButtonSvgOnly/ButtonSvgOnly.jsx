@@ -16,7 +16,6 @@ class ButtonSvgOnly extends React.Component {
                 className={`button-svg-only ${this.props.className ? this.props.className : ''}`}
                 type="button"
                 data-content={this.props.dataContent || ''}
-                id={this.props.id || 'button-svg-only'}
             >
                 <svg>
                     <use

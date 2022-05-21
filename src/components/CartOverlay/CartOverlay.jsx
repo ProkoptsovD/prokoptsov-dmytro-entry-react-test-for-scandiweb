@@ -9,7 +9,6 @@ class CartOverlay extends React.Component {
         this.body = document.body;
         this.OVERLAY_ID = 'overlay';
     }
-
     onOverlayClick = (e) => {
         const elementId = e.target.id;
         const isOverlayClicked = elementId === this.OVERLAY_ID;

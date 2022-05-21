@@ -2,21 +2,22 @@ import React from "react";
 import './ButtonRadio.scss';
 
 class ButtonRadio extends React.Component {
-    constructor(props) {
-        super(props);
+    componentDidMount() {
 
-        this.props = props;
     }
-
     render() {
         return (
             <label className="button-radio">
                 <input
-                    value={this.props.text || ''}
+                    defaultChecked={this.props.isChecked}
+                    value={this.props.value || ''}
                     name={this.props.name || "radio"}
                     className="button-radio__input"
-                    type="radio" />
-                <span className="button-radio__text">
+                    type="radio"
+                    />
+                <span
+                    style={{'--color-picker-swatch-color': this.props.backgroundColor}}
+                    className="button-radio__text">
                     {this.props.text || ''}
                 </span>
             </label>
