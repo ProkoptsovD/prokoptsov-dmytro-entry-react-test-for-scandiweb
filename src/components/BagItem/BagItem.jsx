@@ -4,13 +4,31 @@ import ColorPicker from "../ColorPicker/ColorPicker.jsx";
 import Gallery from "../Gallery/Gallery.jsx";
 import SizePicker from "../SizePicker/SizePicker.jsx";
 import './BagItem.scss';
+import { hashify } from "../../helpers/helpers.js";
 
 class BagItem extends React.Component {
-    renderSizePicker = () => {
-        
-    }
-    renderColorPicker = () => {
+    renderAttrPickers = (arrWithAttributes) => {
+        return arrWithAttributes.map(({name, items, type}) => {
+            const SWATCH_TYPE = 'swatch';
+            const nameHashSp = `${name}-${hashify()}`;
+            const nameHashCp = `${name}-${hashify()}`;
 
+            const sizePicker = (
+                <SizePicker key={name + nameHashSp} name={name} attrItems={items}
+                hashedName={nameHashSp} />
+            );
+            const colorPicker = (
+                <ColorPicker pickerTitle={"bag-item__color-picker-title"}
+                    key={name + nameHashCp}
+                    className={"bag-item__color-picker"}
+                    name={name}
+                    attrItems={items}
+                    hashedName={nameHashCp}
+                />
+            );
+
+            return SWATCH_TYPE === type ? colorPicker : sizePicker;
+        })
     }
     render() {
         const { brand, name, id, prices, gallery} = this.props.product;
@@ -29,29 +47,7 @@ class BagItem extends React.Component {
                     <strong className="bag-item__price">
                         {actualPrice.currency.symbol}{actualPrice.amount}
                     </strong>
-                    {this.props.product.attributes.map(({name, items, type}) => {
-                        console.log(type);
-                        const SWATCH_TYPE = 'swatch';
-
-                        const sizePicker = (
-                            <SizePicker 
-                                key={name}
-                                name={name}
-                                attrItems={items}
-                            />
-                        );
-                        const colorPicker = (
-                            <ColorPicker
-                                key={name}
-                                pickerTitle={"bag-item__color-picker-title"}
-                                className={"bag-item__color-picker"}
-                                name={name}
-                                attrItems={items}
-                            />
-                        );
-
-                        return type === SWATCH_TYPE ? colorPicker : sizePicker;
-                    })}
+                    {this.renderAttrPickers(this.props.product.attributes)}
                 </div>
                 <AddRemoveItemBar />
                 <Gallery

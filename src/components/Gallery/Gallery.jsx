@@ -2,8 +2,6 @@ import React from "react";
 import ProductImage from "../ProductImage/ProductImage";
 import PrevNextButtons from '../ButtonSvgOnly/PrevNextButtons/PrevNextButtons'
 import './Gallery.scss';
-// import { connect } from "react-redux";
-// import { initGallery, nextPicture, prevPicture } from "../../redux/actions/actions";
 
 class Gallery extends React.Component {
     constructor(props) {
