@@ -35,7 +35,9 @@ class Gallery extends React.Component {
         allPics.forEach(pic => +pic.id === +picNumber ? pic.classList.add('show-pic') : pic.classList.remove('show-pic'));
     };
     nextPic = () => {
-        const isLastPic = this.state.currentPic >= this.state.totalPics;
+        const isLastPic = this.state.currentPic + 1 >= this.state.totalPics;
+        console.log(this.state.currentPic);
+        console.log(this.state.totalPics);
 
         this.setState({
             ...this.state,
@@ -47,7 +49,7 @@ class Gallery extends React.Component {
 
         this.setState({
             ...this.state,
-            currentPic: isFirstPic ? this.state.totalPics : this.state.currentPic -= 1,
+            currentPic: isFirstPic ? this.state.totalPics - 1 : this.state.currentPic -= 1,
         });
     };
     render() {
