@@ -58,7 +58,7 @@ class Gallery extends React.Component {
                 <ul className="gallery__list">
                     {this.renderImages(this.props.gallery)}
                 </ul>
-                <PrevNextButtons
+                {this.state.totalPics >= 2 && <PrevNextButtons
                     nextPic={() => {
                         this.nextPic();
                         this.showPic(this.state.currentPic);
@@ -67,26 +67,10 @@ class Gallery extends React.Component {
                         this.prevPic();
                         this.showPic(this.state.currentPic);
                     }}
-                />
+                />}
             </div>
         )
     }
 }
-// const mapStateToProps = (state) => ({
-//     currentPic: state.gallery.currentPic,
-//     totalPics: state.gallery.totalPicsQuantaty,
-// });
-
-// const mapDispatchToProps = (dispatch) => ({
-//     initGallery: (totalPics) => {
-//         dispatch(initGallery(totalPics));
-//     },
-//     nextPic: () => {
-//         dispatch(nextPicture());
-//     },
-//     prevPic: () => {
-//         dispatch(prevPicture());
-//     },
-// });
 
 export default Gallery;
