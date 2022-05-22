@@ -4,6 +4,7 @@ import { currencyReducer } from './reducers/currencyReducer';
 import { categoryPageReducer } from './reducers/categoryPageReducer';
 import { cartReducer } from './reducers/cartReducer';
 import { cartOverlayReducer } from './reducers/cartOverlayReducer';
+import { galleryReducer } from './reducers/galleryReducer';
 
 export const rootReducer = combineReducers({
 	initial: appReducer,
@@ -11,4 +12,5 @@ export const rootReducer = combineReducers({
 	category: categoryPageReducer,
 	cart: cartReducer,
 	cartOverlay: cartOverlayReducer,
+	gallery: galleryReducer
 });

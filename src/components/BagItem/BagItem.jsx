@@ -1,7 +1,7 @@
 import React from "react";
 import AddRemoveItemBar from "../AddRemoveItemBar/AddRemoveItemBar.jsx";
 import ColorPicker from "../ColorPicker/ColorPicker.jsx";
-import ProductImage from "../ProductImage/ProductImage.jsx";
+import Gallery from "../Gallery/Gallery.jsx";
 import SizePicker from "../SizePicker/SizePicker.jsx";
 import './BagItem.scss';
 
@@ -16,7 +16,7 @@ class BagItem extends React.Component {
         const { brand, name, id, prices, gallery} = this.props.product;
         const {symbol: actualSymbol, label: actualLabel} = this.props.currency;
         const actualPrice = prices.find(price => price.currency.label === actualLabel && price.currency.symbol === actualSymbol);
-        console.log(this.props);
+
         return (
             <div className="bag-item">
                 <div className="bag-item__wrapper-inner">
@@ -54,7 +54,10 @@ class BagItem extends React.Component {
                     })}
                 </div>
                 <AddRemoveItemBar />
-                <ProductImage gallery={gallery}/>
+                <Gallery
+                    gallery={gallery}
+                    productId={id}
+                />
             </div>
         )
     }

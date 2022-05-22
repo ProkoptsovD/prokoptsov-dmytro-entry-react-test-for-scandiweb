@@ -13,6 +13,9 @@ import {
 	CLOSE_CART_OVERLAY,
 	UPDATE_ACTUAL_CURRENCY_IN_CART,
 	SUM_TOTAL_PRICE,
+	NEXT_PICTURE,
+	PREV_PICTURE,
+	INIT_GALLERY,
 } from '../types/types';
 
 export const initApp = (initialData) => {
@@ -71,4 +74,16 @@ export const openCartOverlay = () => ({
 });
 export const closeCartOverlay = () => ({
 	type: CLOSE_CART_OVERLAY,
+});
+
+//================= gallery actions ==================//
+export const initGallery = (picsQuantaty) => ({
+	type: INIT_GALLERY,
+	payload: {picsQuantaty},
+});
+export const nextPicture = () => ({
+	type: NEXT_PICTURE,
+});
+export const prevPicture = () => ({
+	type: PREV_PICTURE,
 });

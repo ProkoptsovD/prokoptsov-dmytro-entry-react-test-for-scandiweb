@@ -8,22 +8,15 @@ class PrevNextButtons extends React.Component {
 
         this.image = () => {};
     }
-    componentDidMount () {
-        this.image = this.props.slide();
-    }
     render() {
         return (
             <div className="prev-next-buttons">
                 <ButtonSvgOnly
-                    onClick={() => {
-                    console.log(this.image.prev());
-                    }}
+                    onClick={this.props.prevPic}
                     icon={"#chevron"}
                 />
                 <ButtonSvgOnly
-                    onClick={() => {
-                        console.log(this.image.next());
-                    }}
+                    onClick={this.props.nextPic}
                     icon={"#chevron"}
                 />
             </div>
