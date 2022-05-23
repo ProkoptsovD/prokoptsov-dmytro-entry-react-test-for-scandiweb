@@ -52,9 +52,7 @@ export const cartReducer = (state = initialState, action) => {
             
             const newProduct = action.payload.item;
             const selectedOptions = action.payload.attributes ?? setDefaultAttributes(action.payload.item.attributes);
-            const isProductAlreadyAdded = state.items.map(item => {
-                item.selectedOptions.map(({attr}) => console.log(attr))
-            })
+
             const itemToAdd = {
                 product: newProduct,
                 selectedOptions,
