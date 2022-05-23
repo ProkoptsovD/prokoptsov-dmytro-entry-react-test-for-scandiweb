@@ -1,3 +1,4 @@
+import { deepEqual } from "../../helpers/helpers";
 import { ADD_ITEM_TO_CART, DECREASE_ITEMS_QUANTATY, INCREASE_ITEMS_QUANTATY, REMOVE_ITEM_FROM_CART, SUM_TOTAL_PRICE, UPDATE_ACTUAL_CURRENCY_IN_CART } from "../types/types"
 
 const initialState = {
@@ -25,8 +26,7 @@ const sumPrice = (allProducts, actualCurrency) => {
 
     if (isProductCartEmpty) return 0;
     
-    const totalPrice = allProducts.reduce((total, product) => {
-        console.log(product);
+    const totalPrice = allProducts.reduce((total, { product }) => {
         const price = extractActualPrice(product, actualCurrency);
         total += price.amount;
         return total;
@@ -34,14 +34,34 @@ const sumPrice = (allProducts, actualCurrency) => {
 
     return totalPrice.toFixed(2);
 }
+const setDefaultAttributes = (arrOfAttributes) => {
+    return arrOfAttributes.reduce((acc, {name, items}) => {
+        const options = {
+            [name]: name,
+            attr: items[0],
+        }
+        acc.push(options);
+        return acc;
+    }, []);
+}
+
 export const cartReducer = (state = initialState, action) => {
     switch(action.type) {
         case ADD_ITEM_TO_CART:
             if (!action.payload.item) return state;
             
+            const newProduct = action.payload.item;
+            const selectedOptions = action.payload.attributes ?? setDefaultAttributes(action.payload.item.attributes);
+            const isProductAlreadyAdded = state.items.map(item => {
+                item.selectedOptions.map(({attr}) => console.log(attr))
+            })
+            const itemToAdd = {
+                product: newProduct,
+                selectedOptions,
+            }
             return {
                 ...state,
-                items: [...state.items, action.payload.item],
+                items: [...state.items, itemToAdd],
                 itemsTotal: incrementItemsTotalAmount(state.itemsTotal),
                 priceTotal: 0,
             };

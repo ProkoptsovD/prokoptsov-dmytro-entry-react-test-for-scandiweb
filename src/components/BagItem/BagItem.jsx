@@ -15,6 +15,7 @@ class BagItem extends React.Component {
 
             const sizePicker = (
                 <SizePicker key={name + nameHashSp} name={name} attrItems={items}
+                selectedOptions={this.props.selectedOptions}
                 hashedName={nameHashSp} />
             );
             const colorPicker = (
@@ -24,6 +25,7 @@ class BagItem extends React.Component {
                     name={name}
                     attrItems={items}
                     hashedName={nameHashCp}
+                    selectedOptions={this.props.selectedOptions}
                 />
             );
 
@@ -31,6 +33,7 @@ class BagItem extends React.Component {
         })
     }
     render() {
+        console.log(this.props);
         const { brand, name, id, prices, gallery} = this.props.product;
         const {symbol: actualSymbol, label: actualLabel} = this.props.currency;
         const actualPrice = prices.find(price => price.currency.label === actualLabel && price.currency.symbol === actualSymbol);

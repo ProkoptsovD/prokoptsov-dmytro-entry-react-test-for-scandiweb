@@ -4,12 +4,13 @@ import ButtonTextOnly from "../ButtonTextOnly/ButtonTextOnly";
 import './MiniCart.scss';
 
 class MiniCart extends React.Component {
-    renderAddedItems = (itemsArr) => itemsArr.map(product => {
+    renderAddedItems = (itemsArr) => itemsArr.map(({product, selectedOptions}) => {
         return (
             <BagItem
                 key={product.id}
                 currency={this.props.cart.currency}
                 product={product}
+                selectedOptions={selectedOptions}
             />
         )
     });

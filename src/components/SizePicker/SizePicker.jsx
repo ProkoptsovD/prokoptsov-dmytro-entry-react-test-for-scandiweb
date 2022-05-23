@@ -4,7 +4,9 @@ import './SizePicker.scss';
 
 class SizePicker extends React.Component {
     renderButtons = (attrArr) => {
-        return attrArr.map(({id, value, displayValue}, index) => {
+        return attrArr.map(({id, value, displayValue}) => {
+            const checked = this.props.selectedOptions.some(({attr}) => id === attr.id);
+
             return (
                 <li 
                     key={id}
@@ -15,7 +17,7 @@ class SizePicker extends React.Component {
                         name={this.props.hashedName}
                         text={value}
                         value={displayValue}
-                        isChecked={!index}
+                        isChecked={checked}
                     />
                 </li>
             );

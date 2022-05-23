@@ -4,7 +4,9 @@ import './ColorPicker.scss';
 
 class ColorPicker extends React.Component {
     renderColorPickerBtns = (attrArr) => {
-        return attrArr.map(({id, value, displayValue}, index) => {
+        return attrArr.map(({id, value, displayValue}) => {
+            const checked = this.props.selectedOptions.some(({attr}) => id === attr.id);
+
             return (
                 <li 
                     key={id}
@@ -15,7 +17,7 @@ class ColorPicker extends React.Component {
                         name={this.props.hashedName}
                         backgroundColor={value}
                         value={displayValue}
-                        isChecked={!index}
+                        isChecked={checked}
                     />
                 </li>
             );

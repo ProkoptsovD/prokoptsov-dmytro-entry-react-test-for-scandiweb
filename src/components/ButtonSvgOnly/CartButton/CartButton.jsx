@@ -3,9 +3,9 @@ import ButtonSvgOnly from "../ButtonSvgOnly";
 import './CartButton.scss';
 
 class CartButton extends React.Component {
-    addToCart = (e, products) => {
-        e.preventDefault();
-        const itemToAdd = products.find(({id}) => id === this.props.id);
+    addToCart = (evt) => {
+        evt.preventDefault();
+        const itemToAdd = this.props.allProducts.find(({id}) => id === this.props.id);
 
         this.props.addToCart(itemToAdd);
         this.props.sumTotalPriceInCart();
@@ -13,7 +13,7 @@ class CartButton extends React.Component {
     render() {
         return (
             <ButtonSvgOnly
-                onClick={(e) => {this.addToCart(e, this.props.allProducts)}}
+                onClick={this.addToCart}
                 className="cart-button js-cart-button"
             />
         )
