@@ -5,14 +5,19 @@ import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
 import reportWebVitals from './reportWebVitals';
 import { store } from './redux/store';
-import AppContainer from './components/AppContainer/AppContainer';
+import App from './App';
+import { ThemeProvider } from 'styled-components';
+// import AppContainer from './components/AppContainer/AppContainer';
+import { theme } from './constants/theme';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
 	<React.StrictMode>
 		<BrowserRouter>
 			<Provider store={store}>
-				<AppContainer />
+				<ThemeProvider theme={theme}>
+					<App />
+				</ThemeProvider>
 			</Provider>
 		</BrowserRouter>
 	</React.StrictMode>

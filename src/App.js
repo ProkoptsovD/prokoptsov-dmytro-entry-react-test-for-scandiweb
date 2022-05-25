@@ -1,7 +1,17 @@
 import React from 'react';
 import { Navigate, Route, Routes } from 'react-router-dom';
+
+import {ReactComponent as Logo} from './icons/logo.svg';
+
+import Actionbar from './components/Header/Actionbar';
+import Header from './components/Header';
+import CurrencySwitcher from './components/Header/CurrencySwitcher';
+import MiniCartButton from './components/Header/MiniCartButton/';
+import Navbar from './components/Header/Navbar/';
+import IconButton from './components/common/IconButton';
+import Icons from './components/common/Icons';
+
 import './App.css';
-import Header from './components/Header/Header';
 
 class App extends React.Component {
 // 	renderRoutes = (categories) =>
@@ -15,29 +25,26 @@ class App extends React.Component {
 
 // );
 	render() {
+		const names = ['all', 'clothes', 'tech'];
+
 		return (
-			<h1>Refactoring</h1>
-			// <>
-			// 	<Header {...this.props} />
-			// 	<main>
-			// 		<Routes>
-			// 			<Route
-			// 				path="/"
-			// 				element={
-			// 					<Navigate replace to={`/${this.props.categorybyDefault}`} />
-			// 				}
-			// 			/>
-			// 			{this.renderRoutes(this.props.categories)}
-			// 			<Route path="*" element={<NotFoundPage />} />
-			// 		</Routes>
-			// 		<CartOverlay
-			// 			isOpened={this.props.isMiniCartOpened}
-			// 			closeMiniCart={this.props.closeMiniCart}
-			// 			cart={this.props.cart}
-			// 		/>
-			// 	</main>
-			// </>
-		);
+			<>
+				<Header>
+					<Navbar tabList={names}/>
+					<Logo />
+					<Actionbar>
+						<CurrencySwitcher />
+						<MiniCartButton itemsCount={'1'}/>
+					</Actionbar>
+				</Header>
+				<IconButton>
+					<Icons id="cart" />
+				</IconButton>
+				<Routes>
+					<Route path='/' element={<div>Hello</div>}/>
+				</Routes>
+			</>
+		)
 	}
 }
 
