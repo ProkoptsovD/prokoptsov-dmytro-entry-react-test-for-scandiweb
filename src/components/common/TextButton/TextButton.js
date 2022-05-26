@@ -17,7 +17,7 @@ class TextButton extends Component {
 }
 
 TextButton.propTypes = {
-    children: PropTypes.string || PropTypes.node,
+    children: PropTypes.string.isRequired || PropTypes.node,
 }
 
 export default TextButton;

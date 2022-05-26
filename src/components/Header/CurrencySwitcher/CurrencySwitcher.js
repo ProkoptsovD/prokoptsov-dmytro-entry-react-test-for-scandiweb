@@ -1,13 +1,37 @@
 import React from "react";
 import PropTypes from 'prop-types';
 import Icons from "../../common/Icons";
-import { CurrencyList, ListItem, CurrencySellectionBtn, Wrapper, OpenCloseSwitcherBtn, ActualCurrency } from "./CurrencySwitcher.styled";
+import { DropdownList, ListItem, CurrencySellectionBtn, Wrapper, OpenCloseSwitcherBtn, ActualCurrency } from "./CurrencySwitcher.styled";
+
+const currList = [
+    {
+      label: "USD",
+      symbol: "$"
+    },
+    {
+      label: "GBP",
+      symbol: "£"
+    },
+    {
+      label: "AUD",
+      symbol: "A$"
+    },
+    {
+      label: "JPY",
+      symbol: "¥"
+    },
+    {
+      label: "RUB",
+      symbol: "₽"
+    }
+  ]
+
 
 class CurrencySwitcher extends React.Component {
     static defaultProps = {
         isOpened: false,
         onClick: () => {},
-        currencyList: [{symbol: '$', label: 'USD'}],
+        currencyList: currList,
     }
     renderCurrencies = () => this.props.currencyList.map(({ symbol, label }, idx) => {
         return (
@@ -34,18 +58,17 @@ class CurrencySwitcher extends React.Component {
         this.toggleCurrenciesVisibility();
     }
     render() {
-        const isOpened = true;
         return (        
             <Wrapper>
-                <OpenCloseSwitcherBtn isOpened={isOpened}>
+                <OpenCloseSwitcherBtn isOpened={this.props.isOpened}>
                     <ActualCurrency>
                         $
                     </ActualCurrency>
                     <Icons id="chevron"/>
                 </OpenCloseSwitcherBtn>
-                <CurrencyList>
-                    {isOpened && this.renderCurrencies()}
-                </CurrencyList>
+                <DropdownList>
+                    {this.props.isOpened && this.renderCurrencies()}
+                </DropdownList>
             </Wrapper>
         )
     }

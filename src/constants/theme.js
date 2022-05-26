@@ -72,7 +72,7 @@ export const theme = {
                 break;
             default:
                 duration = '250';
-                return;
+                break;
         }
 
         return cssPropNames.map(propName => `${propName} ${duration}ms cubic-bezier(0.4, 0, 0.2, 1)`).join`, `;
@@ -92,8 +92,8 @@ export const theme = {
                 width: '114px',
             },
             arrow: {
-                w: '6px',
-                h: '3px',
+                w: '8px',
+                h: '4px',
             }
         },
         btn: {
@@ -101,6 +101,9 @@ export const theme = {
             sm: '32px',
             m: '40px',
             lg: '52px',
+        },
+        modal: {
+            w: '325px',
         }
     },
     spacing: (value) => `${4 * value}px`,

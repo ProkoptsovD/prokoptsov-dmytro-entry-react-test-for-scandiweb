@@ -2,20 +2,15 @@ import styled from 'styled-components';
 import IconButton from "../../common/IconButton";
 
 export const MiniCartBtn = styled(IconButton)`
-position: relative;
+    position: relative;
 
-width: ${props => props.theme.sizes.actionBar.btn.w};
-height: ${props => props.theme.sizes.actionBar.btn.h};
-
-& > svg {
     width: ${props => props.theme.sizes.btn.xs};
     height: ${props => props.theme.sizes.btn.xs};
-}
 
-&::after {
+    &::after {
     position: absolute;
-    right: -4px;
-    bottom: 13px;
+    right: -12px;
+    bottom: 9px;
 
     display: ${props => (props.itemsCount === '0' || !props.itemsCount) ? 'none' : 'inline-flex'};
     align-items: center;
@@ -33,6 +28,6 @@ height: ${props => props.theme.sizes.actionBar.btn.h};
     border-radius: 50%;
     background-color: ${props => props.theme.colors.dark['300']};
     color: ${props => props.theme.colors.light['100']};
-    
-}
+
+    }
 `;

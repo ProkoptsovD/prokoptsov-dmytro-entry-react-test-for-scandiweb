@@ -6,12 +6,11 @@ import {ReactComponent as Logo} from './icons/logo.svg';
 import Actionbar from './components/Header/Actionbar';
 import Header from './components/Header';
 import CurrencySwitcher from './components/Header/CurrencySwitcher';
-import MiniCartButton from './components/Header/MiniCartButton/';
+import MiniCartButton from './components/MiniCart/MiniCartButton';
 import Navbar from './components/Header/Navbar/';
-import IconButton from './components/common/IconButton';
-import Icons from './components/common/Icons';
-
+import Overlay from './components/Overlay/';
 import './App.css';
+import MiniCart from './components/MiniCart/';
 
 class App extends React.Component {
 // 	renderRoutes = (categories) =>
@@ -34,15 +33,16 @@ class App extends React.Component {
 					<Logo />
 					<Actionbar>
 						<CurrencySwitcher />
-						<MiniCartButton itemsCount={'1'}/>
+						<MiniCartButton itemsCount={'0'}/>
 					</Actionbar>
 				</Header>
-				<IconButton>
-					<Icons id="cart" />
-				</IconButton>
 				<Routes>
 					<Route path='/' element={<div>Hello</div>}/>
 				</Routes>
+
+				{1 && <Overlay>
+							<MiniCart />
+						</Overlay>}
 			</>
 		)
 	}

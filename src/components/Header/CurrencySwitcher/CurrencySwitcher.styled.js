@@ -15,15 +15,16 @@ export const Wrapper = styled.div`
     padding: 0;
 `;
 
-export const CurrencyList = styled.ul`
+export const DropdownList = styled.ul`
+    position: absolute;
+    left: calc(-1 * ${props => props.theme.spacing(5.25)});
+    top: calc(100% + ${props => props.theme.spacing(2)});
+
     width: ${props => props.theme.sizes.currencySwitcher.list.width};
+    box-shadow: ${props => props.theme.shadows.v1}
 `;
 
 export const ListItem = styled.li`
-    position: relative;
-
-    width: 100%;
-    height: 100%;
 `;
 
 //====================== switcher button =================//
@@ -49,8 +50,8 @@ export const OpenCloseSwitcherBtn = styled(IconButton)`
 
         margin-top:  ${props => props.theme.spacing(2)};
 
-        transition: ${props => props.theme.setTransition(null, 'transform')};
         transform: ${props => props.isOpened ? 'rotateX(0deg)' : 'rotateX(180deg)'};
+        transition: ${props => props.theme.setTransition(null, 'transform')};
     }
 `;
 
@@ -73,10 +74,9 @@ export const CurrencySellectionBtn = styled(TextButton)`
     font-size: ${props => props.theme.typography.fontSize['500']};
 
     cursor: pointer;
-    transition: background-color ${props => props.theme.transitions.duration.normal}
-                                ${props => props.theme.transitions.function.normal};
+    transition: ${props => props.theme.setTransition(null, 'background-color')};
 
-    &:hover, &:focus {
+    &:hover, &:active {
         background-color: ${props => props.theme.colors.neutral['500']};
     }
 `;
