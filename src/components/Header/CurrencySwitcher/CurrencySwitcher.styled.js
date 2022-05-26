@@ -44,7 +44,7 @@ export const OpenCloseSwitcherBtn = styled(IconButton)`
 
     outline: 1px solid red;
 
-    & > svg {
+    & svg {
         width:  ${props => props.theme.sizes.currencySwitcher.arrow.w};
         height:  ${props => props.theme.sizes.currencySwitcher.arrow.h};
 

@@ -100,6 +100,7 @@ export const theme = {
         },
         btn: {
             xs: '20px',
+            xss: '24px',
             sm: '32px',
             m: '40px',
             lg: '52px',
