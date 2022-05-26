@@ -38,14 +38,16 @@ class App extends React.Component {
 						<MiniCartButton itemsCount={'0'}/>
 					</Actionbar>
 				</Header>
-				<Routes>
-					<Route path='/' element={
-						<CategoryPage productList={product}/>
-						}
-					/>
-				</Routes>
+				<main>
+					<Routes>
+						<Route path='/' element={
+							<CategoryPage productList={product}/>
+							}
+						/>
+					</Routes>
+				</main>
 
-				{null && <Overlay>
+				{1 && <Overlay>
 							<MiniCart />
 						</Overlay>}
 			</>

@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const Wrapper = styled.div`
-    position: sticky;
+    position: fixed;
     inset: ${props => props.theme.sizes.header.height} 0 0 0;
 
     padding-right: ${props => props.theme.spacing(18)};
@@ -11,7 +11,6 @@ export const Wrapper = styled.div`
 
     overflow-y: scroll;
     scroll-behavior: smooth;
-    pointer-events: none;
 `;
 export const Modal = styled.div`
     width: ${props => props.theme.sizes.modal.w};
