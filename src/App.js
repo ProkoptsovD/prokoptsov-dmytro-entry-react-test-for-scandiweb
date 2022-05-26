@@ -1,6 +1,5 @@
 import React from 'react';
 import { Navigate, Route, Routes } from 'react-router-dom';
-
 import {ReactComponent as Logo} from './icons/logo.svg';
 
 import Actionbar from './components/Header/Actionbar';
@@ -9,8 +8,11 @@ import CurrencySwitcher from './components/Header/CurrencySwitcher';
 import MiniCartButton from './components/MiniCart/MiniCartButton';
 import Navbar from './components/Header/Navbar/';
 import Overlay from './components/Overlay/';
-import './App.css';
 import MiniCart from './components/MiniCart/';
+import CategoryPage from './pages/CategoryPage/';
+
+import './App.css';
+import {product} from './api/product';
 
 class App extends React.Component {
 // 	renderRoutes = (categories) =>
@@ -37,10 +39,13 @@ class App extends React.Component {
 					</Actionbar>
 				</Header>
 				<Routes>
-					<Route path='/' element={<div>Hello</div>}/>
+					<Route path='/' element={
+						<CategoryPage productList={product}/>
+						}
+					/>
 				</Routes>
 
-				{1 && <Overlay>
+				{null && <Overlay>
 							<MiniCart />
 						</Overlay>}
 			</>

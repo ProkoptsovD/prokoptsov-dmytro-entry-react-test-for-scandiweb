@@ -1,3 +1,5 @@
+import { makeFlexGrid } from "../helpers/makeFlexGrid";
+
 export const theme = {
     colors: {
         accent: {
@@ -104,7 +106,17 @@ export const theme = {
         },
         modal: {
             w: '325px',
+        },
+        previewCardImage: {
+            w: '356px',
+            h: '338px',
         }
+    },
+    flexGrid: (gap, elementsInRow) => {
+        return makeFlexGrid({
+            gap,
+            elementsInRow,
+        });
     },
     spacing: (value) => `${4 * value}px`,
 }
