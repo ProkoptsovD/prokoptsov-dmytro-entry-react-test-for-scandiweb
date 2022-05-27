@@ -28,7 +28,8 @@ export const ListItem = styled.li`
     }
 `;
 export const Picture = styled.img`
-    
+    object-fit: contain;
+    object-position: center;
 `;
 export const StyledControls = styled(Controls)`
     position: absolute;

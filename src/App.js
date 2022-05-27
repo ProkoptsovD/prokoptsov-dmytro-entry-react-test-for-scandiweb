@@ -14,6 +14,7 @@ import CategoryPage from './pages/CategoryPage/';
 import './App.css';
 import {product} from './api/product';
 import Gallery from './components/Gallery/Gallery';
+import ProductPage from './pages/ProductPage';
 
 class App extends React.Component {
 // 	renderRoutes = (categories) =>
@@ -40,18 +41,16 @@ class App extends React.Component {
 					</Actionbar>
 				</Header>
 				<main>
-					<Routes>
+					{/* <Routes>
 						<Route path='/' element={
 							<CategoryPage 
 								categoryName={'clothes'}
 								productList={product}/>
 							}
 						/>
-					</Routes>
+					</Routes> */}
+					<ProductPage />
 				</main>
-				<Gallery 
-					imageList={product[0].gallery}
-					imageAlt={product[0].name}/>
 
 				{null && <Overlay>
 							<MiniCart />

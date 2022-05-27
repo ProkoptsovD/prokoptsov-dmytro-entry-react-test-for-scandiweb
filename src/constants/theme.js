@@ -1,4 +1,5 @@
 import { makeFlexGrid } from "../helpers/makeFlexGrid";
+import { makeOptionGrid } from "../helpers/makeOptionGrid";
 
 export const theme = {
     colors: {
@@ -103,7 +104,9 @@ export const theme = {
             xss: '24px',
             sm: '32px',
             m: '40px',
+            xm: '44px',
             lg: '52px',
+            xlg: '63px',
         },
         modal: {
             w: '325px',
@@ -113,11 +116,10 @@ export const theme = {
             h: '338px',
         }
     },
-    flexGrid: (gap, elementsInRow) => {
-        return makeFlexGrid({
+    flexGrid: (gap, elementsInRow) => makeFlexGrid({
             gap,
             elementsInRow,
-        });
-    },
+        }),
+    optionGrid: (marginSize) => makeOptionGrid(marginSize),
     spacing: (value) => `${4 * value}px`,
 }

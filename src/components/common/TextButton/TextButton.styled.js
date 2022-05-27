@@ -5,6 +5,9 @@ const Button = styled.button`
     align-items: center;
     justify-content: center;
 
+    min-width: 20px;
+    min-height: 20px;
+
     font-family: inherit;
     font-size: var(--fs-400);
     font-weight: var(--fw-600);

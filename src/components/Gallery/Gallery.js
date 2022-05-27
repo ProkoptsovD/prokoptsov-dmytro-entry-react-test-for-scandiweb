@@ -54,16 +54,19 @@ class Gallery extends Component {
     };
     render() {
         const { imageList, imageAlt } = this.props;
+        const { totalPics } = this.state;
 
         return (
             <Wrapper>
                 <PictureList>
                     {this.renderImages(imageList, imageAlt)}
                 </PictureList>
-                <StyledControls 
-                    prev={this.prev}
-                    next={this.next} 
-                />
+                {
+                    totalPics > 0 && <StyledControls 
+                                    prev={this.prev}
+                                    next={this.next} 
+                                />
+                }
             </Wrapper>
     );
     };
