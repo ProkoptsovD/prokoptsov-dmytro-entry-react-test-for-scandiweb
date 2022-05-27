@@ -1,4 +1,4 @@
-export const oneProduct1 = {
+export const oneProduct = {
     id: "huarache-x-stussy-le",
     brand: "Nike x Stussy",
     name: "Nike Air Huarache Le",
@@ -79,7 +79,7 @@ export const oneProduct1 = {
     ]
   };
 
-export const oneProduct = {
+export const oneProduct1 = {
   id: "apple-iphone-12-pro",
   brand: "Apple",
   name: "iPhone 12 Pro",

@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import TextButton from '../common/TextButton';
+import Gallery from '../Gallery';
 
 export const OuterWrapper = styled.div`
     display: flex;
@@ -21,6 +22,7 @@ export const InnerWrapper = styled.div`
     & :last-child {
         font-family: ${({ theme }) => theme.typography.fontFamily['4']};
         line-height: ${({ theme }) => theme.typography.lineHeight['1.6']};
+        text-align: justify;
     }
 `;
 
@@ -40,6 +42,7 @@ export const AddToCartButton = styled(TextButton)`
         transform: scale(0.95);
     }
 `;
+
 
 export const OptionPickerStyles = {
     optionName: {

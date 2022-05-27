@@ -1,6 +1,7 @@
 import React, {Component} from "react";
 import PropTypes from 'prop-types';
-import { ListItem, PictureList, Wrapper, Picture, StyledControls } from "./Gallery.styled";
+import Controls from './Controls/';
+import { ListItem, PictureList, Wrapper, Picture } from "./Gallery.styled";
 import {ReactComponent as ImagePlaceholder} from '../../icons/image-placeholder.svg';
 
 class Gallery extends Component {
@@ -13,7 +14,8 @@ class Gallery extends Component {
     };
     renderImages = (imageList, imageAlt) => {
         return imageList.map((url, idx) => (
-            <ListItem 
+            <ListItem
+                {...this.props}
                 key={idx}
                 id={idx}
                 isVisible={idx === this.state.currentPic}
@@ -57,15 +59,15 @@ class Gallery extends Component {
         const { totalPics } = this.state;
 
         return (
-            <Wrapper>
-                <PictureList>
+            <Wrapper {...this.props}>
+                <PictureList {...this.props}>
                     {this.renderImages(imageList, imageAlt)}
                 </PictureList>
                 {
-                    totalPics > 0 && <StyledControls 
-                                    prev={this.prev}
-                                    next={this.next} 
-                                />
+                    totalPics > 0 && <Controls
+                                        prev={this.prev}
+                                        next={this.next} 
+                                    />
                 }
             </Wrapper>
     );

@@ -1,6 +1,6 @@
 import {Component} from "react";
 import PropTypes from 'prop-types';
-import {InnerWrapper, OuterWrapper, AddToCartButton, OptionPickerStyles } from './ProductCard.styled';
+import {InnerWrapper, OuterWrapper, AddToCartButton, StyledGallery, OptionPickerStyles } from './ProductCard.styled';
 import Gallery from "../Gallery/";
 import ProductInfo from "./ProductInfo/";
 import OptionPicker from "../OptionPicker";
@@ -14,7 +14,9 @@ class ProductCard extends Component {
 
         return (
             <OuterWrapper>
-                <Gallery imageList={gallery}/>
+                <Gallery
+                    large
+                    imageList={gallery}/>
                 <InnerWrapper>
                     <ProductInfo
                         brandName={brand}
@@ -23,7 +25,7 @@ class ProductCard extends Component {
                     >
                         <OptionPicker
                             {...OptionPickerStyles}
-                            option={attributes[1]}/>
+                            option={attributes[0]}/>
                     </ProductInfo>
                     <AddToCartButton>
                         Add to cart
