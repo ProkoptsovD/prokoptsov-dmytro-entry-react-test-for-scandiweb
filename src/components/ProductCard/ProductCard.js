@@ -1,13 +1,16 @@
 import {Component} from "react";
 import PropTypes from 'prop-types';
-import {InnerWrapper, OuterWrapper, OptionPickerStyles } from './ProductCard.styled';
+import {InnerWrapper, OuterWrapper, AddToCartButton, OptionPickerStyles } from './ProductCard.styled';
 import Gallery from "../Gallery/";
 import ProductInfo from "./ProductInfo/";
 import OptionPicker from "../OptionPicker";
+import Description from "./ProductDescription/";
 
 class ProductCard extends Component {
     render() {
         const {id, brand, name, gallery, description, prices, attributes} = this.props.product;
+        const [ price ] = prices;
+        console.log(description);
 
         return (
             <OuterWrapper>
@@ -16,11 +19,20 @@ class ProductCard extends Component {
                     <ProductInfo
                         brandName={brand}
                         productName={name}
+                        price={price}
                     >
                         <OptionPicker
                             {...OptionPickerStyles}
                             option={attributes[1]}/>
                     </ProductInfo>
+                    <AddToCartButton>
+                        Add to cart
+                    </AddToCartButton>
+                    {
+                        description && <Description
+                                            descr={description}
+                                        />
+                    }
                 </InnerWrapper>
             </OuterWrapper>
         )

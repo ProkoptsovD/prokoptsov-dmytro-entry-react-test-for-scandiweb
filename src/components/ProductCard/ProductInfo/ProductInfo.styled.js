@@ -20,3 +20,19 @@ export const ProductName = styled.h1`
     font-weight: ${props => props.theme.typography.fontWeight['400']};
     ${commonCss}
 `;
+export const Price = styled.b`
+    display: block;
+
+    margin-bottom: ${({ theme }) => theme.spacing(2.5)};
+    
+    font-family: ${({ theme }) => theme.typography.fontFamily['2']};
+    font-size: ${({ theme }) => theme.typography.fontSize['500']};
+`;
+export const Amount = styled.strong`
+    display: block;
+
+    font-size: ${({ theme }) => theme.typography.fontSize['600']};
+    line-height: 0.75;
+    
+    text-transform: uppercase;
+`;

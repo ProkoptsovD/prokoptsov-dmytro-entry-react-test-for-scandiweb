@@ -1,6 +1,6 @@
 import {Component} from 'react';
 import PropTypes from 'prop-types';
-import { BrandName, ProductName, Wrapper } from './ProductInfo.styled';
+import { Amount, BrandName, Price, ProductName, Wrapper } from './ProductInfo.styled';
 
 class ProductInfo extends Component {
     static defaultProps = {
@@ -8,7 +8,8 @@ class ProductInfo extends Component {
         productName: 'product',
     };
     render() {
-        const { children, brandName, productName } = this.props;
+        const { children, brandName, productName, price } = this.props;
+        const { amount, currency: { symbol } } = price;
 
         return (
             <Wrapper>
@@ -18,7 +19,13 @@ class ProductInfo extends Component {
                 <ProductName>
                     {productName}
                 </ProductName>
-                {children}
+                    {children}
+                <Price>
+                    Price:
+                </Price>
+                <Amount>
+                    {symbol + amount}
+                </Amount>
             </Wrapper>
         );
     }
@@ -28,6 +35,7 @@ ProductInfo.propTypes = {
     children: PropTypes.any,
     brandName: PropTypes.string.isRequired,
     productName: PropTypes.string.isRequired,
+    price: PropTypes.object.isRequired,
 }
 
 export default ProductInfo;

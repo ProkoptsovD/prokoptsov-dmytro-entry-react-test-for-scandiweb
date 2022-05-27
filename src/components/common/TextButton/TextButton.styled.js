@@ -8,9 +8,8 @@ const Button = styled.button`
     min-width: 20px;
     min-height: 20px;
 
-    font-family: inherit;
-    font-size: var(--fs-400);
-    font-weight: var(--fw-600);
+    font: inherit;
+    font-weight: ${({ theme }) => theme.typography.fontWeight['600']};
 
     border: none;
 
