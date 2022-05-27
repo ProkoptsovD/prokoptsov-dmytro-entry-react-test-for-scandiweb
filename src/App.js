@@ -42,12 +42,16 @@ class App extends React.Component {
 				<main>
 					<Routes>
 						<Route path='/' element={
-							<CategoryPage productList={product}/>
+							<CategoryPage 
+								categoryName={'clothes'}
+								productList={product}/>
 							}
 						/>
 					</Routes>
 				</main>
-				<Gallery />
+				<Gallery 
+					imageList={product[0].gallery}
+					imageAlt={product[0].name}/>
 
 				{null && <Overlay>
 							<MiniCart />

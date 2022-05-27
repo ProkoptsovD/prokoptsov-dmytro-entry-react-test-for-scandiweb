@@ -2,16 +2,16 @@ import React from "react";
 import Section from "../../components/common/Section/";
 import PropTypes from 'prop-types';
 import FlexGrid from "../../components/common/FlexGrid/";
-import { CategoryName } from "./CategoryPage.styled";
 import PreviewCard from "../../components/PreviewCard/PreviewCard";
+import { CategoryName } from "./CategoryPage.styled";
 
 
 class CategoryPage extends React.Component {
     static defaultProps = {
         name: 'Category name',
     }
-    renderProductList = () => {
-        return this.props.productList.map((product, idx) => (
+    renderProductList = (productList) => {
+        return productList.map((product, idx) => (
             <PreviewCard 
                 key={idx}
                 product={product} 
@@ -20,13 +20,15 @@ class CategoryPage extends React.Component {
         ));
     }
     render() {
+        const { productList, categoryName } = this.props;
+
         return (
             <Section>
                 <CategoryName>
-                    {this.props.name}
+                    {categoryName}
                 </CategoryName>
                 <FlexGrid>
-                    {this.renderProductList()}
+                    {this.renderProductList(productList)}
                 </FlexGrid>
             </Section>
         )
@@ -34,7 +36,8 @@ class CategoryPage extends React.Component {
 };
 
 CategoryPage.propTypes = {
-    name: PropTypes.string.isRequired,
+    categoryName: PropTypes.string.isRequired,
+    productList: PropTypes.arrayOf(PropTypes.object),
 };
 
 export default CategoryPage;

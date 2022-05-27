@@ -18,8 +18,10 @@ export const ListItem = styled.li`
     position: absolute;
     inset: 0;
 
-    opacity: 0;
-    visibility: hidden;
+    opacity: ${props => props.isVisible ? '1' : '0'};
+    visibility: ${props => props.isVisible ? 'visible' : 'hidden'};
+
+    transition: ${props => props.theme.setTransition(null, 'opacity', 'visibility')};
 
     &__item:not(:last-child) {
         margin-bottom: 2px;

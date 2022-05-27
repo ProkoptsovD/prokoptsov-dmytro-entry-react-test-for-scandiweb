@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from 'prop-types';
 import Icons from '../common/Icons';
 import { Card, Label, PreviewImage, Price, QuickAddButton, StyledLink } from "./PreviewCard.styled";
+import {ReactComponent as ImagePlaceholder} from '../../icons/image-placeholder.svg';
 
 
 class PreviewCard extends React.Component {
@@ -21,16 +22,21 @@ class PreviewCard extends React.Component {
                 <StyledLink 
                     to={`/${id}`}
                 >
-                    <PreviewImage src={url} alt={name} />
+                    {   url
+                            ? <PreviewImage src={url} alt={name} />
+                            : <ImagePlaceholder />
+                    }
                     <Label>
                         {`${brand} ${name}`}
                     </Label>
                     <Price>
                         {price.currency.symbol}{price.amount}
                     </Price>
-                    { inStock && <QuickAddButton>
+                    { 
+                        inStock && <QuickAddButton>
                                     <Icons id="cart" />
-                                </QuickAddButton>}
+                                </QuickAddButton>
+                    }
                 </StyledLink>
             </Card>
         );
