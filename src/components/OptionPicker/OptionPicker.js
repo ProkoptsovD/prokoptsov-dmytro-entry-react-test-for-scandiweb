@@ -3,28 +3,36 @@ import PropTypes from 'prop-types';
 import { ListItem, OptionButton, OptionList, OptionName, Wrapper } from './OptionPicker.styled';
 
 class OptionPicker extends Component {
-    renderOptionButtonList = (optionList) => {
+    renderOptionButtonList = (optionList, type) => {
+        const normalizedType = type.toLowerCase();
+        const isText = normalizedType === 'text';
+
         return optionList.map(({ value }, idx) => (
             <ListItem
                 key={idx}
                 id={idx}
             >
-                <OptionButton {...this.props}>
-                    {value}
+                <OptionButton
+                    optionType={normalizedType}
+                    value={value}
+                    {...this.props.optionButton}
+                >
+                    {isText && value}
                 </OptionButton>
             </ListItem>
         ));
     };
     render () {
-        const { option: { name, items } } = this.props;
+        const { option: { name, items, type } } = this.props;
+        const { wrapper, optionName, optionList } = this.props;
 
         return (
-            <Wrapper>
-                <OptionName>
+            <Wrapper {...wrapper}>
+                <OptionName {...optionName}>
                     {name + ':'}
                 </OptionName>
-                <OptionList>
-                    {this.renderOptionButtonList(items)}
+                <OptionList {...optionList}>
+                    {this.renderOptionButtonList(items, type)}
                 </OptionList>
             </Wrapper>
         );
@@ -33,6 +41,9 @@ class OptionPicker extends Component {
 
 OptionPicker.propTypes = {
     option: PropTypes.object.isRequired,
+    wrapper: PropTypes.object,
+    optionName: PropTypes.object,
+    OptionList: PropTypes.object,
 }
 
 export default OptionPicker;

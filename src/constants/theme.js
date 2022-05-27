@@ -1,5 +1,4 @@
 import { makeFlexGrid } from "../helpers/makeFlexGrid";
-import { makeOptionGrid } from "../helpers/makeOptionGrid";
 
 export const theme = {
     colors: {
@@ -120,6 +119,5 @@ export const theme = {
             gap,
             elementsInRow,
         }),
-    optionGrid: (marginSize) => makeOptionGrid(marginSize),
     spacing: (value) => `${4 * value}px`,
 }

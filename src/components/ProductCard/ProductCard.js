@@ -1,9 +1,9 @@
 import {Component} from "react";
 import PropTypes from 'prop-types';
-import {InnerWrapper, OuterWrapper} from './ProductCard.styled';
+import {InnerWrapper, OuterWrapper, OptionPickerStyles } from './ProductCard.styled';
 import Gallery from "../Gallery/";
-import OptionPicker from "../OptionPicker/";
 import ProductInfo from "./ProductInfo/";
+import OptionPicker from "../OptionPicker";
 
 class ProductCard extends Component {
     render() {
@@ -18,9 +18,8 @@ class ProductCard extends Component {
                         productName={name}
                     >
                         <OptionPicker
-                            sizeW="63px"
-                            sizeH="44px"
-                            option={attributes[0]}/>
+                            {...OptionPickerStyles}
+                            option={attributes[1]}/>
                     </ProductInfo>
                 </InnerWrapper>
             </OuterWrapper>
