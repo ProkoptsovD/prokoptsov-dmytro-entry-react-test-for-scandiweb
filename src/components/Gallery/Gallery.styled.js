@@ -1,27 +1,45 @@
 import styled, { css } from 'styled-components';
 
-export const Wrapper = styled.div`
-    position: relative;
+export const GalleryWrapper = styled.div`
+    ${({ small, galleryWrapper }) => small && css`
+        overflow: hidden;
 
-    overflow: hidden;
-
-    ${({ small, width, height }) => small && css`
-        width: ${ width || '200px' };
-        height: ${ height || '300px' };
-
-        & > div {
-            position: absolute;
-
-            bottom: 16px;
-            right: 16px;
-        }
+        width: ${ galleryWrapper?.width || '200px' };
+        height: ${ galleryWrapper?.height || '300px' };
     `}
 `;
-export const PictureList = styled.ul`
-    position: relative;
-    display: ${({ small }) => small ? 'flex' : 'block'};
-
+export const InnerWrapper = styled.div`
     height: 100%;
+
+    ${({ small, innerWrapper }) => small && css`
+        position: relative;
+
+        & div:last-child {
+            position: absolute;
+            
+            right: ${ innerWrapper?.right || '16px' };
+            bottom: ${ innerWrapper?.bottom || '16px' };
+        }
+    `}
+
+    ${({ large }) => large && css`
+        display: flex;
+    `}
+`;
+
+export const PictureList = styled.ul`
+    height: 100%;
+    
+    ${({ small }) => small && css`
+        position: absolute;
+        inset: 0;
+
+        display: flex;
+    `}
+
+    ${({ large, pictureList, theme }) => large && css`
+        margin-right: ${ pictureList?.marginRight || theme.spacing(10)};
+    `}
 `;
 export const ListItem = styled.li`
     transition: ${props => props.theme.setTransition(null, 'opacity', 'visibility')};
@@ -32,40 +50,41 @@ export const ListItem = styled.li`
 
         opacity: ${props => props.isVisible ? '1' : '0'};
         visibility: ${props => props.isVisible ? 'visible' : 'hidden'};
+    `}
+
+    ${({ large, listItem, theme }) => large && css`
+        width: ${ listItem?.width || '80px'};
+        height: ${ listItem?.height || '80px'};
 
         &:not(:last-child) {
-            margin-bottom: 2px;
+            margin-bottom: ${ listItem?.marginBottom || theme.spacing(10)};
         }
-    `}
 
-    ${({ large, width, height, imageList }) => large && css`
-        &:first-child {
-            width: ${ width || '610px' };
-            height: ${ height || '498px' };
+        &:hover {
+            cursor: pointer;
         }
-        ${() => {
-            const step = 80;
-            let num = 1;
-            let pos = 0;
-
-            return imageList.map((im) => {
-                return (
-                `
-                &:nth-child(${num += 1}) {
-                    position: absolute;
-        
-                    left: 0;
-                    top: ${pos += step}px;
-        
-                    width: 80px;
-                    height: 80px;
-                }
-                `
-            )
-        })}}
-    `}
+`}
 `;
 export const Picture = styled.img`
     object-fit: contain;
     object-position: center;
+`;
+
+export const ViewPort = styled.div`
+    ${({ small }) => small && css`
+    position: absolute;
+    inset: 0;
+`}
+
+    ${({ large, viewPort, theme }) => large && css`
+        width: ${ viewPort?.width || '610px' };
+        height: ${ viewPort?.height || '498px' };
+
+        margin-top: ${ viewPort?.marginTop || theme.spacing(4)};
+
+        & > img {
+            width: 100%;
+            height: 100%;
+        }
+    `}
 `;

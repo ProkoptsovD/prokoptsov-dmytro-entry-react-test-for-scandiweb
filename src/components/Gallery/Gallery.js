@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import PropTypes from 'prop-types';
 import Controls from './Controls/';
-import { ListItem, PictureList, Wrapper, Picture } from "./Gallery.styled";
+import { ListItem, PictureList, GalleryWrapper, Picture, ViewPort, InnerWrapper } from "./Gallery.styled";
 import {ReactComponent as ImagePlaceholder} from '../../icons/image-placeholder.svg';
 
 class Gallery extends Component {
@@ -21,7 +21,7 @@ class Gallery extends Component {
                 isVisible={idx === this.state.currentPic}
             >
                 {url
-                    ? <Picture src={url} alt={imageAlt} />
+                    ? <Picture id={idx} src={url} alt={imageAlt} />
                     : <ImagePlaceholder />
                 }
             </ListItem>
@@ -54,22 +54,36 @@ class Gallery extends Component {
             }
         });
     };
+    onPicClick = (e) => {
+        const { id } = e.target;
+        this.setState({
+            currentPic: id,
+        });
+        console.log(e.target.id);
+    }
     render() {
-        const { imageList, imageAlt } = this.props;
+        const { imageList, imageAlt, small } = this.props;
         const { totalPics } = this.state;
 
         return (
-            <Wrapper {...this.props}>
-                <PictureList {...this.props}>
-                    {this.renderImages(imageList, imageAlt)}
-                </PictureList>
-                {
-                    totalPics > 0 && <Controls
-                                        prev={this.prev}
-                                        next={this.next} 
-                                    />
-                }
-            </Wrapper>
+            <GalleryWrapper {...this.props} >
+                <InnerWrapper {...this.props} >
+                    <PictureList 
+                        onClick={this.onPicClick}
+                        {...this.props} >
+                            {this.renderImages(imageList, imageAlt)}
+                    </PictureList>
+                    <ViewPort {...this.props}>
+                        <Picture src={imageList[this.state.currentPic]}/>
+                    </ViewPort>
+                    {
+                        totalPics > 0 && small && <Controls
+                                                    prev={this.prev}
+                                                    next={this.next} 
+                                                />
+                    }
+                </InnerWrapper>
+            </GalleryWrapper>
     );
     };
 }

@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 import TextButton from '../common/TextButton';
-import Gallery from '../Gallery';
 
 export const OuterWrapper = styled.div`
     display: flex;
@@ -9,6 +8,7 @@ export const InnerWrapper = styled.div`
     width: 292px; 
 
     margin-top: ${({ theme }) => theme.spacing(4)};
+    margin-left: ${({ theme }) => theme.spacing(25)};
 
     & ul:not(:last-child) {
         margin-bottom: ${({ theme }) => theme.spacing(5)};
