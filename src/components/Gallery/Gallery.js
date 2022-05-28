@@ -1,4 +1,4 @@
-import React, {Component} from "react";
+import {Component} from "react";
 import PropTypes from 'prop-types';
 import Controls from './Controls/';
 import { ListItem, PictureList, GalleryWrapper, Picture, ViewPort, InnerWrapper } from "./Gallery.styled";
@@ -11,6 +11,16 @@ class Gallery extends Component {
     state = {
         currentPic: 0,
         totalPics: 0,
+    };
+    componentDidMount() {
+        const { imageList } = this.props;
+
+        this.setState({
+            totalPics: imageList.length - 1,
+        });
+    };
+    shouldComponentUpdate(_, nextState) {
+       return nextState.currentPic !== this.state.currentPic
     };
     renderImages = (imageList, imageAlt) => {
         return imageList.map((url, idx) => (
@@ -25,16 +35,7 @@ class Gallery extends Component {
                     : <ImagePlaceholder />
                 }
             </ListItem>
-        ));
-
-        
-    };
-    componentDidMount() {
-        const { imageList } = this.props;
-
-        this.setState({
-            totalPics: imageList.length - 1,
-        });
+        ));   
     };
     next = () => {
         this.setState(({currentPic}) => {
@@ -56,14 +57,14 @@ class Gallery extends Component {
     };
     onPicClick = (e) => {
         const { id } = e.target;
+
         this.setState({
             currentPic: id,
         });
-        console.log(e.target.id);
-    }
+    };
     render() {
         const { imageList, imageAlt, small } = this.props;
-        const { totalPics } = this.state;
+        const { totalPics, currentPic } = this.state;
 
         return (
             <GalleryWrapper {...this.props} >
@@ -74,7 +75,7 @@ class Gallery extends Component {
                             {this.renderImages(imageList, imageAlt)}
                     </PictureList>
                     <ViewPort {...this.props}>
-                        <Picture src={imageList[this.state.currentPic]}/>
+                        <Picture src={imageList[currentPic]}/>
                     </ViewPort>
                     {
                         totalPics > 0 && small && <Controls
@@ -86,11 +87,11 @@ class Gallery extends Component {
             </GalleryWrapper>
     );
     };
-}
+};
 
 Gallery.propTypes = {
     imageList: PropTypes.arrayOf(PropTypes.string.isRequired),
     imageAlt: PropTypes.string,
-}
+};
 
 export default Gallery;

@@ -15,6 +15,7 @@ import './App.css';
 import {product} from './api/product';
 import Gallery from './components/Gallery/Gallery';
 import ProductPage from './pages/ProductPage';
+import Cart from './components/Cart';
 
 class App extends React.Component {
 // 	renderRoutes = (categories) =>
@@ -49,7 +50,7 @@ class App extends React.Component {
 							}
 						/>
 					</Routes> */}
-					<ProductPage />
+					<Cart />
 				</main>
 
 				{null && <Overlay>
