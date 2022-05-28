@@ -36,10 +36,11 @@ export const AddToCartButton = styled(TextButton)`
     background-color: ${({ theme }) => theme.colors.accent['100']};
     color: ${({ theme }) => theme.colors.light['100']};
 
-    transition: ${({ theme }) => theme.setTransition('fast', 'background-color', 'color', 'transform')};
+    transition: ${({ theme }) => theme.setTransition('fast', 'background-color', 'color', 'transform', 'filter')};
     
     &:active {
-        transform: scale(0.95);
+        filter: brightness(90%);
+        transform: scale(0.97);
     }
 `;
 

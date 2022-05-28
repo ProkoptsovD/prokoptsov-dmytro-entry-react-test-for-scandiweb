@@ -19,8 +19,8 @@ class Gallery extends Component {
             totalPics: imageList.length - 1,
         });
     };
-    shouldComponentUpdate(_, nextState) {
-       return nextState.currentPic !== this.state.currentPic
+    shouldComponentUpdate(_, { currentPic, totalPics }) {
+       return currentPic !== this.state.currentPic || totalPics !== this.state.totalPics;
     };
     renderImages = (imageList, imageAlt) => {
         return imageList.map((url, idx) => (
@@ -62,27 +62,39 @@ class Gallery extends Component {
             currentPic: id,
         });
     };
+    renderViewPort = () => {
+        const { currentPic } = this.state;
+        return (
+            <ViewPort {...this.props}>
+                <Picture src={this.props.imageList[currentPic]}/>
+            </ViewPort>
+        );
+    };
+    renderControls = () => {
+        const { totalPics } = this.state;
+        return (
+            totalPics > 1 
+                    ?   <Controls
+                            prev={this.prev}
+                            next={this.next} 
+                        />
+                    : null
+        );
+    }
     render() {
-        const { imageList, imageAlt, small } = this.props;
-        const { totalPics, currentPic } = this.state;
+        const { imageList, imageAlt, small, large } = this.props;
 
         return (
             <GalleryWrapper {...this.props} >
                 <InnerWrapper {...this.props} >
                     <PictureList 
-                        onClick={this.onPicClick}
+                        onClick={ large ? this.onPicClick : () => {}}
                         {...this.props} >
                             {this.renderImages(imageList, imageAlt)}
                     </PictureList>
-                    <ViewPort {...this.props}>
-                        <Picture src={imageList[currentPic]}/>
-                    </ViewPort>
-                    {
-                        totalPics > 0 && small && <Controls
-                                                    prev={this.prev}
-                                                    next={this.next} 
-                                                />
-                    }
+
+                    { small && this.renderControls() }
+                    { large && this.renderViewPort() }
                 </InnerWrapper>
             </GalleryWrapper>
     );

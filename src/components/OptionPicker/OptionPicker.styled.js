@@ -37,8 +37,8 @@ export const OptionButton = styled(TextButton)`
     ${({optionType}) => {
         if (optionType === 'text') {
             return css`
-                min-width: ${({ typeTextSize: { minWidth } }) => minWidth || '20px'};
-                min-height: ${({ typeTextSize: { minHeight } }) => minHeight || '20px'};
+                min-width: ${({ typeTextSize }) => typeTextSize?.minWidth || '20px'};
+                min-height: ${({ typeTextSize }) => typeTextSize?.minHeight || '20px'};
                 
                 border: 1px solid ${({ theme }) => theme.colors.dark['300']};
 

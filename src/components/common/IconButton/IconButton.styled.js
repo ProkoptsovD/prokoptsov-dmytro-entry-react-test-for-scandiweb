@@ -23,7 +23,6 @@ const Button =  styled.button`
 
         fill: ${props => props.theme.colors.dark['200']};
     }
-
     &:active {
         transform: scale(0.9);
     }
