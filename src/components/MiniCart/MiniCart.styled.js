@@ -60,3 +60,41 @@ export const ViewBagButton = styled(StyledTextButton)`
 `;
 export const CheckOutButton = styled(StyledTextButton)`
 `;
+
+export const CartStyles = {
+    productStyles: {
+        brand: {
+            marginBottom: '0',
+            fontSize: '16px',
+            lineHeight: '1.6',
+        },
+        name: {
+            marginBottom: '4px',
+            fontSize: '16px',
+            lineHeight: '1.2',
+        },
+        price: {
+            fontWeight: '500',
+            fontSize: '16px',
+            lineHeight: '1.6',
+            marginBottom: '8px',
+        }
+    },
+    optionPicker: {
+        optionName: {
+            fontWeight: '400',
+            fontSize: '14px',
+        },
+        typeTextSize: {
+            minWidth: '24px',
+            minHeight: '24px',
+
+            fontWeight: '400',
+            fontSize: '14px',
+        },
+        typeSwatchSize: {
+            minWidth: '20px',
+            minHeight: '20px',
+        }
+    },
+}

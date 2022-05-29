@@ -10,6 +10,7 @@ export const OptionName = styled.b`
 
     font-family: ${({ theme, fontFamily }) => fontFamily || theme.typography.fontFamily['2']};
     font-size: ${({ theme, fontSize }) => fontSize || theme.typography.fontSize['500']};
+    font-weight: ${({ theme, fontWeight }) => fontWeight || theme.typography.fontSize['500']};
 
     text-transform: ${({ textTransform }) => textTransform || 'capitalize'};
 `;
@@ -41,6 +42,9 @@ export const OptionButton = styled(TextButton)`
                 min-width: ${({ typeTextSize }) => typeTextSize?.minWidth || '20px'};
                 min-height: ${({ typeTextSize }) => typeTextSize?.minHeight || '20px'};
                 
+                font-weight: ${({ typeTextSize }) => typeTextSize?.fontWeight};
+                font-size: ${({ typeTextSize }) => typeTextSize?.fontSize};
+
                 border: 1px solid ${({ theme }) => theme.colors.dark['300']};
 
                 background-color: ${({ theme }) => theme.colors.light['100']};

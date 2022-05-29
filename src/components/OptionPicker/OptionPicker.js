@@ -6,7 +6,7 @@ class OptionPicker extends Component {
     renderOptionButtonList = (optionList, type) => {
         const normalizedType = type.toLowerCase();
         const isText = normalizedType === 'text';
-
+        console.log(this.props.optionButton);
         return optionList.map(({ value }, idx) => (
             <ListItem
                 key={idx}

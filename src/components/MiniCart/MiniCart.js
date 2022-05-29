@@ -1,6 +1,7 @@
 import React, {Component} from "react";
 import PropTypes from 'prop-types';
-import { CheckOutButton, ViewBagButton } from "./MiniCart.styled";
+import { CheckOutButton, ViewBagButton, CartStyles } from "./MiniCart.styled";
+import Cart from '../Cart'
 
 class MiniCart extends Component {
     static defaultProps = {
@@ -8,14 +9,15 @@ class MiniCart extends Component {
     };
     render() {
         return (
-           <>
-             <ViewBagButton>
-                View bag
-            </ViewBagButton>
-            <CheckOutButton>
-                Check Out
-            </CheckOutButton>
-           </>
+            <>
+                <Cart styles={CartStyles}/>
+                <ViewBagButton>
+                    View bag
+                </ViewBagButton>
+                <CheckOutButton>
+                    Check Out
+                </CheckOutButton>
+            </>
         );
     }
 }

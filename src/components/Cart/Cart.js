@@ -7,28 +7,31 @@ import { oneProduct } from "../../api/oneProduct";
 
 class Cart extends Component {
     render () {
+        const { styles } = this.props;
+
         return (
             <CartWrapper>
                 <AddedProductList>
                     <ListItem>
                         <Product
                             product={oneProduct}
-                            productStyles={ProductStyles}
-                            optionPicker={OptionPickerStyles}
+                            productStyles={styles.productStyles || ProductStyles}
+                            optionButton={styles.optionPicker || OptionPickerStyles}
+                            optionName={styles.optionPicker.optionName}
                         />
                     </ListItem>
                     <ListItem>
                         <Product
                             product={oneProduct}
-                            productStyles={ProductStyles}
-                            optionPicker={OptionPickerStyles}
+                            productStyles={styles.productStyles || ProductStyles}
+                            optionPicker={styles.optionPicker || OptionPickerStyles}
                         />
                     </ListItem>
                     <ListItem>
-                        <Product 
+                        <Product
                             product={oneProduct}
-                            productStyles={ProductStyles}
-                            optionPicker={OptionPickerStyles}
+                            productStyles={styles.productStyles || ProductStyles}
+                            optionPicker={styles.optionPicker || OptionPickerStyles}
                         />
                     </ListItem>
                 </AddedProductList>

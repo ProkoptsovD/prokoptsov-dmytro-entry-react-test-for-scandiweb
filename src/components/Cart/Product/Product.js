@@ -48,11 +48,13 @@ class Product extends Component {
                     </Price>
                     <OptionPicker 
                         option={attributes[0]}
-                        optionButton={this.props.optionPicker}    
+                        optionName={this.props.optionName}
+                        optionButton={this.props.optionButton}    
                     />
                     <OptionPicker 
                         option={attributes[0]}
-                        optionButton={this.props.optionPicker}    
+                        optionName={this.props.optionName}
+                        optionButton={this.props.optionButton}    
                     />
                 </InnerWrapper>
                 <QuantatyPanel vertical/>

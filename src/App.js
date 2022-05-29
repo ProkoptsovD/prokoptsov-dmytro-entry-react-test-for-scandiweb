@@ -51,10 +51,10 @@ class App extends React.Component {
 							}
 						/>
 					</Routes> */}
-					<CartPage />
+					{/* <CartPage /> */}
 				</main>
 
-				{null && <Overlay>
+				{true && <Overlay>
 							<MiniCart />
 						</Overlay>}
 			</>

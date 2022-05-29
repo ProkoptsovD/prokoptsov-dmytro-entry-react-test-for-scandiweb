@@ -15,22 +15,24 @@ export const BrandName = styled.p`
     margin-bottom: ${({ theme, marginBottom }) => marginBottom || theme.spacing(4)};
     font-weight: ${({ theme, fontWeight }) => fontWeight || theme.typography.fontWeight['600']};
     font-size: ${({ fontSize }) => fontSize};
-    line-height: 0.9;
+    line-height: ${({ lineHeight }) => lineHeight || '0.9'};
+
 `;
 export const ProductName = styled.h2`
     margin-bottom: ${({ theme, marginBottom }) => marginBottom || theme.spacing(10)};  
     font-weight: ${({ theme, fontWeight }) => fontWeight || theme.typography.fontWeight['400']};
 
     font-size: ${({ fontSize }) => fontSize};
-    line-height: 0.9;
+    line-height: ${({ lineHeight }) => lineHeight || '0.9'};
     `;
 export const Price = styled.strong`
     display: block;
 
     margin-bottom: ${({ theme, marginBottom }) => marginBottom || theme.spacing(4)};
+    font-weight: ${({ fontWeight }) => fontWeight};
 
     font-size: ${({ theme, fontSize }) => fontSize || theme.typography.fontSize['600']};
-    line-height: 0.75;
+    line-height: ${({ lineHeight }) => lineHeight || '0.75'};
     
     text-transform: uppercase;
 `;
