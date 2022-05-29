@@ -36,19 +36,26 @@ class Product extends Component {
         console.log(this.props.product);
         return (
             <OuterWrapper>
-                <InnerWrapper>
-                    <BrandName>
+                <InnerWrapper {...this.props}>
+                    <BrandName {...this.props.productStyles.brand}>
                         {brand}
                     </BrandName>
-                    <ProductName>
+                    <ProductName {...this.props.productStyles.name}>
                         {name}
                     </ProductName>
-                    <Price>
+                    <Price {...this.props.productStyles.price}>
                         {price.currency.symbol + price.amount}
                     </Price>
-                    <OptionPicker option={attributes[0]}/>
+                    <OptionPicker 
+                        option={attributes[0]}
+                        optionButton={this.props.optionPicker}    
+                    />
+                    <OptionPicker 
+                        option={attributes[0]}
+                        optionButton={this.props.optionPicker}    
+                    />
                 </InnerWrapper>
-                <QuantatyPanel />
+                <QuantatyPanel vertical/>
                 <Gallery
                     small
                     imageList={gallery}

@@ -51,7 +51,7 @@ export const theme = {
             '1.6': 1.6,
         },
         letterSpacing: {
-            '5': '5%',
+            '5': '0.05em',
         }
     },
     shadows: {

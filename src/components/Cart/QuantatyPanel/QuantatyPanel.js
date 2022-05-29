@@ -1,15 +1,24 @@
-import { Component } from 'react'
+import { Component } from 'react';
+import PropTypes from 'prop-types';
 import Icons from '../../common/Icons';
-import { Wrapper, IncreaseButton, DecreaseButton } from './QuantatyPanel.styled';
+import { Wrapper, IncreaseButton, DecreaseButton, DisplayedQuantaty } from './QuantatyPanel.styled';
 
 class QuantatyPanel extends Component {
+  static defaultProps = {
+    quantaty: '0',
+  }
   render() {
+    const { quantaty } = this.props;
+
     return (
-      <Wrapper>
-          <IncreaseButton>
+      <Wrapper {...this.props}>
+          <IncreaseButton {...this.props}>
               <Icons id={'plus'}/>
           </IncreaseButton>
-          <DecreaseButton>
+          <DisplayedQuantaty {...this.props}>
+              {quantaty}
+          </DisplayedQuantaty>
+          <DecreaseButton {...this.props}>
               <Icons id={'minus'}/>
           </DecreaseButton>
       </Wrapper>
@@ -17,5 +26,8 @@ class QuantatyPanel extends Component {
   };
 };
 
+QuantatyPanel.propTypes = {
+    quantaty: PropTypes.string.isRequired,
+}
 
 export default QuantatyPanel;

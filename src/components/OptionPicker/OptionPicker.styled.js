@@ -2,7 +2,7 @@ import styled, {css} from 'styled-components';
 import TextButton from '../common/TextButton';
 
 export const Wrapper = styled.div`
-    display: ${({ display }) => display || 'inline-block'};
+    display: ${({ display }) => display || 'block'};
 `;
 export const OptionName = styled.b`
     display: inline-block;
@@ -31,6 +31,7 @@ export const ListItem = styled.li`
 export const OptionButton = styled(TextButton)`
     font-family: ${({ theme, fontFamily }) => fontFamily || theme.typography.fontFamily['3']};
     line-height: ${({ lineHeight }) => lineHeight || '1.12'};
+    letter-spacing: ${({ theme, letterSpacing }) => letterSpacing || theme.typography.letterSpacing['5']};
 
     transition: ${({ theme }) => theme.setTransition(null, 'background-color', 'color', 'outline-color')};
 
