@@ -1,16 +1,42 @@
 import React, {Component} from "react";
 import PropTypes from 'prop-types';
-import { CheckOutButton, ViewBagButton, CartStyles } from "./MiniCart.styled";
-import Cart from '../Cart'
+import { CheckOutButton, ViewBagButton, CartStyles, OuterWrapper, MiniCartNameWrapper, MiniCartName, TotalNumberOfItems, ItemWord, TotalPriceWrapper, Total, Price } from "./MiniCart.styled";
+import Cart from '../Cart';
+import Product from '../Cart/Product';
+import {oneProduct} from '../../api/oneProduct';
 
 class MiniCart extends Component {
     static defaultProps = {
         onClick: () => {},
+        totalItems: '0',
     };
     render() {
+        const { totalItems, totalPrice } = this.props;
+
         return (
             <>
-                <Cart styles={CartStyles}/>
+                <OuterWrapper>
+                    <MiniCartNameWrapper>
+                        <MiniCartName>
+                            My bag.&nbsp;
+                        </MiniCartName>
+                        <TotalNumberOfItems>
+                            {totalItems}&nbsp;
+                        </TotalNumberOfItems>
+                        <ItemWord>
+                            {totalItems === 1 ? 'item' : 'items'}
+                        </ItemWord>
+                    </MiniCartNameWrapper>
+                    <Product product={oneProduct}/>
+                    <TotalPriceWrapper>
+                        <Total>
+                            Total
+                        </Total>
+                        <Price>
+                            {totalPrice}
+                        </Price>
+                    </TotalPriceWrapper>
+                </OuterWrapper>
                 <ViewBagButton>
                     View bag
                 </ViewBagButton>
@@ -25,6 +51,7 @@ class MiniCart extends Component {
 MiniCart.propTypes = {
     onClick: PropTypes.func,
     children: PropTypes.node,
+    totalItems: PropTypes.string.isRequired,
 }
 
 export default MiniCart;

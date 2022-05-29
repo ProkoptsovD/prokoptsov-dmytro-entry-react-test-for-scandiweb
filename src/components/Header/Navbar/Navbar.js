@@ -4,11 +4,11 @@ import { ListItem, Nav, NavList, StyledNavLink } from "./Navbar.styled";
 
 class Navbar extends Component {
     renderNavbarList = () => {
-        return this.props.tabList.map((tabName, idx) => (
+        return this.props.tabList.map(({name}, idx) => (
             <ListItem key={idx}>
                 <StyledNavLink
-                    to={`/${tabName}`}>
-                    {tabName}
+                    to={`/${name}`}>
+                    {name}
                 </StyledNavLink>
             </ListItem>
         ));
@@ -25,7 +25,7 @@ class Navbar extends Component {
 }
 
 Navbar.propTypes = {
-    tabList: PropTypes.arrayOf(PropTypes.string).isRequired,
+    tabList: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.string)).isRequired,
 }
 
 export default Navbar;

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Navigate, Route, Routes } from 'react-router-dom';
+import { Route, Routes, Navigate } from 'react-router-dom';
 import {ReactComponent as Logo} from './icons/logo.svg';
 
 import Actionbar from './components/Header/Actionbar';
@@ -17,44 +17,62 @@ import Gallery from './components/Gallery/Gallery';
 import ProductPage from './pages/ProductPage';
 import Cart from './components/Cart';
 import CartPage from './pages/CartPage';
+import NotFoundPage from './pages/NotFoundPage';
+import { productAPI } from './services/product-api';
+import { connect } from 'react-redux';
+import { initAppThunk } from './redux/thunks/initAppThunk';
 
 class App extends React.Component {
-// 	renderRoutes = (categories) =>
-// 		categories.map(({ name }) => (
-// 		<Route
-// 			key={name}
-// 			path={`/${name}`}
-// 			element={<CategoryPageContainer key={name} id={name} />}
-// 		/>
-// 		)
-
-// );
+	renderRoutes = () => {
+		const { categories } = this.props;
+		
+		return categories.map(({ name }) => 
+			<Route
+				key={name}
+				path={`/${name}`}
+				element={<CategoryPage key={name} id={name} />}
+			/>);
+	}
+	componentDidMount () {
+		this.props.initApp();
+	}
 	render() {
-		const names = ['all', 'clothes', 'tech'];
+		const { categories, currencies } = this.props;
 
 		return (
 			<>
 				<Header>
-					<Navbar tabList={names}/>
+					<Navbar tabList={categories}/>
 					<Logo />
 					<Actionbar>
-						<CurrencySwitcher />
+						<CurrencySwitcher currencyList={currencies}/>
 						<MiniCartButton itemsCount={'0'}/>
 					</Actionbar>
 				</Header>
 				<main>
-					{/* <Routes>
-						<Route path='/' element={
-							<CategoryPage 
-								categoryName={'clothes'}
-								productList={product}/>
-							}
+					<Routes>
+						{/* <Route path='/all'
+							element={<CategoryPage 
+											categoryName={'all'}
+											productList={product}/>}
 						/>
-					</Routes> */}
+						<Route path='/clothes'
+							element={<CategoryPage 
+											categoryName={'clothes'}
+											productList={product}/>}
+						/>
+						<Route path='/tech'
+							element={<CategoryPage 
+											categoryName={'tech'}
+											productList={product}/>}
+						/> */}
+						<Route path='/' element={<Navigate to="/all" replace={true}/>} />
+						<Route path='*' element={<NotFoundPage />} />
+					</Routes>
 					{/* <CartPage /> */}
 				</main>
 
-				{true && <Overlay>
+				{null && <Overlay>
 							<MiniCart />
 						</Overlay>}
 			</>
@@ -62,4 +80,26 @@ class App extends React.Component {
 	}
 }
 
-export default App;
+const mapStateToProps = (state) => {
+    return {
+        categorybyDefault: state.initial.default.category,
+        categories: state.initial.categories,
+        currencies: state.initial.currencies,
+        cart: state.cart,
+        isMiniCartOpened: state.cartOverlay.isOpened,
+    }
+}
+const mapDispatchToProps = (dispatch) => ({
+    initApp: () => {
+        dispatch(initAppThunk())
+    },
+    // openMiniCart: () => {
+    //     dispatch(openCartOverlay());
+    // },
+    // closeMiniCart: () => {
+    //     dispatch(closeCartOverlay());
+    // }
+});
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);

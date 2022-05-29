@@ -14,6 +14,7 @@ export const TotalNumberOfItems = styled.span`
     font-weight: ${props => props.theme.typography.fontWeight['500']};
 `;
 export const ItemWord = styled(TotalNumberOfItems)`
+font-weight: ${props => props.theme.typography.fontWeight['500']};
 `;
 export const TotalPriceWrapper = styled.div`
     display: flex;

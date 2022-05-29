@@ -15,23 +15,9 @@ class Cart extends Component {
                     <ListItem>
                         <Product
                             product={oneProduct}
-                            productStyles={styles.productStyles || ProductStyles}
-                            optionButton={styles.optionPicker || OptionPickerStyles}
-                            optionName={styles.optionPicker.optionName}
-                        />
-                    </ListItem>
-                    <ListItem>
-                        <Product
-                            product={oneProduct}
-                            productStyles={styles.productStyles || ProductStyles}
-                            optionPicker={styles.optionPicker || OptionPickerStyles}
-                        />
-                    </ListItem>
-                    <ListItem>
-                        <Product
-                            product={oneProduct}
-                            productStyles={styles.productStyles || ProductStyles}
-                            optionPicker={styles.optionPicker || OptionPickerStyles}
+                            productStyles={styles?.productStyles || ProductStyles}
+                            optionButton={styles?.optionPicker || OptionPickerStyles}
+                            optionName={styles?.optionPicker.optionName}
                         />
                     </ListItem>
                 </AddedProductList>

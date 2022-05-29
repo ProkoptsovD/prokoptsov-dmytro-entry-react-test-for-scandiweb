@@ -37,13 +37,13 @@ class Product extends Component {
         return (
             <OuterWrapper>
                 <InnerWrapper {...this.props}>
-                    <BrandName {...this.props.productStyles.brand}>
+                    <BrandName {...this.props}>
                         {brand}
                     </BrandName>
-                    <ProductName {...this.props.productStyles.name}>
+                    <ProductName {...this.propTypes}>
                         {name}
                     </ProductName>
-                    <Price {...this.props.productStyles.price}>
+                    <Price {...this.props}>
                         {price.currency.symbol + price.amount}
                     </Price>
                     <OptionPicker 

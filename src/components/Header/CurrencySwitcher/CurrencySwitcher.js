@@ -1,37 +1,16 @@
-import React from "react";
+import {Component} from "react";
+import { connect } from "react-redux";
 import PropTypes from 'prop-types';
 import Icons from "../../common/Icons";
 import { DropdownList, ListItem, CurrencySellectionBtn, Wrapper, OpenCloseSwitcherBtn, ActualCurrency } from "./CurrencySwitcher.styled";
 
-const currList = [
-    {
-      label: "USD",
-      symbol: "$"
-    },
-    {
-      label: "GBP",
-      symbol: "£"
-    },
-    {
-      label: "AUD",
-      symbol: "A$"
-    },
-    {
-      label: "JPY",
-      symbol: "¥"
-    },
-    {
-      label: "RUB",
-      symbol: "₽"
-    }
-  ]
+import {initCurrencySwitcher, switchActualCurrency, updateActualCurrencyInCart, sumTotalPrice} from '../../../redux/actions/actions'
 
-
-class CurrencySwitcher extends React.Component {
+class CurrencySwitcher extends Component {
     static defaultProps = {
         isOpened: false,
         onClick: () => {},
-        currencyList: currList,
+        currencyList: [{}],
     }
     renderCurrencies = () => this.props.currencyList.map(({ symbol, label }, idx) => {
         return (
@@ -83,4 +62,30 @@ CurrencySwitcher.propTypes = {
         })),
 }
 
-export default CurrencySwitcher;
+const mapStateToProps = (state) => {
+    // const { default: { currency: currencyByDefault }, currencies: allCurrencies } = state.initial;
+    // const { actualCurrency } = state.currency;
+
+    // return {
+    //     currencyByDefault,
+    //     allCurrencies,
+    //     actualCurrency,
+    // };
+}
+
+const mapDispatchToProps = (dispatch) => ({
+    initSwitcher: (currenciesList, actualCurrency) => {
+        dispatch(initCurrencySwitcher(currenciesList, actualCurrency));
+    },
+    switchActualCurrency: (currencyToSet) => {
+        dispatch(switchActualCurrency(currencyToSet));
+    },
+    updateCurrencyInCart: (currency) => {
+        dispatch(updateActualCurrencyInCart(currency));
+    },
+    sumTotalPriceInCart: () => {
+        dispatch(sumTotalPrice());
+    }
+})
+
+export default connect(mapDispatchToProps, mapStateToProps)(CurrencySwitcher);

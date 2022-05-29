@@ -13,7 +13,7 @@ class FlexGrid extends Component {
     render () {
         const {children} = this.props;
         const isArr = children instanceof Array;
-        console.log(children);
+
         return (
                 !isArr
                     ? children
