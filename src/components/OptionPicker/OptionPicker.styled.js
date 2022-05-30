@@ -46,20 +46,26 @@ export const OptionButton = styled(TextButton)`
                 font-size: ${({ typeTextSize }) => typeTextSize?.fontSize};
 
                 border: 1px solid ${({ theme }) => theme.colors.dark['300']};
+                cursor: initial;
 
-                background-color: ${({ theme }) => theme.colors.light['100']};
-                color: ${({ theme }) => theme.colors.dark['300']};
-
-                &:focus, &:active {
+                &:not(:disabled) &:focus,
+                &:not(:disabled) &:active {
                     background-color: ${({ theme }) => theme.colors.dark['300']};
                     color: ${({ theme }) => theme.colors.light['100']};
+
+                    cursor: pointer;
                 }
+                
+                ${({ selected }) => selected && css`
+                    background-color: ${({ theme }) => theme.colors.dark['300']};
+                    color: ${({ theme }) => theme.colors.light['100']};
+                `}
             `;
         };
         if (optionType === 'swatch') {
             return css`
-                min-width: ${({ typeSwatchSize: { minWidth } }) => minWidth || '20px'};
-                min-height: ${({ typeSwatchSize: { minHeight } }) => minHeight || '20px'};
+                min-width: ${({ typeSwatchSize }) => typeSwatchSize?.minWidth || '20px'};
+                min-height: ${({ typeSwatchSize}) => typeSwatchSize?.minHeight || '20px'};
 
                 padding: 2px;
     
@@ -70,10 +76,18 @@ export const OptionButton = styled(TextButton)`
                 outline-color: transparent;
                 
                 border: none;
+                cursor: initial;
                 
-                &:focus, &:active {
+                &:not(:disabled) &:focus,
+                &:not(:disabled) &:active {
                     outline-color: ${({ theme }) => theme.colors.accent['100']};
+
+                    cursor: pointer;
                 }
+                
+                ${({ selected }) => selected && css`
+                    outline-color: ${({ theme }) => theme.colors.accent['100']};
+                `}
             `;
         };
     }}

@@ -37,7 +37,7 @@ class App extends React.Component {
 		this.props.initApp();
 	}
 	render() {
-		const { categories, isOverlayOpened } = this.props;
+		const { categories, isOverlayOpened, itemsCount } = this.props;
 
 		return (
 			<>
@@ -46,27 +46,12 @@ class App extends React.Component {
 					<Logo />
 					<Actionbar>
 						<CurrencySwitcher />
-						<MiniCartButton itemsCount={'0'}/>
+						<MiniCartButton itemsCount={itemsCount}/>
 					</Actionbar>
 				</Header>
 				<main>
 					<Routes>
-						{/* <Route path='/all'
-							element={<CategoryPage 
-											categoryName={'all'}
-											productList={product}/>}
-						/>
-						<Route path='/clothes'
-							element={<CategoryPage 
-											categoryName={'clothes'}
-											productList={product}/>}
-						/>
-						<Route path='/tech'
-							element={<CategoryPage 
-											categoryName={'tech'}
-											productList={product}/>}
-						/> */}
-						{/* {this.renderRoutes()} */}
+						{this.renderRoutes()}
 						<Route path='/' element={<Navigate to="/all" replace={true}/>} />
 						<Route path='*' element={<NotFoundPage />} />
 					</Routes>
@@ -87,7 +72,7 @@ const mapStateToProps = (state) => {
     return {
         categories: state.initial.categories,
         currencies: state.initial.currencies,
-        cart: state.cart,
+        itemsCount: state.cart.itemsTotal,
         isMiniCartOpened: state.cartOverlay.isOpened,
 		isOverlayOpened: state.cartOverlay.isOpened,
     }
@@ -96,12 +81,6 @@ const mapDispatchToProps = (dispatch) => ({
     initApp: () => {
         dispatch(initAppThunk())
     },
-    // openMiniCart: () => {
-    //     dispatch(openCartOverlay());
-    // },
-    // closeMiniCart: () => {
-    //     dispatch(closeCartOverlay());
-    // }
 });
 
 

@@ -6,9 +6,6 @@ import { connect } from "react-redux";
 import { closeCartOverlay, openCartOverlay } from "../../../redux/actions/actions";
 
 class MiniCartButton extends Component {
-    // static defaultProps = {
-    //     onClick: () => {},
-    // }
     handleMiniCartBtnClick = () => {
         const { isOpened, open, close } = this.props;
 
@@ -29,7 +26,7 @@ class MiniCartButton extends Component {
 }
 
 MiniCartBtn.propTypes = {
-    itemsCount: PropTypes.string.isRequired,
+    itemsCount: PropTypes.number.isRequired,
 }
 
 const mapStateToProps = (state) => ({

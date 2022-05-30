@@ -1,20 +1,25 @@
 import {Component} from 'react';
 import PropTypes from 'prop-types';
 import { ListItem, OptionButton, OptionList, OptionName, Wrapper } from './OptionPicker.styled';
+import { deepEqual } from '../../helpers/deepEqual';
 
 class OptionPicker extends Component {
-    renderOptionButtonList = (optionList, type) => {
+    renderOptionButtonList = () => {
+        const { option: { items , type}, disable, selected } = this.props;
         const normalizedType = type.toLowerCase();
         const isText = normalizedType === 'text';
-        console.log(this.props.optionButton);
-        return optionList.map(({ value }, idx) => (
+
+        return items.map(({ value }, idx) => (
             <ListItem
                 key={idx}
                 id={idx}
             >
                 <OptionButton
+                    onClick={() => {}}
                     optionType={normalizedType}
                     value={value}
+                    disabled={disable}
+                    selected={idx === selected}
                     {...this.props.optionButton}
                 >
                     {isText && value}
@@ -23,7 +28,7 @@ class OptionPicker extends Component {
         ));
     };
     render () {
-        const { option: { name, items, type } } = this.props;
+        const { option: { name } } = this.props;
         const { wrapper, optionName, optionList } = this.props;
 
         return (
@@ -32,7 +37,7 @@ class OptionPicker extends Component {
                     {name + ':'}
                 </OptionName>
                 <OptionList {...optionList}>
-                    {this.renderOptionButtonList(items, type)}
+                    {this.renderOptionButtonList()}
                 </OptionList>
             </Wrapper>
         );

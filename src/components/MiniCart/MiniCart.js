@@ -1,18 +1,46 @@
 import React, {Component} from "react";
 import PropTypes from 'prop-types';
 import { CheckOutButton, ViewBagButton, CartStyles, OuterWrapper, MiniCartNameWrapper, MiniCartName, TotalNumberOfItems, ItemWord, TotalPriceWrapper, Total, Price } from "./MiniCart.styled";
-import Cart from '../Cart';
 import Product from '../Cart/Product';
-import {oneProduct} from '../../api/oneProduct';
 import { connect } from "react-redux";
+import { decreaseItemsQuantaty, increaseItemsQuantaty } from "../../redux/actions/actions";
 
 class MiniCart extends Component {
     static defaultProps = {
-        onClick: () => {},
-        totalItems: '0',
+        itemsTotal: 0,
+    };
+    increaseQuantaty = (id) => {
+        const { increase } = this.props;
+        increase(id);
+    };
+    decreaseQuantaty = (id) => {
+        const { decrease } = this.props;
+        decrease(id);
+    }
+    renderAddedProducts = () => {
+        const { addedProducts, disable , currency } = this.props;
+
+        return addedProducts.map(({ product, selectedOptions, quantaty }) => {
+            const increaseQuantatyBinded = this.increaseQuantaty.bind(this, product.id);
+            const decreaseQuantatyBinded = this.decreaseQuantaty.bind(this, product.id);
+
+            return (
+                <Product 
+                    key={product.id}
+                    product={product}
+                    disabled={disable}
+                    selectedOptions={selectedOptions}
+                    small={true}
+                    quantaty={quantaty}
+                    currency={currency}
+                    increaseQuantaty={increaseQuantatyBinded}
+                    decreaseQuantaty={decreaseQuantatyBinded}
+                />
+            )
+        });
     };
     render() {
-        const { totalItems, totalPrice } = this.props;
+        const { itemsTotal } = this.props;
 
         return (
             <>
@@ -22,20 +50,20 @@ class MiniCart extends Component {
                             My bag.&nbsp;
                         </MiniCartName>
                         <TotalNumberOfItems>
-                            {totalItems}&nbsp;
+                            {itemsTotal}&nbsp;
                         </TotalNumberOfItems>
                         <ItemWord>
-                            {totalItems === 1 ? 'item' : 'items'}
+                            {itemsTotal === 1 ? 'item' : 'items'}
                         </ItemWord>
                     </MiniCartNameWrapper>
-                    <Product product={oneProduct}/>
+                    {this.renderAddedProducts()}
                     <TotalPriceWrapper>
                         <Total>
                             Total
                         </Total>
-                        <Price>
+                        {/* <Price>
                             {totalPrice}
-                        </Price>
+                        </Price> */}
                     </TotalPriceWrapper>
                 </OuterWrapper>
                 <ViewBagButton>
@@ -50,21 +78,23 @@ class MiniCart extends Component {
 }
 
 MiniCart.propTypes = {
-    onClick: PropTypes.func,
     children: PropTypes.node,
-    totalItems: PropTypes.string.isRequired,
+    itemsTotal: PropTypes.number.isRequired,
 }
 
 const mapStateToProps = (state) => ({
-    
+    itemsTotal: state.cart.itemsTotal,
+    addedProducts: state.cart.items,
+    disable: state.cart.disableOptionsButtons.miniCart,
+    currency: state.currency.actualCurrency.index,
 });
 const mapDispatchToProps = (dispatch) => ({
-    // open: () => {
-    //     dispatch(openCartOverlay());
-    // },
-    // close: () => {
-    //     dispatch(closeCartOverlay());
-    // },
+    increase: (id) => {
+        dispatch(increaseItemsQuantaty(id));
+    },
+    decrease: (id) => {
+        dispatch(decreaseItemsQuantaty(id));
+    },
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(MiniCart);

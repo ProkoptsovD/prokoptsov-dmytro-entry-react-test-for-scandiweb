@@ -3,23 +3,28 @@ import { ADD_ITEM_TO_CART, DECREASE_ITEMS_QUANTATY, INCREASE_ITEMS_QUANTATY, REM
 const initialState = {
     currency: {},
     items: [],
+    defaultOptionIndex: 0,
     itemsTotal: 0,
     priceTotal: 0,
     taxFee: 21,
     taxFeeTotal: 0,
+    disableOptionsButtons: {
+        miniCart: true,
+        cart: true,
+        productCard: false,
+    }
 }
 
-const incrementItemsTotalAmount = (itemsInCart) => {
+const increaseItemsTotalAmount = (itemsInCart) => {
     let total = itemsInCart;
     return total + 1;
 }
-const decrementItemsTotalAmount = (itemsInCart) => {
+const decreaseItemsTotalAmount = (itemsInCart) => {
     let total = itemsInCart;
     return total -= 1;
 }
-const extractActualPrice = (product, actualCurrency) => {
-    return product.prices.find(({currency}) => currency.symbol === actualCurrency.symbol && currency.label === actualCurrency.label);
-}
+const extractActualPrice = (product, actualCurrency) => product.prices[actualCurrency];
+
 const sumPrice = (allProducts, actualCurrency) => {
     const isProductCartEmpty = allProducts.length === 0;
 
@@ -33,15 +38,18 @@ const sumPrice = (allProducts, actualCurrency) => {
 
     return totalPrice.toFixed(2);
 }
-const setDefaultAttributes = (arrOfAttributes) => {
-    return arrOfAttributes.reduce((acc, {name, items}) => {
+const setDefaultAttributes = ({ attributes }, defaultValue) => {
+    return attributes.reduce((acc, {name, items}) => {
         const options = {
             [name]: name,
-            attr: items[0],
+            attr: items[defaultValue],
         }
-        acc.push(options);
+        acc = [...acc, options];
         return acc;
     }, []);
+}
+const checkDuplicates = (allProducts, newProduct) => {
+
 }
 
 export const cartReducer = (state = initialState, action) => {
@@ -50,16 +58,18 @@ export const cartReducer = (state = initialState, action) => {
             if (!action.payload.item) return state;
             
             const newProduct = action.payload.item;
-            const selectedOptions = action.payload.attributes ?? setDefaultAttributes(action.payload.item.attributes);
+            const defaultValue = state.defaultOptionIndex;
+            const selectedOptions = action.payload.options ?? setDefaultAttributes(newProduct, defaultValue);
 
             const itemToAdd = {
                 product: newProduct,
                 selectedOptions,
+                quantaty: 1,
             }
             return {
                 ...state,
                 items: [...state.items, itemToAdd],
-                itemsTotal: incrementItemsTotalAmount(state.itemsTotal),
+                itemsTotal: increaseItemsTotalAmount(state.itemsTotal),
                 priceTotal: 0,
             };
         case REMOVE_ITEM_FROM_CART:
@@ -69,16 +79,38 @@ export const cartReducer = (state = initialState, action) => {
             return {
                 ...state,
                 items: itemsInCartAfterRemove,
-                itemsTotal: decrementItemsTotalAmount(state.itemsTotal),
+                itemsTotal: decreaseItemsTotalAmount(state.itemsTotal),
             };
-        case INCREASE_ITEMS_QUANTATY:
+        case INCREASE_ITEMS_QUANTATY: {    
+            const { id } = action.payload;
+
+            const items = state.items.map(item => {
+                return item.product.id !== id ? item : ({
+                    ...item,
+                    quantaty: increaseItemsTotalAmount(item.quantaty),
+                })
+            });
+            
             return {
                 ...state,
+                items,
+                itemsTotal: increaseItemsTotalAmount(state.itemsTotal),
             };
-        case DECREASE_ITEMS_QUANTATY:
+        }
+        case DECREASE_ITEMS_QUANTATY: {    
+            const { id } = action.payload;
+
+            const items = state.items.map(item => item.product.id !== id ? item : ({
+                ...item,
+                quantaty: decreaseItemsTotalAmount(item.quantaty),
+            })).filter(({ quantaty }) => quantaty > 0);
+            
             return {
                 ...state,
+                items,
+                itemsTotal: decreaseItemsTotalAmount(state.itemsTotal),
             };
+        }
         case UPDATE_ACTUAL_CURRENCY_IN_CART:
             return {
                 ...state,

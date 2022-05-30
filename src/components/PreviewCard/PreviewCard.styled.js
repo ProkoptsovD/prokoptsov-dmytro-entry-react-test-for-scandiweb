@@ -7,23 +7,6 @@ export const Card = styled.article`
     
     height: 100%;
     color: ${props => props.inStock ? props.theme.colors.dark['300'] : props.theme.colors.dark['100']};
-
-    &::before {
-        position: absolute;
-        inset: 0;
-
-        content: '${props => props.content}';
-
-        display: ${props => props.inStock ? 'none' : 'flex'};
-        align-items: center;
-        justify-content: center;
-
-        font-size: ${props => props.theme.typography.fontSize['600']};
-        text-transform: uppercase;
-
-        background-color: ${({theme}) => theme.colors.light['200']};
-        color: ${({theme}) => theme.colors.dark['100']};
-    }
 `;
 export const StyledLink = styled(Link)`
 
@@ -38,6 +21,23 @@ export const StyledLink = styled(Link)`
     &:focus {
         box-shadow: ${props => props.theme.shadows.v1};
     }
+
+    &::before {
+        position: absolute;
+        inset: 0;
+
+        content: '${props => props.content}';
+
+        display: ${props => props.instock === 'true' ? 'none' : 'flex'};
+        align-items: center;
+        justify-content: center;
+
+        font-size: ${props => props.theme.typography.fontSize['600']};
+        text-transform: uppercase;
+
+        background-color: ${({theme}) => theme.colors.light['200']};
+        color: ${({theme}) => theme.colors.dark['100']};
+    }
 `;
 export const PreviewImage = styled.img`
     width: ${props => props.theme.sizes.previewCardImage.w};
@@ -48,14 +48,18 @@ export const PreviewImage = styled.img`
 `;
 
 export const Label = styled.h2`
-    font-weight: ${props => props.theme.typography.fontWeight['500']};
-    font-size: ${props => props.theme.typography.fontSize['500']};
-    line-height: ${props => props.theme.typography.lineHeight['1.6']};
-`;
-export const Price = styled.p`
     font-weight: ${props => props.theme.typography.fontWeight['300']};
     font-size: ${props => props.theme.typography.fontSize['500']};
     line-height: ${props => props.theme.typography.lineHeight['1.6']};
+
+    color: ${({ theme }) => theme.colors.dark['300']};
+`;
+export const Price = styled.p`
+    font-weight: ${props => props.theme.typography.fontWeight['500']};
+    font-size: ${props => props.theme.typography.fontSize['500']};
+    line-height: ${props => props.theme.typography.lineHeight['1.6']};
+
+    color: ${({ theme }) => theme.colors.dark['300']};
 `;
 export const QuickAddButton = styled(IconButton)`
     position: absolute;
@@ -86,6 +90,6 @@ export const QuickAddButton = styled(IconButton)`
         width: 46.15%;
         height: 46.15%;
 
-        fill: ${props => props.theme.colors.light['100']};
+        color: ${props => props.theme.colors.light['100']};
     }
 `;

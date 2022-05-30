@@ -54,19 +54,21 @@ export const initNavbar = (categories) => ({
 });
 
 //=================== cart actions ================//
-export const addItemToCart = (item) => ({
+export const addItemToCart = (item, options = null) => ({
 	type: ADD_ITEM_TO_CART,
-	payload: {item}
+	payload: {item, options}
 });
 export const removeItemToCart = (itemId) => ({
 	type: REMOVE_ITEM_FROM_CART,
 	payload: {itemId}
 });
-export const increaseItemsQuantaty = () => ({
+export const increaseItemsQuantaty = (id) => ({
 	type: INCREASE_ITEMS_QUANTATY,
+	payload: {id},
 });
-export const decreaseItemsQuantaty = () => ({
+export const decreaseItemsQuantaty = (id) => ({
 	type: DECREASE_ITEMS_QUANTATY,
+	payload: {id},
 });
 export const updateActualCurrencyInCart = (currency) => ({
 	type: UPDATE_ACTUAL_CURRENCY_IN_CART,

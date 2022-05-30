@@ -28,12 +28,35 @@ class Product extends Component {
             label: 'USD',
         }
     };
-    render() {
-        const { brand, name, prices, gallery, attributes} = this.props.product;
-        const {symbol: actualSymbol, label: actualLabel} = this.props.currency;
-        const price = prices.find(price => price.currency.label === actualLabel && price.currency.symbol === actualSymbol);
+    renderOptionPickerList = () => {
+        const { product: { attributes }, selectedOptions, disable } = this.props;
 
-        console.log(this.props.product);
+        return attributes.map((attr, idx) => {
+            const pickedOption = selectedOptions[idx]?.attr.id;
+            const pickedOptionIndex = attr.items.findIndex(({ id }) => id === pickedOption);
+
+            return (
+                <OptionPicker
+                            key={attr.id}
+                            option={attr}
+                            selected={pickedOptionIndex}
+                            disabled={disable}
+                            optionName={this.props.optionName}
+                            optionButton={this.props.optionButton}
+                            
+                />
+            )
+        });
+    }
+    render() {
+        const {
+            product: { brand, name, prices, gallery },
+            quantaty, small, increaseQuantaty, decreaseQuantaty
+        } = this.props;
+
+        const { currency } = this.props;
+        const price = prices[currency];
+
         return (
             <OuterWrapper>
                 <InnerWrapper {...this.props}>
@@ -46,20 +69,16 @@ class Product extends Component {
                     <Price {...this.props}>
                         {price.currency.symbol + price.amount}
                     </Price>
-                    <OptionPicker 
-                        option={attributes[0]}
-                        optionName={this.props.optionName}
-                        optionButton={this.props.optionButton}    
-                    />
-                    <OptionPicker 
-                        option={attributes[0]}
-                        optionName={this.props.optionName}
-                        optionButton={this.props.optionButton}    
-                    />
+                    {this.renderOptionPickerList()}
                 </InnerWrapper>
-                <QuantatyPanel vertical/>
+                <QuantatyPanel
+                    vertical
+                    quantaty={quantaty}
+                    increaseQuantaty={increaseQuantaty}
+                    decreaseQuantaty={decreaseQuantaty}
+                />
                 <Gallery
-                    small
+                    small={small}
                     imageList={gallery}
                 />
             </OuterWrapper>
