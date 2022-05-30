@@ -21,6 +21,7 @@ export const DropdownList = styled.ul`
     top: calc(100% + ${props => props.theme.spacing(2)});
 
     width: ${props => props.theme.sizes.currencySwitcher.list.width};
+    background-color: ${({ theme }) => theme.colors.light['100']};
     box-shadow: ${props => props.theme.shadows.v1}
 `;
 

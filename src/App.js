@@ -30,14 +30,14 @@ class App extends React.Component {
 			<Route
 				key={name}
 				path={`/${name}`}
-				element={<CategoryPage key={name} id={name} />}
+				element={<CategoryPage key={name} categoryName={name} />}
 			/>);
 	}
 	componentDidMount () {
 		this.props.initApp();
 	}
 	render() {
-		const { categories, currencies } = this.props;
+		const { categories, isOverlayOpened } = this.props;
 
 		return (
 			<>
@@ -45,7 +45,7 @@ class App extends React.Component {
 					<Navbar tabList={categories}/>
 					<Logo />
 					<Actionbar>
-						<CurrencySwitcher currencyList={currencies}/>
+						<CurrencySwitcher />
 						<MiniCartButton itemsCount={'0'}/>
 					</Actionbar>
 				</Header>
@@ -66,15 +66,18 @@ class App extends React.Component {
 											categoryName={'tech'}
 											productList={product}/>}
 						/> */}
+						{/* {this.renderRoutes()} */}
 						<Route path='/' element={<Navigate to="/all" replace={true}/>} />
 						<Route path='*' element={<NotFoundPage />} />
 					</Routes>
 					{/* <CartPage /> */}
 				</main>
 
-				{null && <Overlay>
-							<MiniCart />
-						</Overlay>}
+				{
+					isOverlayOpened && <Overlay>
+										<MiniCart />
+									</Overlay>
+				}
 			</>
 		)
 	}
@@ -82,11 +85,11 @@ class App extends React.Component {
 
 const mapStateToProps = (state) => {
     return {
-        categorybyDefault: state.initial.default.category,
         categories: state.initial.categories,
         currencies: state.initial.currencies,
         cart: state.cart,
         isMiniCartOpened: state.cartOverlay.isOpened,
+		isOverlayOpened: state.cartOverlay.isOpened,
     }
 }
 const mapDispatchToProps = (dispatch) => ({

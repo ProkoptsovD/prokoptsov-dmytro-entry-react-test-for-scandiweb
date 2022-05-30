@@ -1,53 +1,62 @@
-import {Component} from "react";
+import { Component } from "react";
 import { connect } from "react-redux";
 import PropTypes from 'prop-types';
 import Icons from "../../common/Icons";
 import { DropdownList, ListItem, CurrencySellectionBtn, Wrapper, OpenCloseSwitcherBtn, ActualCurrency } from "./CurrencySwitcher.styled";
 
-import {initCurrencySwitcher, switchActualCurrency, updateActualCurrencyInCart, sumTotalPrice} from '../../../redux/actions/actions'
+import {initCurrencySwitcher, switchActualCurrency, updateActualCurrencyInCart, sumTotalPrice, openCurrencyList, closeCurrencyList} from '../../../redux/actions/actions'
 
 class CurrencySwitcher extends Component {
     static defaultProps = {
         isOpened: false,
-        onClick: () => {},
         currencyList: [{}],
+        actualCurrency: 0,
     }
-    renderCurrencies = () => this.props.currencyList.map(({ symbol, label }, idx) => {
-        return (
-            <ListItem key={label}>
-                <CurrencySellectionBtn id={idx}>
-                    {`${symbol} ${label}`}
-                </CurrencySellectionBtn>
-            </ListItem>
-        );
-    });
-    handleFormInputClick = (e) => {
-        const CURRENCY_INPUT = 'currency-input';
-        const isInputClicked = e.target.dataset.js === CURRENCY_INPUT;
-        const currencyToSet = {
-            label: e.target.id,
-            symbol: e.target.value,
-        }
-        if (!isInputClicked) return;
+    renderCurrencies = () => {
+        const { currencyList } = this.props;
+        
+        return currencyList.map(({ symbol, label }, idx) => 
+                <ListItem key={label}>
+                    <CurrencySellectionBtn
+                        value={idx}
+                        onClick={this.handleSelectionBtnClick}
+                    >
+                        {`${symbol} ${label}`}
+                    </CurrencySellectionBtn>
+                </ListItem>
+           );
+    }
+    handleOpenCloseBtnClick = () => {
+        const { isOpened, open, close } = this.props;
 
-        this.props.switchActualCurrency(currencyToSet);
-        this.props.updateCurrencyInCart(currencyToSet);
-        this.props.sumTotalPriceInCart();
-        this.rotateArrow();
-        this.toggleCurrenciesVisibility();
+        isOpened ? close() : open();
+    }
+    handleSelectionBtnClick = (e) => {
+        const { switchActualCurrency, actualCurrency, close } = this.props;
+        const picked = +e.currentTarget.value;
+
+        picked !== actualCurrency && switchActualCurrency(picked);
+        close();
     }
     render() {
+        const { currencyList, actualCurrency, isOpened } = this.props;
+        const symbol = currencyList[actualCurrency]?.symbol
+
         return (        
             <Wrapper>
-                <OpenCloseSwitcherBtn isOpened={this.props.isOpened}>
+                <OpenCloseSwitcherBtn
+                    onClick={this.handleOpenCloseBtnClick}
+                >
                     <ActualCurrency>
-                        $
+                        {symbol}
                     </ActualCurrency>
                     <Icons id="chevron"/>
                 </OpenCloseSwitcherBtn>
-                <DropdownList>
-                    {this.props.isOpened && this.renderCurrencies()}
-                </DropdownList>
+                {
+                    isOpened &&  <DropdownList>
+                                    {this.renderCurrencies()}
+                                </DropdownList>
+                }
             </Wrapper>
         )
     }
@@ -55,30 +64,31 @@ class CurrencySwitcher extends Component {
 
 CurrencySwitcher.propTypes = {
     isOpened: PropTypes.bool.isRequired,
-    onClick: PropTypes.func.isRequired,
     currencyList: PropTypes.arrayOf(PropTypes.shape({
             symbol: PropTypes.string.isRequired,
             label: PropTypes.string.isRequired,
         })),
+    actualCurrency: PropTypes.number.isRequired,
+    switchActualCurrency: PropTypes.func,
+    open: PropTypes.func,
+    close: PropTypes.func,
 }
 
-const mapStateToProps = (state) => {
-    // const { default: { currency: currencyByDefault }, currencies: allCurrencies } = state.initial;
-    // const { actualCurrency } = state.currency;
-
-    // return {
-    //     currencyByDefault,
-    //     allCurrencies,
-    //     actualCurrency,
-    // };
-}
+const mapStateToProps = (state) => ({
+    currencyList: state.initial.currencies,
+    actualCurrency: state.currency.actualCurrency.index,
+    isOpened: state.currency.isOpened,
+});
 
 const mapDispatchToProps = (dispatch) => ({
-    initSwitcher: (currenciesList, actualCurrency) => {
-        dispatch(initCurrencySwitcher(currenciesList, actualCurrency));
-    },
     switchActualCurrency: (currencyToSet) => {
         dispatch(switchActualCurrency(currencyToSet));
+    },
+    open: () => {
+        dispatch(openCurrencyList());
+    },
+    close: () => {
+        dispatch(closeCurrencyList());
     },
     updateCurrencyInCart: (currency) => {
         dispatch(updateActualCurrencyInCart(currency));
@@ -88,4 +98,4 @@ const mapDispatchToProps = (dispatch) => ({
     }
 })
 
-export default connect(mapDispatchToProps, mapStateToProps)(CurrencySwitcher);
+export default connect(mapStateToProps, mapDispatchToProps)(CurrencySwitcher);

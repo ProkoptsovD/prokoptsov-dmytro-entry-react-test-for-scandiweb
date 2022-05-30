@@ -16,6 +16,8 @@ import {
 	NEXT_PICTURE,
 	PREV_PICTURE,
 	INIT_GALLERY,
+	OPEN_CURRENCY_LIST,
+	CLOSE_CURRENCY_LIST,
 } from '../types/types';
 
 export const initApp = (initialData) => {
@@ -39,6 +41,12 @@ export const initCurrencySwitcher = (currencyByDefault) => ({
 export const switchActualCurrency = (newCurrency) => ({
 	type: SWITCH_ACTUAL_CURRENCY,
 	payload: { newCurrency },
+});
+export const openCurrencyList = () => ({
+	type: OPEN_CURRENCY_LIST,
+});
+export const closeCurrencyList = () => ({
+	type: CLOSE_CURRENCY_LIST,
 });
 export const initNavbar = (categories) => ({
 	type: INIT_NAVBAR,

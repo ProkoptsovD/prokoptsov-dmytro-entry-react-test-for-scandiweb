@@ -4,6 +4,7 @@ import { CheckOutButton, ViewBagButton, CartStyles, OuterWrapper, MiniCartNameWr
 import Cart from '../Cart';
 import Product from '../Cart/Product';
 import {oneProduct} from '../../api/oneProduct';
+import { connect } from "react-redux";
 
 class MiniCart extends Component {
     static defaultProps = {
@@ -54,4 +55,16 @@ MiniCart.propTypes = {
     totalItems: PropTypes.string.isRequired,
 }
 
-export default MiniCart;
+const mapStateToProps = (state) => ({
+    
+});
+const mapDispatchToProps = (dispatch) => ({
+    // open: () => {
+    //     dispatch(openCartOverlay());
+    // },
+    // close: () => {
+    //     dispatch(closeCartOverlay());
+    // },
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(MiniCart);

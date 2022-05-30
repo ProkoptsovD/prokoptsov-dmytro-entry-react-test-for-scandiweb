@@ -3,25 +3,36 @@ import { createPortal } from "react-dom";
 import PropTypes from 'prop-types';
 import { Modal, Wrapper } from "./Overlay.styled";
 import {refs} from '../../constants/refs';
+import { connect } from "react-redux";
+import { closeCartOverlay, openCartOverlay } from "../../redux/actions/actions";
 
 class Overlay extends Component {
-    static defaultProps = {
-        onClick: () => {},
-    };
+    componentDidMount() {
+        window.addEventListener('keydown', this.handleEscapeKeyDown);
+    }
+    componentWillUnmount() {
+        window.removeEventListener('keydown', this.handleEscapeKeyDown);
+    }
+    handleEscapeKeyDown = (e) => {
+        const ESCAPE_KEY_CODE = 'Escape';
+        const { closeOverlay } = this.props;
+        const isEscapePressed = e.key === ESCAPE_KEY_CODE;
 
-    onOverlayClick = (e) => {
-        const elementId = e.target.id;
-        const isOverlayClicked = elementId === this.OVERLAY_ID;
+        isEscapePressed && closeOverlay();
+    }
+    handleOverlayClick = (e) => {
+        const { closeOverlay } = this.props;
+        const isOverlayClicked = e.target === e.currentTarget;
 
-        if(!isOverlayClicked) return;
+        if (!isOverlayClicked) return;
 
-        this.props.closeMiniCart();
-        this.body.classList.remove('noscroll');
+        closeOverlay();
+        // this.body.classList.remove('noscroll');
     }
     render() {
         return createPortal(
             (<Wrapper
-                onClick={() => {}}
+                onClick={this.handleOverlayClick}
             >
                 <Modal>
                     {this.props.children}
@@ -33,8 +44,13 @@ class Overlay extends Component {
 }
 
 Overlay.propTypes = {
-    onClick: PropTypes.func,
     children: PropTypes.node,
 }
 
-export default Overlay;
+const mapDispatchToProps = (dispatch) => ({
+    closeOverlay: () => {
+        dispatch(closeCartOverlay());
+    },
+});
+
+export default connect(null, mapDispatchToProps)(Overlay);

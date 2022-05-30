@@ -1,13 +1,6 @@
 import { INIT_APP } from '../types/types';
 
 const initialState = {
-	default: {
-		currency: {
-			label: 'USD',
-			symbol: '$',
-		},
-		category: 'all',
-	},
 	categories: [],
 	currencies: [],
 };
