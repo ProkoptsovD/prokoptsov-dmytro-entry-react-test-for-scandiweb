@@ -11,14 +11,14 @@ class PreviewCard extends React.Component {
         return prices[currency];
     };
     render() {
-        const { product: { brand, name, id, inStock, gallery }, addProduct } = this.props;
+        const { product: { brand, name, id, inStock, gallery, category }, addProduct } = this.props;
         const [url] = gallery;
         const price = this.getPrice();
 
         return (
             <Card>
                 <StyledLink 
-                    to={`/${id}`}
+                    to={`/${category}/${id}`}
                     instock={`${inStock}`}
                 >
                     {   url

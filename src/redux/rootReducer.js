@@ -5,6 +5,7 @@ import { categoryPageReducer } from './reducers/categoryPageReducer';
 import { cartReducer } from './reducers/cartReducer';
 import { cartOverlayReducer } from './reducers/cartOverlayReducer';
 import { galleryReducer } from './reducers/galleryReducer';
+import { productPageReducer } from './reducers/productPageReducer';
 
 export const rootReducer = combineReducers({
 	initial: appReducer,
@@ -12,5 +13,6 @@ export const rootReducer = combineReducers({
 	category: categoryPageReducer,
 	cart: cartReducer,
 	cartOverlay: cartOverlayReducer,
-	gallery: galleryReducer
+	gallery: galleryReducer,
+	productPage: productPageReducer,
 });

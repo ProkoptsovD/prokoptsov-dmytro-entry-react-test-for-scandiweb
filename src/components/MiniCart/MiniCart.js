@@ -20,7 +20,7 @@ class MiniCart extends Component {
         updateTotalPrice();
     }
     renderAddedProducts = () => {
-        const { addedProducts, disable , currency } = this.props;
+        const { addedProducts, disabled , currency } = this.props;
 
         return addedProducts.map(({ product, selectedOptions, quantaty }) => {
             const increaseQuantatyBinded = this.increaseQuantaty.bind(this, product.id);
@@ -30,7 +30,7 @@ class MiniCart extends Component {
                 <Product 
                     key={product.id}
                     product={product}
-                    disabled={disable}
+                    disabled={disabled}
                     selectedOptions={selectedOptions}
                     small={true}
                     quantaty={quantaty}
@@ -96,7 +96,7 @@ MiniCart.propTypes = {
 const mapStateToProps = (state) => ({
     itemsTotal: state.cart.itemsTotal,
     addedProducts: state.cart.items,
-    disable: state.cart.disableOptionsButtons.miniCart,
+    disabled: state.cart.disableOptionsButtons.miniCart,
     currency: state.currency.actualCurrency.index,
     priceTotal: state.cart.priceTotal,
 });

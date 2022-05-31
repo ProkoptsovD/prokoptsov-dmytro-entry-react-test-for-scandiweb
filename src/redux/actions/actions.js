@@ -5,6 +5,7 @@ import {
 	INIT_APP,
 	INIT_CURRENT_CATEGORY,
 	RENDER_CATEGORY_PAGE,
+	RENDER_PRODUCT_PAGE,
 	ADD_ITEM_TO_CART,
 	REMOVE_ITEM_FROM_CART,
 	INCREASE_ITEMS_QUANTATY,
@@ -18,6 +19,7 @@ import {
 	INIT_GALLERY,
 	OPEN_CURRENCY_LIST,
 	CLOSE_CURRENCY_LIST,
+	CLEAR_PRODUCT_PAGE,
 } from '../types/types';
 
 export const initApp = (initialData) => {
@@ -96,4 +98,13 @@ export const nextPicture = () => ({
 });
 export const prevPicture = () => ({
 	type: PREV_PICTURE,
+});
+
+//================= product page ===================//
+export const renderProductPage = (product) => ({
+	type: RENDER_PRODUCT_PAGE,
+	payload: { product },
+});
+export const clearProductPage = () => ({
+	type: CLEAR_PRODUCT_PAGE,
 });

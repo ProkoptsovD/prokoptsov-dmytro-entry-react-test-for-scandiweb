@@ -48,8 +48,9 @@ export const OptionButton = styled(TextButton)`
                 border: 1px solid ${({ theme }) => theme.colors.dark['300']};
                 cursor: initial;
 
-                &:not(:disabled) &:focus,
-                &:not(:disabled) &:active {
+                &:not(:disabled):hover,
+                &:not(:disabled):focus,
+                &:not(:disabled):active {
                     background-color: ${({ theme }) => theme.colors.dark['300']};
                     color: ${({ theme }) => theme.colors.light['100']};
 
@@ -78,8 +79,9 @@ export const OptionButton = styled(TextButton)`
                 border: none;
                 cursor: initial;
                 
-                &:not(:disabled) &:focus,
-                &:not(:disabled) &:active {
+                &:not(:disabled):hover,
+                &:not(:disabled):focus,
+                &:not(:disabled):active {
                     outline-color: ${({ theme }) => theme.colors.accent['100']};
 
                     cursor: pointer;

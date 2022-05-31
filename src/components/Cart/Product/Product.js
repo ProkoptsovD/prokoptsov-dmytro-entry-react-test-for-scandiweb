@@ -29,7 +29,7 @@ class Product extends Component {
         }
     };
     renderOptionPickerList = () => {
-        const { product: { attributes }, selectedOptions, disable } = this.props;
+        const { product: { attributes }, selectedOptions, disabled } = this.props;
 
         return attributes.map((attr, idx) => {
             const pickedOption = selectedOptions[idx]?.attr.id;
@@ -40,7 +40,7 @@ class Product extends Component {
                             key={attr.id}
                             option={attr}
                             selected={pickedOptionIndex}
-                            disabled={disable}
+                            disabled={disabled}
                             optionName={this.props.optionName}
                             optionButton={this.props.optionButton}
                             

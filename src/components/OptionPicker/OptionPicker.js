@@ -1,11 +1,10 @@
-import {Component} from 'react';
+import { Component } from 'react';
 import PropTypes from 'prop-types';
 import { ListItem, OptionButton, OptionList, OptionName, Wrapper } from './OptionPicker.styled';
-import { deepEqual } from '../../helpers/deepEqual';
 
 class OptionPicker extends Component {
     renderOptionButtonList = () => {
-        const { option: { items , type}, disable, selected } = this.props;
+        const { option: { items , type}, disabled, selected } = this.props;
         const normalizedType = type.toLowerCase();
         const isText = normalizedType === 'text';
 
@@ -18,7 +17,7 @@ class OptionPicker extends Component {
                     onClick={() => {}}
                     optionType={normalizedType}
                     value={value}
-                    disabled={disable}
+                    disabled={disabled}
                     selected={idx === selected}
                     {...this.props.optionButton}
                 >

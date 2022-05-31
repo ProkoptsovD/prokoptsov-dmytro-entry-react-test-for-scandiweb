@@ -7,6 +7,7 @@ import { CategoryName } from "./CategoryPage.styled";
 import { connect } from "react-redux";
 import { setProductsToPageThunk } from "../../redux/thunks/setProductToPageThunk";
 import { addItemToCart, sumTotalPrice } from "../../redux/actions/actions";
+import { withRouter } from '../../hoc/withRouter';
 
 
 class CategoryPage extends React.Component {
@@ -86,4 +87,4 @@ const mapDispatchToProps = (dispatch) => ({
     }
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(CategoryPage);
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(CategoryPage));

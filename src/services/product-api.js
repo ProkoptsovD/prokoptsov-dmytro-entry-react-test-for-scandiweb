@@ -38,6 +38,7 @@ class Api {
                         id,
                         brand,
                         name,
+                        category,
                         inStock,
                         gallery,
                         prices {

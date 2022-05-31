@@ -26,6 +26,20 @@ export const InnerWrapper = styled.div`
     }
 `;
 
+export const DescriptionWrapper = styled.div`
+    line-height: ${({ theme }) => theme.typography.lineHeight['1.6']};
+
+    & :nth-child(odd) {
+        margin-bottom: 16px;
+    }
+    & :nth-child(even) {
+        margin-bottom: 4px;
+    }
+    & :last-child {
+        margin-bottom: 0;
+    }
+`;
+
 export const AddToCartButton = styled(TextButton)`
     width: 100%;
     min-height: 52px;
@@ -43,7 +57,6 @@ export const AddToCartButton = styled(TextButton)`
         transform: scale(0.97);
     }
 `;
-
 
 export const OptionPickerStyles = {
     optionName: {

@@ -1,16 +1,36 @@
-import {Component} from "react";
+import { Component } from "react";
 import PropTypes from 'prop-types';
-import {InnerWrapper, OuterWrapper, AddToCartButton, StyledGallery, OptionPickerStyles } from './ProductCard.styled';
+import { InnerWrapper, OuterWrapper, AddToCartButton, OptionPickerStyles, DescriptionWrapper } from './ProductCard.styled';
 import Gallery from "../Gallery/";
 import ProductInfo from "./ProductInfo/";
 import OptionPicker from "../OptionPicker";
 import Description from "./ProductDescription/";
 
+
 class ProductCard extends Component {
+    static defaultProps = {
+        product: {
+            id: '',
+            brand: '',
+            gallery: [],
+            description: '',
+            prices: [],
+            attributes: [],
+        }
+    };
+    renderOptionPickers = () => {
+        const { product: { attributes }, disabled } = this.props;
+        return attributes.map(attr => (
+            <OptionPicker
+                key={attr.name}
+                {...OptionPickerStyles}
+                option={attr}
+                disabled={disabled}
+            />
+        ));
+    };
     render() {
-        const {id, brand, name, gallery, description, prices, attributes} = this.props.product;
-        const [ price ] = prices;
-        console.log(description);
+        const {id, brand, name, gallery, description, prices: [ price ] } = this.props.product;
 
         return (
             <OuterWrapper>
@@ -23,22 +43,22 @@ class ProductCard extends Component {
                         productName={name}
                         price={price}
                     >
-                        <OptionPicker
-                            {...OptionPickerStyles}
-                            option={attributes[0]}/>
+                    {this.renderOptionPickers()}
                     </ProductInfo>
                     <AddToCartButton>
                         Add to cart
                     </AddToCartButton>
                     {
-                        description && <Description
-                                            descr={description}
-                                        />
+                        description &&  <DescriptionWrapper>
+                                            <Description
+                                                descr={description}
+                                            />
+                                        </DescriptionWrapper>
                     }
                 </InnerWrapper>
             </OuterWrapper>
-        )
-    }
+        );
+    };
 }
 
 ProductCard.propTypes = {
