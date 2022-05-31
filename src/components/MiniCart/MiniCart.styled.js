@@ -62,6 +62,10 @@ export const ViewBagButton = styled(StyledTextButton)`
 export const CheckOutButton = styled(StyledTextButton)`
 `;
 
+export const NothingAdded = styled.p`
+    text-align: center
+`;
+
 export const CartStyles = {
     productStyles: {
         brand: {

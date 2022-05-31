@@ -1,21 +1,23 @@
 import React, {Component} from "react";
 import PropTypes from 'prop-types';
-import { CheckOutButton, ViewBagButton, CartStyles, OuterWrapper, MiniCartNameWrapper, MiniCartName, TotalNumberOfItems, ItemWord, TotalPriceWrapper, Total, Price } from "./MiniCart.styled";
+import { CheckOutButton, ViewBagButton, CartStyles, OuterWrapper, MiniCartNameWrapper, MiniCartName, TotalNumberOfItems, ItemWord, TotalPriceWrapper, Total, Price, NothingAdded } from "./MiniCart.styled";
 import Product from '../Cart/Product';
 import { connect } from "react-redux";
-import { decreaseItemsQuantaty, increaseItemsQuantaty } from "../../redux/actions/actions";
+import { decreaseItemsQuantaty, increaseItemsQuantaty, sumTotalPrice } from "../../redux/actions/actions";
 
 class MiniCart extends Component {
     static defaultProps = {
         itemsTotal: 0,
     };
     increaseQuantaty = (id) => {
-        const { increase } = this.props;
+        const { increase, updateTotalPrice } = this.props;
         increase(id);
+        updateTotalPrice();
     };
     decreaseQuantaty = (id) => {
-        const { decrease } = this.props;
+        const { decrease, updateTotalPrice } = this.props;
         decrease(id);
+        updateTotalPrice();
     }
     renderAddedProducts = () => {
         const { addedProducts, disable , currency } = this.props;
@@ -40,7 +42,7 @@ class MiniCart extends Component {
         });
     };
     render() {
-        const { itemsTotal } = this.props;
+        const { itemsTotal, priceTotal } = this.props;
 
         return (
             <>
@@ -57,21 +59,30 @@ class MiniCart extends Component {
                         </ItemWord>
                     </MiniCartNameWrapper>
                     {this.renderAddedProducts()}
-                    <TotalPriceWrapper>
-                        <Total>
-                            Total
-                        </Total>
-                        {/* <Price>
-                            {totalPrice}
-                        </Price> */}
-                    </TotalPriceWrapper>
+                    {
+                        itemsTotal !== 0 && <TotalPriceWrapper>
+                                                <Total>
+                                                    Total
+                                                </Total>
+                                                <Price>
+                                                    {priceTotal.symbol + priceTotal.total}
+                                                </Price>
+                                            </TotalPriceWrapper>
+                    }
                 </OuterWrapper>
-                <ViewBagButton>
-                    View bag
-                </ViewBagButton>
-                <CheckOutButton>
-                    Check Out
-                </CheckOutButton>
+                {
+                    itemsTotal !== 0 && <>
+                                            <ViewBagButton>
+                                                View bag
+                                            </ViewBagButton>
+                                            <CheckOutButton>
+                                                Check Out
+                                            </CheckOutButton>
+                                        </>
+                }
+                { itemsTotal === 0 &&   <NothingAdded>
+                                            Nothing have been add yet
+                                        </NothingAdded>}
             </>
         );
     }
@@ -87,6 +98,7 @@ const mapStateToProps = (state) => ({
     addedProducts: state.cart.items,
     disable: state.cart.disableOptionsButtons.miniCart,
     currency: state.currency.actualCurrency.index,
+    priceTotal: state.cart.priceTotal,
 });
 const mapDispatchToProps = (dispatch) => ({
     increase: (id) => {
@@ -95,6 +107,9 @@ const mapDispatchToProps = (dispatch) => ({
     decrease: (id) => {
         dispatch(decreaseItemsQuantaty(id));
     },
+    updateTotalPrice: () => {
+        dispatch(sumTotalPrice());
+    }
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(MiniCart);

@@ -12,6 +12,11 @@ class CurrencySwitcher extends Component {
         currencyList: [{}],
         actualCurrency: 0,
     }
+    componentDidMount () {
+        const { updateCurrencyInCart, actualCurrency } = this.props;
+
+        updateCurrencyInCart(actualCurrency);
+    }
     renderCurrencies = () => {
         const { currencyList } = this.props;
         
@@ -32,13 +37,14 @@ class CurrencySwitcher extends Component {
         isOpened ? close() : open();
     }
     handleSelectionBtnClick = (e) => {
-        const { switchActualCurrency, updateCurrencyInCart, actualCurrency, close } = this.props;
+        const { switchActualCurrency, updateCurrencyInCart, sumTotalPriceInCart, actualCurrency, close } = this.props;
         const picked = +e.currentTarget.value;
         const isNewCurrency = picked !== actualCurrency;
 
         if (isNewCurrency) {
             switchActualCurrency(picked);
             updateCurrencyInCart(picked);
+            sumTotalPriceInCart();
         }
 
         close();

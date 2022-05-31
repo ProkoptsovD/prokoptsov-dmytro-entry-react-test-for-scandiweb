@@ -6,7 +6,7 @@ import PreviewCard from "../../components/PreviewCard/PreviewCard";
 import { CategoryName } from "./CategoryPage.styled";
 import { connect } from "react-redux";
 import { setProductsToPageThunk } from "../../redux/thunks/setProductToPageThunk";
-import { addItemToCart } from "../../redux/actions/actions";
+import { addItemToCart, sumTotalPrice } from "../../redux/actions/actions";
 
 
 class CategoryPage extends React.Component {
@@ -16,11 +16,12 @@ class CategoryPage extends React.Component {
     addProduct = (e) => {
         e.preventDefault();
         
-        const { addProductToCart, productList } = this.props;
+        const { addProductToCart, sumTotalPriceInCart, productList } = this.props;
         const productId = e.currentTarget.value;
         const product = productList.find(({id}) => id === productId);
 
         addProductToCart(product);
+        sumTotalPriceInCart();
     }
     cancelRequest = () => {
         const controller = new AbortController();
@@ -79,6 +80,9 @@ const mapDispatchToProps = (dispatch) => ({
     },
     addProductToCart: (product) => {
         dispatch(addItemToCart(product));
+    },
+    sumTotalPriceInCart: () => {
+        dispatch(sumTotalPrice());
     }
 });
 

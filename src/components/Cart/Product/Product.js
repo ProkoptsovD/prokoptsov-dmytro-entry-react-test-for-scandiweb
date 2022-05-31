@@ -94,7 +94,7 @@ Product.propTypes = {
         attributes: PropTypes.arrayOf(PropTypes.object),
         gallery: PropTypes.arrayOf(PropTypes.string),
     }).isRequired,
-    currency: PropTypes.object,
+    currency: PropTypes.number,
 };
 
 export default Product;
