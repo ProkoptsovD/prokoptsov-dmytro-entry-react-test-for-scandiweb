@@ -1,10 +1,10 @@
-import React, {Component} from "react";
+import {Component} from "react";
 import { createPortal } from "react-dom";
 import PropTypes from 'prop-types';
 import { Modal, Wrapper } from "./Overlay.styled";
-import {refs} from '../../constants/refs';
+import { refs } from '../../constants/refs';
 import { connect } from "react-redux";
-import { closeCartOverlay, openCartOverlay } from "../../redux/actions/actions";
+import { closeOverlay } from "../../redux/actions/actions";
 
 class Overlay extends Component {
     componentDidMount() {
@@ -49,7 +49,7 @@ Overlay.propTypes = {
 
 const mapDispatchToProps = (dispatch) => ({
     closeOverlay: () => {
-        dispatch(closeCartOverlay());
+        dispatch(closeOverlay());
     },
 });
 

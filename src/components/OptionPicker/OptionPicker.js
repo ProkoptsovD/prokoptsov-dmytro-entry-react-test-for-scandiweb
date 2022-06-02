@@ -8,15 +8,14 @@ class OptionPicker extends Component {
         const normalizedType = type.toLowerCase();
         const isText = normalizedType === 'text';
 
-        return items.map(({ value }, idx) => (
+        return items.map(({ value, displayValue }, idx) => (
             <ListItem
                 key={idx}
-                id={idx}
             >
                 <OptionButton
-                    onClick={() => {}}
+                    id={idx}
                     optionType={normalizedType}
-                    value={value}
+                    value={displayValue}
                     disabled={disabled}
                     selected={idx === selected}
                     {...this.props.optionButton}
@@ -28,10 +27,13 @@ class OptionPicker extends Component {
     };
     render () {
         const { option: { name } } = this.props;
-        const { wrapper, optionName, optionList } = this.props;
+        const { wrapper, optionName, optionList, id, onClick } = this.props;
 
         return (
-            <Wrapper {...wrapper}>
+            <Wrapper {...wrapper}
+                onClick={onClick}
+                id={id}
+            >
                 <OptionName {...optionName}>
                     {name + ':'}
                 </OptionName>

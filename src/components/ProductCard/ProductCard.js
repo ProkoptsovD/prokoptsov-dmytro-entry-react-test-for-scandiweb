@@ -1,13 +1,12 @@
-import { Component } from "react";
+import { PureComponent } from "react";
 import PropTypes from 'prop-types';
 import { InnerWrapper, OuterWrapper, AddToCartButton, OptionPickerStyles, DescriptionWrapper } from './ProductCard.styled';
 import Gallery from "../Gallery/";
 import ProductInfo from "./ProductInfo/";
 import OptionPicker from "../OptionPicker";
-import Description from "./ProductDescription/";
+import Description from "./Description";
 
-
-class ProductCard extends Component {
+class ProductCard extends PureComponent {
     static defaultProps = {
         product: {
             id: '',
@@ -18,26 +17,75 @@ class ProductCard extends Component {
             attributes: [],
         }
     };
+    state = {
+        selectedOptions: {},
+    }
     renderOptionPickers = () => {
-        const { product: { attributes }, disabled } = this.props;
+        const { product: { attributes, inStock }, disabled } = this.props;
+        const { selectedOptions } = this.state;
+
         return attributes.map(attr => (
             <OptionPicker
                 key={attr.name}
-                {...OptionPickerStyles}
+                id={attr.id}
                 option={attr}
-                disabled={disabled}
+                selected={selectedOptions[attr.name]?.id}
+                disabled={inStock ? disabled : !inStock}
+                onClick={this.selectOption}
+                {...OptionPickerStyles}
             />
         ));
     };
+    selectOption = (e) => {
+        const BUTTON_KEY = 'BUTTON';
+
+        const isButtonClicked = e.target.nodeName === BUTTON_KEY;
+        const option = e.currentTarget.id;
+        const { value, id } = e.target;
+
+        if (!isButtonClicked) return;
+
+        this.setState(prevState => ({
+            ...prevState,
+            selectedOptions: {
+                ...prevState.selectedOptions,
+                [option]: {
+                    id: Number(id),
+                    value,
+                },
+            },
+        }));
+    };
+    ckeckOptionSelection = () => {
+        const { attributes } = this.props.product;
+        const allOptionNumber = attributes.length;
+        const selectedOptionNumber = Object.keys(this.state.selectedOptions).length;
+       
+        return allOptionNumber === selectedOptionNumber;
+    }
+    addToCart = () => {
+        const { product, addToCart, updateTotalPrice, addToast } = this.props;
+        const { selectedOptions } = this.state;
+        const isEveryOptionSelected = this.ckeckOptionSelection();
+
+        if (!isEveryOptionSelected) {
+            addToast('warning', 'selectWarning');
+            return;
+        }
+        addToCart(product, selectedOptions);
+        addToast('success', 'addSuccess');
+        updateTotalPrice();
+    }
     render() {
-        const {id, brand, name, gallery, description, prices: [ price ] } = this.props.product;
+        const { product: { brand, name, gallery, description, inStock, prices }, currency } = this.props;
+        const price = prices[currency];
 
         return (
             <OuterWrapper>
                 <Gallery
                     large
                     imageList={gallery}/>
-                <InnerWrapper>
+                <InnerWrapper instock={inStock}>
                     <ProductInfo
                         brandName={brand}
                         productName={name}
@@ -45,7 +93,10 @@ class ProductCard extends Component {
                     >
                     {this.renderOptionPickers()}
                     </ProductInfo>
-                    <AddToCartButton>
+                    <AddToCartButton
+                        onClick={this.addToCart}
+                        disabled={!inStock}
+                    >
                         Add to cart
                     </AddToCartButton>
                     {

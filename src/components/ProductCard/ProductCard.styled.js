@@ -10,6 +10,8 @@ export const InnerWrapper = styled.div`
     margin-top: ${({ theme }) => theme.spacing(4)};
     margin-left: ${({ theme }) => theme.spacing(25)};
 
+    color: ${({ instock, theme }) => instock ? theme.colors.dark['300'] : theme.colors.dark['100']};
+
     & ul:not(:last-child) {
         margin-bottom: ${({ theme }) => theme.spacing(5)};
     }
@@ -28,6 +30,7 @@ export const InnerWrapper = styled.div`
 
 export const DescriptionWrapper = styled.div`
     line-height: ${({ theme }) => theme.typography.lineHeight['1.6']};
+    color: ${({ theme }) => theme.colors.dark['300']};
 
     & :nth-child(odd) {
         margin-bottom: 16px;
@@ -40,7 +43,9 @@ export const DescriptionWrapper = styled.div`
     }
 `;
 
-export const AddToCartButton = styled(TextButton)`
+export const AddToCartButton = styled(TextButton).attrs(props => ({
+    disabled: props.disabled,
+}))`
     width: 100%;
     min-height: 52px;
 
@@ -52,7 +57,11 @@ export const AddToCartButton = styled(TextButton)`
 
     transition: ${({ theme }) => theme.setTransition('fast', 'background-color', 'color', 'transform', 'filter')};
     
-    &:active {
+    &:disabled {
+        cursor: initial;
+        background-color: ${({ theme }) => theme.colors.neutral['600']};
+    }
+    &:not(:disabled):active {
         filter: brightness(90%);
         transform: scale(0.97);
     }

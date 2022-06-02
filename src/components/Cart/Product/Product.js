@@ -32,14 +32,13 @@ class Product extends Component {
         const { product: { attributes }, selectedOptions, disabled } = this.props;
 
         return attributes.map((attr, idx) => {
-            const pickedOption = selectedOptions[idx]?.attr.id;
-            const pickedOptionIndex = attr.items.findIndex(({ id }) => id === pickedOption);
+            const pickedOption = selectedOptions[attr.id]?.id;
 
             return (
                 <OptionPicker
                             key={attr.id}
                             option={attr}
-                            selected={pickedOptionIndex}
+                            selected={pickedOption}
                             disabled={disabled}
                             optionName={this.props.optionName}
                             optionButton={this.props.optionButton}

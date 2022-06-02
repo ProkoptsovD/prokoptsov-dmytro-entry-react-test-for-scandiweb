@@ -1,5 +1,5 @@
 import { deepEqual } from "../../helpers/deepEqual";
-import { ADD_ITEM_TO_CART, DECREASE_ITEMS_QUANTATY, INCREASE_ITEMS_QUANTATY, REMOVE_ITEM_FROM_CART, SUM_TOTAL_PRICE, UPDATE_ACTUAL_CURRENCY_IN_CART } from "../types/types"
+import { ADD_ITEM_TO_CART, ALERT_NOTIFICATION, DECREASE_ITEMS_QUANTATY, INCREASE_ITEMS_QUANTATY, REMOVE_ITEM_FROM_CART, SUM_TOTAL_PRICE, UPDATE_ACTUAL_CURRENCY_IN_CART } from "../types/types"
 
 const initialState = {
     currency: 0,
@@ -45,18 +45,18 @@ const sumPrice = (allProducts, actualCurrency) => {
 }
 const setDefaultAttributes = ({ attributes }, defaultValue) => {
     return attributes.reduce((acc, {name, items}) => {
-        const options = {
-            [name]: name,
-            attr: items[defaultValue],
-        }
-        acc = [...acc, options];
+        acc = {
+            ...acc,
+            [name]: {
+                id: Number(defaultValue),
+                value: items[defaultValue].displayValue,
+            }
+        };
         return acc;
-    }, []);
+    }, {})
 }
-const checkDuplicates = (allProducts, newProduct) => {
-    if(!allProducts.length) return false;
-
-    return allProducts.some(product => deepEqual(product, newProduct));
+const findUnique = (allProducts, newProduct) => {
+    return allProducts.findIndex(product => deepEqual(product, newProduct));
 }
 
 export const cartReducer = (state = initialState, action) => {
@@ -66,7 +66,7 @@ export const cartReducer = (state = initialState, action) => {
             
             const newProduct = action.payload.item;
             const defaultValue = state.defaultOptionIndex;
-            const selectedOptions = action.payload.options ?? setDefaultAttributes(newProduct, defaultValue);
+            const selectedOptions = action.payload.option || setDefaultAttributes(newProduct, defaultValue);
             
             const itemToAdd = {
                 product: newProduct,
@@ -74,19 +74,18 @@ export const cartReducer = (state = initialState, action) => {
                 quantaty: 1,
             }
 
-            const isUnique = !checkDuplicates(state.items, itemToAdd);
-            
-            return isUnique
-                        ? {
-                            ...state,
-                            items: [...state.items, itemToAdd],
-                            itemsTotal: increase(state.itemsTotal),
-                        }
-                        : {
-                            ...state,
-                            items: state.items.map(item => item.product.id === itemToAdd.id ? {...item, item: item.quantaty += 1} : item) ,
-                            itemsTotal: increase(state.itemsTotal),
-                        };
+            const itemIndex = findUnique(state.items, itemToAdd);
+            const isUnique = itemIndex < 0;
+            const newItemList = isUnique
+                                ? [...state.items, itemToAdd]
+                                : state.items.map((item, index) => index === itemIndex ? {...item, quantaty: item.quantaty += 1} : item);
+
+            return {
+                    ...state,
+                    items: newItemList,
+                    itemsTotal: increase(state.itemsTotal),
+                    showNotification: false,
+            };
         case REMOVE_ITEM_FROM_CART:
             if (!action.payload.id) return state;
             const itemsInCartAfterRemove = state.items.filter(({id}) => id !== action.payload.id);
@@ -132,7 +131,6 @@ export const cartReducer = (state = initialState, action) => {
                 currency: action.payload.currency,
             }
         case SUM_TOTAL_PRICE:
-            console.log(sumPrice(state.items, state.currency));
             return {
                 ...state,
                 priceTotal: sumPrice(state.items, state.currency),

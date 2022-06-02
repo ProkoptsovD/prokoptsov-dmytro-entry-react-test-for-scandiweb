@@ -10,8 +10,8 @@ import {
 	REMOVE_ITEM_FROM_CART,
 	INCREASE_ITEMS_QUANTATY,
 	DECREASE_ITEMS_QUANTATY,
-	OPEN_CART_OVERLAY,
-	CLOSE_CART_OVERLAY,
+	OPEN_OVERLAY,
+	CLOSE_OVERLAY,
 	UPDATE_ACTUAL_CURRENCY_IN_CART,
 	SUM_TOTAL_PRICE,
 	NEXT_PICTURE,
@@ -20,6 +20,8 @@ import {
 	OPEN_CURRENCY_LIST,
 	CLOSE_CURRENCY_LIST,
 	CLEAR_PRODUCT_PAGE,
+	ADD_NOTIFICATION,
+	DELETE_NOTIFICATION,
 } from '../types/types';
 
 export const initApp = (initialData) => {
@@ -55,11 +57,37 @@ export const initNavbar = (categories) => ({
 	payload: { categories },
 });
 
-//=================== cart actions ================//
-export const addItemToCart = (item, options = null) => ({
-	type: ADD_ITEM_TO_CART,
-	payload: {item, options}
+export const addNotification = (type, message) => ({
+	type: ADD_NOTIFICATION,
+	payload: {
+		type,
+		message,
+	}
 });
+export const deleteNotification = (toastId) => ({
+	type: DELETE_NOTIFICATION,
+	payload: { toastId }
+});
+
+//=================== cart actions ================//
+export const addItemToCart = (item, option = null) => {
+	// if (!option) {
+		return {
+			type: ADD_ITEM_TO_CART,
+			payload: {item, option}
+		}
+	// } 
+	
+	// const isEveryOptionPicked = Object.keys(option).length === item.attributes.length;
+	// if (isEveryOptionPicked) {
+	// 	return {
+	// 		type: ADD_ITEM_TO_CART,
+	// 		payload: {item, option}
+	// 	}
+	// } else {
+	// 	return alertNotification();
+	// } 
+};
 export const removeItemToCart = (itemId) => ({
 	type: REMOVE_ITEM_FROM_CART,
 	payload: {itemId}
@@ -81,17 +109,17 @@ export const sumTotalPrice = () => ({
 });
 
 //================== cart overlay actions =============//
-export const openCartOverlay = () => ({
-	type: OPEN_CART_OVERLAY,
+export const openOverlay = () => ({
+	type: OPEN_OVERLAY,
 });
-export const closeCartOverlay = () => ({
-	type: CLOSE_CART_OVERLAY,
+export const closeOverlay = () => ({
+	type: CLOSE_OVERLAY,
 });
 
 //================= gallery actions ==================//
 export const initGallery = (picsQuantaty) => ({
 	type: INIT_GALLERY,
-	payload: {picsQuantaty},
+	payload: { picsQuantaty },
 });
 export const nextPicture = () => ({
 	type: NEXT_PICTURE,

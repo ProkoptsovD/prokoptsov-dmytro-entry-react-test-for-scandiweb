@@ -21,6 +21,9 @@ export const theme = {
             '500': '#EEEEEE',
             '600': '#C4C4C4',
         },
+        notification: {
+            '100': '#fcd703',
+        },
     },
     typography: {
         fontFamily: {

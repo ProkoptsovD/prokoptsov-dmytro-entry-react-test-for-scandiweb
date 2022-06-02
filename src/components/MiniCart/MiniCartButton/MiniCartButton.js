@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Icons from "../../common/Icons";
 import { MiniCartBtn } from "./MiniCartButton.styled";
 import { connect } from "react-redux";
-import { closeCartOverlay, openCartOverlay } from "../../../redux/actions/actions";
+import { closeOverlay, openOverlay } from "../../../redux/actions/actions";
 
 class MiniCartButton extends Component {
     handleMiniCartBtnClick = () => {
@@ -30,14 +30,14 @@ MiniCartBtn.propTypes = {
 }
 
 const mapStateToProps = (state) => ({
-    isOpened: state.cartOverlay.isOpened,
+    isOpened: state.overlay.isOpened,
 });
 const mapDispatchToProps = (dispatch) => ({
     open: () => {
-        dispatch(openCartOverlay());
+        dispatch(openOverlay());
     },
     close: () => {
-        dispatch(closeCartOverlay());
+        dispatch(closeOverlay());
     },
 });
 

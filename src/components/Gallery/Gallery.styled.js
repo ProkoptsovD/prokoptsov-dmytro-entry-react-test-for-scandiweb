@@ -67,7 +67,12 @@ export const ListItem = styled.li`
 `;
 export const Picture = styled.img`
     object-fit: contain;
-    object-position: center;
+    object-position: top;
+
+    ${({ large }) => large && css`
+        width: 100%;
+        height: 100%;
+    `}
 `;
 
 export const ViewPort = styled.div`

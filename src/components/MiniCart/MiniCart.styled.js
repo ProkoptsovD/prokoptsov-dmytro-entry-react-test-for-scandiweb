@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import TextButton from '../common/TextButton';
+import { Link } from 'react-router-dom';
 
 export const OuterWrapper = styled.div`
     
@@ -32,7 +32,7 @@ export const Total = styled.b`
 export const Price = styled.strong`
     line-height: ${props => props.theme.typography.lineHeight['1.6']};
 `;
-const StyledTextButton = styled(TextButton)`
+const StyledTextButton = styled(Link)`
     width: 140px;
     height: 43px;
 

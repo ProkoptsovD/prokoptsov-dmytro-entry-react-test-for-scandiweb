@@ -1,17 +1,17 @@
-import { CLOSE_CART_OVERLAY, OPEN_CART_OVERLAY } from "../types/types"
+import { CLOSE_OVERLAY, OPEN_OVERLAY } from "../types/types"
 
 const initialState = {
     isOpened: false,
 }
 
-export const cartOverlayReducer = (state = initialState, action) => {
+export const overlayReducer = (state = initialState, action) => {
     switch (action.type) {
-        case OPEN_CART_OVERLAY:
+        case OPEN_OVERLAY:
             return {
                 ...state,
                 isOpened: true,
             };
-        case CLOSE_CART_OVERLAY:
+        case CLOSE_OVERLAY:
             return {
                 ...state,
                 isOpened: false,

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { CheckOutButton, ViewBagButton, CartStyles, OuterWrapper, MiniCartNameWrapper, MiniCartName, TotalNumberOfItems, ItemWord, TotalPriceWrapper, Total, Price, NothingAdded } from "./MiniCart.styled";
 import Product from '../Cart/Product';
 import { connect } from "react-redux";
-import { decreaseItemsQuantaty, increaseItemsQuantaty, sumTotalPrice } from "../../redux/actions/actions";
+import { closeOverlay, decreaseItemsQuantaty, increaseItemsQuantaty, sumTotalPrice } from "../../redux/actions/actions";
 
 class MiniCart extends Component {
     static defaultProps = {
@@ -42,7 +42,7 @@ class MiniCart extends Component {
         });
     };
     render() {
-        const { itemsTotal, priceTotal } = this.props;
+        const { itemsTotal, priceTotal, closeMiniCart } = this.props;
 
         return (
             <>
@@ -72,10 +72,10 @@ class MiniCart extends Component {
                 </OuterWrapper>
                 {
                     itemsTotal !== 0 && <>
-                                            <ViewBagButton>
+                                            <ViewBagButton to="/cart" onClick={closeMiniCart}>
                                                 View bag
                                             </ViewBagButton>
-                                            <CheckOutButton>
+                                            <CheckOutButton to="/order">
                                                 Check Out
                                             </CheckOutButton>
                                         </>
@@ -109,6 +109,9 @@ const mapDispatchToProps = (dispatch) => ({
     },
     updateTotalPrice: () => {
         dispatch(sumTotalPrice());
+    },
+    closeMiniCart: () => {
+        dispatch(closeOverlay());
     }
 });
 

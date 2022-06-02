@@ -47,13 +47,8 @@ export const OptionButton = styled(TextButton)`
 
                 border: 1px solid ${({ theme }) => theme.colors.dark['300']};
                 cursor: initial;
-
-                &:not(:disabled):hover,
-                &:not(:disabled):focus,
-                &:not(:disabled):active {
-                    background-color: ${({ theme }) => theme.colors.dark['300']};
-                    color: ${({ theme }) => theme.colors.light['100']};
-
+                
+                &:not(:disabled):hover {
                     cursor: pointer;
                 }
                 

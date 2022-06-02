@@ -22,7 +22,9 @@ class Gallery extends Component {
     shouldComponentUpdate(_, { currentPic, totalPics }) {
        return currentPic !== this.state.currentPic || totalPics !== this.state.totalPics;
     };
-    renderImages = (imageList, imageAlt) => {
+    renderImages = () => {
+        const { imageList, imageAlt, large } = this.props;
+
         return imageList.map((url, idx) => (
             <ListItem
                 {...this.props}
@@ -31,7 +33,7 @@ class Gallery extends Component {
                 isVisible={idx === this.state.currentPic}
             >
                 {url
-                    ? <Picture id={idx} src={url} alt={imageAlt} />
+                    ? <Picture id={idx} src={url} alt={imageAlt} large />
                     : <ImagePlaceholder />
                 }
             </ListItem>
@@ -82,7 +84,7 @@ class Gallery extends Component {
         );
     }
     render() {
-        const { imageList, imageAlt, small, large } = this.props;
+        const { small, large } = this.props;
 
         return (
             <GalleryWrapper {...this.props} >
@@ -90,7 +92,7 @@ class Gallery extends Component {
                     <PictureList 
                         onClick={ large ? this.onPicClick : () => {}}
                         {...this.props} >
-                            {this.renderImages(imageList, imageAlt)}
+                            {this.renderImages()}
                     </PictureList>
 
                     { small && this.renderControls() }

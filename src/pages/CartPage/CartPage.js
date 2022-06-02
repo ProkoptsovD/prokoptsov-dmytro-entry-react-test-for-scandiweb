@@ -15,23 +15,6 @@ class CartPage extends Component {
                 </Title>
                 <Cart />
             </Section>
-
-            // <section className="cart-page">
-            //     <div className="container">
-            //         <h1 className="cart-page__title">
-            //             Cart
-            //         </h1>
-            //         <ul className="cart-page__list">
-            //             <li className="cart-page__list-item">
-            //                 <BagItem />
-            //             </li> 
-            //         </ul>
-            //         <OrderInfo />
-            //         <ButtonTextOnly>
-            //             Order
-            //         </ButtonTextOnly>
-            //     </div>
-            // </section>
         )
     }
 }

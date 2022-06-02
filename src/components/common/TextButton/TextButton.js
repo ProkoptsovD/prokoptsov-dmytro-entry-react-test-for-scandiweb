@@ -9,7 +9,10 @@ class TextButton extends Component {
 
     render () {
         return (
-            <TextBtn {...this.props}>
+            <TextBtn
+                {...this.props}
+                disabled={this.props.disabled || false}
+            >
                 {this.props.children}
             </TextBtn>
         )
