@@ -77,13 +77,13 @@ class ProductCard extends PureComponent {
         updateTotalPrice();
     }
     render() {
-        const { product: { brand, name, gallery, description, inStock, prices }, currency, optionPickerType } = this.props;
+        const { product: { brand, name, gallery, description, inStock, prices }, currency, galleryType } = this.props;
         const price = prices[currency];
 
         return (
             <OuterWrapper>
                 <Gallery
-                    optionPickerType={optionPickerType}
+                    galleryType={galleryType}
                     imageList={gallery}/>
                 <InnerWrapper instock={inStock}>
                     <ProductInfo

@@ -66,19 +66,3 @@ export const AddToCartButton = styled(TextButton).attrs(props => ({
         transform: scale(0.97);
     }
 `;
-
-export const OptionPickerStyles = {
-    optionName: {
-        textTransform: 'uppercase',
-    },
-    optionButton: {
-        typeTextSize: {
-            minWidth: '63px',
-            minHeight: '44px',
-        },
-        typeSwatchSize: {
-            minWidth: '34px',
-            minHeight: '34px',
-        },
-    },
-};

@@ -1,4 +1,4 @@
-import {Component} from "react";
+import { Component } from "react";
 import PropTypes from 'prop-types';
 import Controls from './Controls/';
 import { ListItem, PictureList, GalleryWrapper, Picture, ViewPort, InnerWrapper } from "./Gallery.styled";
@@ -27,7 +27,7 @@ class Gallery extends Component {
        return currentPic !== this.state.currentPic || totalPics !== this.state.totalPics;
     };
     renderImages = () => {
-        const { imageList, imageAlt, large } = this.props;
+        const { imageList, imageAlt } = this.props;
 
         return imageList.map((url, idx) => (
             <ListItem
@@ -70,9 +70,14 @@ class Gallery extends Component {
     };
     renderViewPort = () => {
         const { currentPic } = this.state;
+        const { imageList } = this.props;
+
         return (
             <ViewPort {...this.props}>
-                <Picture src={this.props.imageList[currentPic]}/>
+                <Picture 
+                    src={imageList[currentPic]} 
+                    {...this.props}
+                />
             </ViewPort>
         );
     };
@@ -89,13 +94,15 @@ class Gallery extends Component {
     }
     render() {
         const { galleryType } = this.props;
+        console.log(galleryType);
 
         return (
             <GalleryWrapper {...this.props} >
                 <InnerWrapper {...this.props} >
                     <PictureList 
                         onClick={ this.galleryType.default === galleryType ? this.onPicClick : () => {}}
-                        {...this.props} >
+                        {...this.props}
+                    >
                             {this.renderImages()}
                     </PictureList>
 

@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const ToastList = styled.ul`
-    position: absolute;
+    position: fixed;
     top: 95px;
     right: 25px;
 
