@@ -23,26 +23,23 @@ class Product extends Component {
             attributes: [],
             gallery: [],
         },
-        currency: {
-            symbol: '$',
-            label: 'USD',
-        }
+        currency: 0,
     };
     renderOptionPickerList = () => {
-        const { product: { attributes }, selectedOptions, disabled } = this.props;
+        const { product: { attributes }, selectedOptions, disabled, optionPickerType } = this.props;
 
-        return attributes.map((attr, idx) => {
-            const pickedOption = selectedOptions[attr.id]?.id;
-
+        return attributes.map(attr => {
+            // const pickedOption = selectedOptions[attr.id]?.id;
+            
             return (
                 <OptionPicker
                             key={attr.id}
                             option={attr}
-                            selected={pickedOption}
+                            // selected={pickedOption}
                             disabled={disabled}
                             optionName={this.props.optionName}
                             optionButton={this.props.optionButton}
-                            
+                            optionPickerType={optionPickerType}       
                 />
             )
         });
@@ -50,12 +47,11 @@ class Product extends Component {
     render() {
         const {
             product: { brand, name, prices, gallery },
-            quantaty, small, increaseQuantaty, decreaseQuantaty
+            quantaty, currency, galleryType, increaseQuantaty, decreaseQuantaty
         } = this.props;
 
-        const { currency } = this.props;
         const price = prices[currency];
-
+        
         return (
             <OuterWrapper>
                 <InnerWrapper {...this.props}>
@@ -77,7 +73,7 @@ class Product extends Component {
                     decreaseQuantaty={decreaseQuantaty}
                 />
                 <Gallery
-                    small={small}
+                    galleryType={galleryType}
                     imageList={gallery}
                 />
             </OuterWrapper>

@@ -12,6 +12,10 @@ class Gallery extends Component {
         currentPic: 0,
         totalPics: 0,
     };
+    galleryType = {
+        mini: 'mini',
+        default: 'default',
+    }
     componentDidMount() {
         const { imageList } = this.props;
 
@@ -84,19 +88,19 @@ class Gallery extends Component {
         );
     }
     render() {
-        const { small, large } = this.props;
+        const { galleryType } = this.props;
 
         return (
             <GalleryWrapper {...this.props} >
                 <InnerWrapper {...this.props} >
                     <PictureList 
-                        onClick={ large ? this.onPicClick : () => {}}
+                        onClick={ this.galleryType.default === galleryType ? this.onPicClick : () => {}}
                         {...this.props} >
                             {this.renderImages()}
                     </PictureList>
 
-                    { small && this.renderControls() }
-                    { large && this.renderViewPort() }
+                    { this.galleryType.mini === galleryType && this.renderControls() }
+                    { this.galleryType.default === galleryType && this.renderViewPort() }
                 </InnerWrapper>
             </GalleryWrapper>
     );

@@ -1,7 +1,7 @@
 import styled, { css } from 'styled-components';
 
 export const GalleryWrapper = styled.div`
-    ${({ small, galleryWrapper }) => small && css`
+    ${({ galleryType, galleryWrapper }) => galleryType === 'mini' && css`
         overflow: hidden;
 
         width: ${ galleryWrapper?.width || '200px' };
@@ -11,7 +11,7 @@ export const GalleryWrapper = styled.div`
 export const InnerWrapper = styled.div`
     height: 100%;
 
-    ${({ small, innerWrapper }) => small && css`
+    ${({ galleryType, innerWrapper }) => galleryType === 'mini' && css`
         position: relative;
 
         & div:last-child {
@@ -22,7 +22,7 @@ export const InnerWrapper = styled.div`
         }
     `}
 
-    ${({ large }) => large && css`
+    ${({ galleryType }) => galleryType === 'default' && css`
         display: flex;
     `}
 `;
@@ -30,21 +30,21 @@ export const InnerWrapper = styled.div`
 export const PictureList = styled.ul`
     height: 100%;
     
-    ${({ small }) => small && css`
+    ${({ galleryType }) => galleryType === 'mini' && css`
         position: absolute;
         inset: 0;
 
         display: flex;
     `}
 
-    ${({ large, pictureList, theme }) => large && css`
+    ${({ galleryType, pictureList, theme }) => galleryType === 'mini' && css`
         margin-right: ${ pictureList?.marginRight || theme.spacing(10)};
     `}
 `;
 export const ListItem = styled.li`
     transition: ${props => props.theme.setTransition(null, 'opacity', 'visibility')};
 
-    ${({ small }) => small && css`
+    ${({ galleryType }) => galleryType === 'mini' && css`
         position: absolute;
         inset: 0;
 
@@ -52,7 +52,7 @@ export const ListItem = styled.li`
         visibility: ${props => props.isVisible ? 'visible' : 'hidden'};
     `}
 
-    ${({ large, listItem, theme }) => large && css`
+    ${({ galleryType, listItem, theme }) => galleryType === 'default' && css`
         width: ${ listItem?.width || '80px'};
         height: ${ listItem?.height || '80px'};
 
@@ -69,19 +69,19 @@ export const Picture = styled.img`
     object-fit: contain;
     object-position: top;
 
-    ${({ large }) => large && css`
+    ${({ galleryType }) => galleryType === 'default' && css`
         width: 100%;
         height: 100%;
     `}
 `;
 
 export const ViewPort = styled.div`
-    ${({ small }) => small && css`
+    ${({ galleryType }) => galleryType === 'mini' && css`
     position: absolute;
     inset: 0;
 `}
 
-    ${({ large, viewPort, theme }) => large && css`
+    ${({ galleryType, viewPort, theme }) => galleryType === 'default' && css`
         width: ${ viewPort?.width || '610px' };
         height: ${ viewPort?.height || '498px' };
 

@@ -4,13 +4,14 @@ import { ListItem, OptionButton, OptionList, OptionName, Wrapper } from './Optio
 
 class OptionPicker extends Component {
     renderOptionButtonList = () => {
-        const { option: { items , type}, disabled, selected } = this.props;
+        const { option: { items , type}, disabled, selected, optionPickerType } = this.props;
         const normalizedType = type.toLowerCase();
         const isText = normalizedType === 'text';
 
         return items.map(({ value, displayValue }, idx) => (
             <ListItem
                 key={idx}
+                optionPickerType={optionPickerType}
             >
                 <OptionButton
                     id={idx}
@@ -18,7 +19,7 @@ class OptionPicker extends Component {
                     value={displayValue}
                     disabled={disabled}
                     selected={idx === selected}
-                    {...this.props.optionButton}
+                    optionPickerType={optionPickerType}
                 >
                     {isText && value}
                 </OptionButton>
@@ -26,18 +27,23 @@ class OptionPicker extends Component {
         ));
     };
     render () {
-        const { option: { name } } = this.props;
-        const { wrapper, optionName, optionList, id, onClick } = this.props;
+        const { option: { name }, optionPickerType } = this.props;
+        const { id, onClick } = this.props;
 
         return (
-            <Wrapper {...wrapper}
+            <Wrapper
                 onClick={onClick}
                 id={id}
+                optionPickerType={optionPickerType}
             >
-                <OptionName {...optionName}>
+                <OptionName
+                    optionPickerType={optionPickerType}
+                >
                     {name + ':'}
                 </OptionName>
-                <OptionList {...optionList}>
+                <OptionList
+                    optionPickerType={optionPickerType}
+                >
                     {this.renderOptionButtonList()}
                 </OptionList>
             </Wrapper>

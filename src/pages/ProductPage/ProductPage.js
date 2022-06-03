@@ -20,14 +20,16 @@ class ProductPage extends Component {
 
         return (
             <Section>
-                {product && <ProductCard
+                {
+                    product && <ProductCard
                                 product={product}
                                 disabled={disabled}
                                 currency={currency}
                                 addToCart={addToCart}
                                 updateTotalPrice={updateTotalPrice}
                                 addToast={addToast}
-                                />}
+                    />
+                }
             </Section>
         )
     };

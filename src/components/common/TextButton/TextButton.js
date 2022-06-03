@@ -1,4 +1,4 @@
-import React, {Component} from "react";
+import { Component } from "react";
 import PropTypes from 'prop-types';
 import { TextBtn } from "./TextButton.styled";
 
@@ -8,12 +8,14 @@ class TextButton extends Component {
     }
 
     render () {
+        const { children, disabled } = this.props;
+
         return (
             <TextBtn
                 {...this.props}
-                disabled={this.props.disabled || false}
+                disabled={disabled || false}
             >
-                {this.props.children}
+                {children}
             </TextBtn>
         )
     }

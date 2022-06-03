@@ -13,13 +13,13 @@ import CategoryPage from './pages/CategoryPage/';
 
 import './App.css';
 import ProductPage from './pages/ProductPage';
-import Cart from './components/Cart';
 import CartPage from './pages/CartPage';
 import NotFoundPage from './pages/NotFoundPage';
 import { connect } from 'react-redux';
 import { initAppThunk } from './redux/thunks/initAppThunk';
 import { generateHash } from './helpers/generateHash';
 import Toaster from './components/Toaster/Toaster';
+import Cart from './components/Cart/Cart';
 
 class App extends Component {
 	renderRoutes = () => {
@@ -43,7 +43,8 @@ class App extends Component {
 		this.props.initApp();
 	}
 	render() {
-		const { categories, isOverlayOpened, itemsCount, showNotification, toastList } = this.props;
+		const { categories, isOverlayOpened, itemsCount, toastList } = this.props;
+		const isThereAnyToast = toastList.length !== 0;
 
 		return (
 			<>
@@ -62,11 +63,20 @@ class App extends Component {
 						<Route path='/' element={<Navigate to="/all" replace={true}/>} />
 					</Routes>
 				</main>
-				<Toaster toastList={toastList} delay={2000}/>
 				{
-					isOverlayOpened && <Overlay>
-										<MiniCart />
-									</Overlay>
+					isThereAnyToast
+						? <Toaster toastList={toastList} delay={2000}/>
+						: null
+				}
+				{
+					isOverlayOpened ?   <Overlay>
+											<Cart 
+												cartType="mini"
+												galleryType="mini"
+												optionPickerType="mini"
+											/>
+										</Overlay>
+									: 	null
 				}
 			</>
 		)
@@ -79,7 +89,6 @@ const mapStateToProps = (state) => {
         currencies: state.initial.currencies,
         itemsCount: state.cart.itemsTotal,
 		isOverlayOpened: state.overlay.isOpened,
-		showNotification: state.toast.showNotification,
 		toastList: state.toast.toastList,
     }
 }

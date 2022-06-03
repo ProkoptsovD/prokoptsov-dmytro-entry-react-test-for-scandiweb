@@ -1,6 +1,6 @@
-import React, {Component} from "react";
+import { Component } from "react";
 import PropTypes from 'prop-types';
-import { CheckOutButton, ViewBagButton, CartStyles, OuterWrapper, MiniCartNameWrapper, MiniCartName, TotalNumberOfItems, ItemWord, TotalPriceWrapper, Total, Price, NothingAdded } from "./MiniCart.styled";
+import { CheckOutButton, ViewBagButton, OuterWrapper, MiniCartNameWrapper, MiniCartName, TotalNumberOfItems, ItemWord, TotalPriceWrapper, Total, Price, NothingAdded } from "./MiniCart.styled";
 import Product from '../Cart/Product';
 import { connect } from "react-redux";
 import { closeOverlay, decreaseItemsQuantaty, increaseItemsQuantaty, sumTotalPrice } from "../../redux/actions/actions";

@@ -1,26 +1,43 @@
-import styled, {css} from 'styled-components';
+import styled, { css } from 'styled-components';
 import TextButton from '../common/TextButton';
 
 export const Wrapper = styled.div`
-    display: ${({ display }) => display || 'block'};
+    display: block;
 `;
+
 export const OptionName = styled.b`
     display: inline-block;
-    margin-bottom: ${({ theme, marginBottom }) => marginBottom || theme.spacing(2)};
-
-    font-family: ${({ theme, fontFamily }) => fontFamily || theme.typography.fontFamily['2']};
-    font-size: ${({ theme, fontSize }) => fontSize || theme.typography.fontSize['500']};
-    font-weight: ${({ theme, fontWeight }) => fontWeight || theme.typography.fontSize['500']};
-
-    text-transform: ${({ textTransform }) => textTransform || 'capitalize'};
+    ${({ optionPickerType }) => {
+        if (optionPickerType === 'default') {
+            return css`
+                ${({ theme }) => `
+                    margin-bottom: ${theme.spacing(2)};
+                    font-family: ${theme.typography.fontFamily['2']};
+                    font-size: ${theme.typography.fontSize['500']};
+                    font-weight: ${theme.typography.fontSize['500']};
+                    text-transform: 'capitalize';
+                `}
+            `
+        }
+        if (optionPickerType === 'mini') {
+            return css`
+                ${({ theme }) => `
+                    margin-bottom: ${theme.spacing(2)};
+                    font-family: ${theme.typography.fontFamily['2']};
+                    font-size: ${theme.typography.fontSize['500']};
+                    font-weight: ${theme.typography.fontSize['500']};
+                    text-transform: 'capitalize';
+                `}
+            `
+        }
+    }}
 `;
-export const OptionList = styled.ul`
-    display: ${({ display }) => display || 'flex'};
-    flex-wrap: ${({ flexWrap} ) => flexWrap || 'wrap'};
-    align-items: ${({ alignItems }) => alignItems || 'center'};
+export const OptionList = styled.ul`  
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
 
     margin: calc(-1 * ${({ margin }) => margin || '4px'});
-
     & > li {
         margin: ${({ margin }) => margin || '4px'};
     }
@@ -30,62 +47,127 @@ export const ListItem = styled.li`
 
 //================== option button styles =============//
 export const OptionButton = styled(TextButton)`
-    font-family: ${({ theme, fontFamily }) => fontFamily || theme.typography.fontFamily['3']};
-    line-height: ${({ lineHeight }) => lineHeight || '1.12'};
-    letter-spacing: ${({ theme, letterSpacing }) => letterSpacing || theme.typography.letterSpacing['5']};
-
-    transition: ${({ theme }) => theme.setTransition(null, 'background-color', 'color', 'outline-color')};
-
-    ${({optionType}) => {
-        if (optionType === 'text') {
+    ${({ optionPickerType, theme }) => {
+        if (optionPickerType === 'default') {
             return css`
-                min-width: ${({ typeTextSize }) => typeTextSize?.minWidth || '20px'};
-                min-height: ${({ typeTextSize }) => typeTextSize?.minHeight || '20px'};
-                
-                font-weight: ${({ typeTextSize }) => typeTextSize?.fontWeight};
-                font-size: ${({ typeTextSize }) => typeTextSize?.fontSize};
+                font-family: ${theme.typography.fontFamily['3']};
+                line-height: '1.12';
+                letter-spacing: ${theme.typography.letterSpacing['5']};
 
-                border: 1px solid ${({ theme }) => theme.colors.dark['300']};
-                cursor: initial;
+                transition: ${theme.setTransition(null, 'background-color', 'color', 'outline-color')};
+
+                ${({ optionType, theme, selected }) => {
+                    if (optionType === 'text') {
+                        return css`
+                        min-width: '20px';
+                        min-height: '20px';
+                        
+                        font-weight: ;
+                        font-size: ${theme.typography.fontSize['500']};
+        
+                        border: 1px solid ${theme.colors.dark['300']};
+                        cursor: initial;
+                        
+                        &:not(:disabled):hover {
+                            cursor: pointer;
+                        }
+                        
+                        ${selected && css`
+                            background-color: ${theme.colors.dark['300']};
+                            color: ${theme.colors.light['100']};
+                        `}
+                    `};
+                    if (optionType === 'swatch') {
+                        return css`
+                            width: '20px';
+                            height: '20px';
+                            padding: 2px;
                 
-                &:not(:disabled):hover {
-                    cursor: pointer;
+                            background-color: ${({value}) => value};
+                            background-clip: content-box;
+            
+                            outline: 1px solid;
+                            outline-color: transparent;
+                            
+                            border: none;
+                            cursor: initial;
+                            
+                            &:not(:disabled):hover,
+                            &:not(:disabled):focus,
+                            &:not(:disabled):active {
+                                outline-color: ${theme.colors.accent['100']};
+            
+                                cursor: pointer;
+                            }
+                            
+                            ${({ selected }) => selected && css`
+                                outline-color: ${theme.colors.accent['100']};
+                            `}
+                        `;
+                    };
                 }
-                
-                ${({ selected }) => selected && css`
-                    background-color: ${({ theme }) => theme.colors.dark['300']};
-                    color: ${({ theme }) => theme.colors.light['100']};
-                `}
-            `;
-        };
-        if (optionType === 'swatch') {
+            }
+            `
+        }
+        if (optionPickerType === 'mini') {
             return css`
-                min-width: ${({ typeSwatchSize }) => typeSwatchSize?.minWidth || '20px'};
-                min-height: ${({ typeSwatchSize}) => typeSwatchSize?.minHeight || '20px'};
+                font-family: ${theme.typography.fontFamily['3']};
+                line-height: '1.12';
+                letter-spacing: ${theme.typography.letterSpacing['5']};
 
-                padding: 2px;
-    
-                background-color: ${({value}) => value};
-                background-clip: content-box;
+                transition: ${theme.setTransition(null, 'background-color', 'color', 'outline-color')};
 
-                outline: 1px solid;
-                outline-color: transparent;
+                ${({ optionType, theme, selected }) => {
+                    if (optionType === 'text') {
+                        return css`
+                        min-width: '20px';
+                        min-height: '20px';
+                        
+                        font-weight: ;
+                        font-size: ${theme.typography.fontSize['500']};
+        
+                        border: 1px solid ${theme.colors.dark['300']};
+                        cursor: initial;
+                        
+                        &:not(:disabled):hover {
+                            cursor: pointer;
+                        }
+                        
+                        ${selected && css`
+                            background-color: ${theme.colors.dark['300']};
+                            color: ${theme.colors.light['100']};
+                        `}
+                    `};
+                    if (optionType === 'swatch') {
+                        return css`
+                            width: '20px';
+                            height: '20px';
+                            padding: 2px;
                 
-                border: none;
-                cursor: initial;
-                
-                &:not(:disabled):hover,
-                &:not(:disabled):focus,
-                &:not(:disabled):active {
-                    outline-color: ${({ theme }) => theme.colors.accent['100']};
-
-                    cursor: pointer;
+                            background-color: ${({value}) => value};
+                            background-clip: content-box;
+            
+                            outline: 1px solid;
+                            outline-color: transparent;
+                            
+                            border: none;
+                            cursor: initial;
+                            
+                            &:not(:disabled):hover,
+                            &:not(:disabled):focus,
+                            &:not(:disabled):active {
+                                outline-color: ${theme.colors.accent['100']};
+            
+                                cursor: pointer;
+                            }
+                            
+                            ${({ selected }) => selected && css`
+                                outline-color: ${theme.colors.accent['100']};
+                            `}
+                        `;
+                    };
                 }
-                
-                ${({ selected }) => selected && css`
-                    outline-color: ${({ theme }) => theme.colors.accent['100']};
-                `}
-            `;
-        };
-    }}
-`;
+            }
+            `
+        }
+    }}`

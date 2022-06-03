@@ -2,7 +2,7 @@ import { Component } from "react";
 import PropTypes from 'prop-types';
 import { Title } from "./CartPage.styled";
 import Section from "../../components/common/Section";
-import Cart from "../../components/Cart";
+import Cart from '../../components/Cart/';
 
 class CartPage extends Component {
     render() {
@@ -13,7 +13,11 @@ class CartPage extends Component {
                 <Title>
                     {title}
                 </Title>
-                <Cart />
+                <Cart
+                    cartType="default"
+                    galleryType="default"
+                    optionPickerType="default"
+                />
             </Section>
         )
     }
