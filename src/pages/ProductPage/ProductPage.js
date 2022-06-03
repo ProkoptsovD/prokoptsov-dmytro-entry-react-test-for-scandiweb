@@ -28,6 +28,8 @@ class ProductPage extends Component {
                                 addToCart={addToCart}
                                 updateTotalPrice={updateTotalPrice}
                                 addToast={addToast}
+                                optionPickerType="default"
+                                galleryType="default"
                     />
                 }
             </Section>

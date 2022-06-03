@@ -7,29 +7,26 @@ export const Wrapper = styled.div`
 
 export const OptionName = styled.b`
     display: inline-block;
-    ${({ optionPickerType }) => {
+    ${({ optionPickerType, theme }) => {
         if (optionPickerType === 'default') {
-            return css`
-                ${({ theme }) => `
-                    margin-bottom: ${theme.spacing(2)};
-                    font-family: ${theme.typography.fontFamily['2']};
-                    font-size: ${theme.typography.fontSize['500']};
-                    font-weight: ${theme.typography.fontSize['500']};
-                    text-transform: 'capitalize';
-                `}
+            return `
+                margin-bottom: ${theme.spacing(2)};
+                font-family: ${theme.typography.fontFamily['2']};
+                font-size: ${theme.typography.fontSize['500']};
+                font-weight: ${theme.typography.fontSize['700']};
+                text-transform: uppercase;
             `
-        }
+        };
         if (optionPickerType === 'mini') {
-            return css`
-                ${({ theme }) => `
-                    margin-bottom: ${theme.spacing(2)};
-                    font-family: ${theme.typography.fontFamily['2']};
-                    font-size: ${theme.typography.fontSize['500']};
-                    font-weight: ${theme.typography.fontSize['500']};
-                    text-transform: 'capitalize';
-                `}
+            return `
+                margin-bottom: ${theme.spacing(2)};
+                font-family: ${theme.typography.fontFamily['1']};
+                font-size: ${theme.typography.fontSize['300']};
+                font-weight: ${theme.typography.fontSize['400']};
+                text-transform: capitalize;
+                line-height: 1.14;
             `
-        }
+        };
     }}
 `;
 export const OptionList = styled.ul`  
@@ -47,22 +44,21 @@ export const ListItem = styled.li`
 
 //================== option button styles =============//
 export const OptionButton = styled(TextButton)`
-    ${({ optionPickerType, theme }) => {
+    font-family: ${({theme}) => theme.typography.fontFamily['3']};
+    letter-spacing: ${({theme}) => theme.typography.letterSpacing['5']};
+    line-height: 1.12;
+    transition: ${({theme}) => theme.setTransition(null, 'background-color', 'color', 'outline-color')};
+
+    ${({ optionPickerType }) => {
         if (optionPickerType === 'default') {
             return css`
-                font-family: ${theme.typography.fontFamily['3']};
-                line-height: '1.12';
-                letter-spacing: ${theme.typography.letterSpacing['5']};
-
-                transition: ${theme.setTransition(null, 'background-color', 'color', 'outline-color')};
-
                 ${({ optionType, theme, selected }) => {
                     if (optionType === 'text') {
                         return css`
-                        min-width: '20px';
-                        min-height: '20px';
+                        min-width: 63px;
+                        min-height: 45px;
                         
-                        font-weight: ;
+                        font-weight: ${theme.typography.fontWeight['400']};
                         font-size: ${theme.typography.fontSize['500']};
         
                         border: 1px solid ${theme.colors.dark['300']};
@@ -79,8 +75,8 @@ export const OptionButton = styled(TextButton)`
                     `};
                     if (optionType === 'swatch') {
                         return css`
-                            width: '20px';
-                            height: '20px';
+                            width: 36px;
+                            height: 36px;
                             padding: 2px;
                 
                             background-color: ${({value}) => value};
@@ -111,20 +107,15 @@ export const OptionButton = styled(TextButton)`
         }
         if (optionPickerType === 'mini') {
             return css`
-                font-family: ${theme.typography.fontFamily['3']};
-                line-height: '1.12';
-                letter-spacing: ${theme.typography.letterSpacing['5']};
-
-                transition: ${theme.setTransition(null, 'background-color', 'color', 'outline-color')};
-
                 ${({ optionType, theme, selected }) => {
                     if (optionType === 'text') {
                         return css`
-                        min-width: '20px';
-                        min-height: '20px';
+                        min-width: 24px;
+                        min-height: 24px;
                         
-                        font-weight: ;
-                        font-size: ${theme.typography.fontSize['500']};
+                        font-weight: ${theme.typography.fontWeight['400']};
+                        font-size: ${theme.typography.fontSize['300']};
+                        line-height: ${theme.typography.lineHeight['1.6']};
         
                         border: 1px solid ${theme.colors.dark['300']};
                         cursor: initial;
@@ -140,8 +131,8 @@ export const OptionButton = styled(TextButton)`
                     `};
                     if (optionType === 'swatch') {
                         return css`
-                            width: '20px';
-                            height: '20px';
+                            width: 20px;
+                            height: 20px;
                             padding: 2px;
                 
                             background-color: ${({value}) => value};

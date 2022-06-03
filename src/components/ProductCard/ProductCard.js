@@ -1,6 +1,6 @@
 import { PureComponent } from "react";
 import PropTypes from 'prop-types';
-import { InnerWrapper, OuterWrapper, AddToCartButton, OptionPickerStyles, DescriptionWrapper } from './ProductCard.styled';
+import { InnerWrapper, OuterWrapper, AddToCartButton, DescriptionWrapper } from './ProductCard.styled';
 import Gallery from "../Gallery/";
 import ProductInfo from "./ProductInfo/";
 import OptionPicker from "../OptionPicker";
@@ -21,7 +21,7 @@ class ProductCard extends PureComponent {
         selectedOptions: {},
     }
     renderOptionPickers = () => {
-        const { product: { attributes, inStock }, disabled } = this.props;
+        const { product: { attributes, inStock }, disabled, optionPickerType } = this.props;
         const { selectedOptions } = this.state;
 
         return attributes.map(attr => (
@@ -32,7 +32,7 @@ class ProductCard extends PureComponent {
                 selected={selectedOptions[attr.name]?.id}
                 disabled={inStock ? disabled : !inStock}
                 onClick={this.selectOption}
-                {...OptionPickerStyles}
+                optionPickerType={optionPickerType}
             />
         ));
     };
@@ -77,13 +77,13 @@ class ProductCard extends PureComponent {
         updateTotalPrice();
     }
     render() {
-        const { product: { brand, name, gallery, description, inStock, prices }, currency } = this.props;
+        const { product: { brand, name, gallery, description, inStock, prices }, currency, optionPickerType } = this.props;
         const price = prices[currency];
 
         return (
             <OuterWrapper>
                 <Gallery
-                    large
+                    optionPickerType={optionPickerType}
                     imageList={gallery}/>
                 <InnerWrapper instock={inStock}>
                     <ProductInfo
