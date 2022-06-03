@@ -47,7 +47,8 @@ class Product extends Component {
     render() {
         const {
             product: { brand, name, prices, gallery },
-            quantaty, currency, galleryType, increaseQuantaty, decreaseQuantaty
+            quantaty, currency, galleryType, increaseQuantaty,
+            decreaseQuantaty, quantatyPanelType
         } = this.props;
 
         const price = prices[currency];
@@ -58,7 +59,7 @@ class Product extends Component {
                     <BrandName {...this.props}>
                         {brand}
                     </BrandName>
-                    <ProductName {...this.propTypes}>
+                    <ProductName {...this.props}>
                         {name}
                     </ProductName>
                     <Price {...this.props}>
@@ -68,6 +69,7 @@ class Product extends Component {
                 </InnerWrapper>
                 <QuantatyPanel
                     vertical
+                    quantatyPanelType={quantatyPanelType}
                     quantaty={quantaty}
                     increaseQuantaty={increaseQuantaty}
                     decreaseQuantaty={decreaseQuantaty}

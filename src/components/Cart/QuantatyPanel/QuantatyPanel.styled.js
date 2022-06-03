@@ -2,8 +2,20 @@ import styled, {css} from 'styled-components';
 import IconButton from '../../common/IconButton';
 
 const commonButtonCSS = css`
-    width: ${({ common }) => common?.width || '45px'};
-    height: ${({ common }) => common?.height || '45px'};
+    ${({ quantatyPanelType }) => {
+        if (quantatyPanelType === 'default') {
+            return `
+                width: 45px;
+                height: 45px;
+            `
+        };
+        if (quantatyPanelType === 'mini') {
+            return `
+                width: 24px;
+                height: 24px;
+            `
+        }
+    }}
 
     border: 1px solid ${({ theme }) => theme.colors.dark['300']};
 
@@ -25,6 +37,19 @@ export const Wrapper = styled.div`
     align-items: center;
     justify-content: space-between;
 
+    ${({ quantatyPanelType, theme }) => {
+        if (quantatyPanelType === 'default') {
+            return `
+                margin-right: ${theme.spacing(6)};
+            `
+        };
+        if (quantatyPanelType === 'mini') {
+            return `
+                margin-right: ${theme.spacing(2)};
+            `
+        }
+    }}
+
     ${props => props.vertical && css`
         flex-direction: column;
     `}
@@ -42,8 +67,12 @@ export const DecreaseButton = styled(IconButton)`
 export const DisplayedQuantaty = styled.span`
     display: block;
 
-    font-weight: ${({ theme, fontWeight }) => fontWeight || theme.typography.fontWeight['500']};
-    font-size: ${({ theme, fontSize }) => fontSize || theme.typography.fontSize['600']};
-    line-height: ${({ theme, lineHeight }) => lineHeight || theme.typography.lineHeight['1.6']};
+    font-weight: ${({ theme }) => theme.typography.fontWeight['500']};
+    font-size: ${({ theme, quantatyPanelType }) => {
+                if (quantatyPanelType === 'default') return theme.typography.fontSize['600'];
+                if (quantatyPanelType === 'mini') return theme.typography.fontSize['400'];
+            }
+        };
+    line-height: ${({ theme }) => theme.typography.lineHeight['1.6']};
     text-align: center;
     `;

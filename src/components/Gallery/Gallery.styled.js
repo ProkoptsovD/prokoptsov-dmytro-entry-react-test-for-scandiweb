@@ -4,9 +4,7 @@ export const GalleryWrapper = styled.div`
     ${({ galleryType }) => {
         if (galleryType === 'mini') {
             return css`
-                width: 200px;
-                height: 300px;
-                
+                width: 121px;
                 overflow: hidden;
             `
         };

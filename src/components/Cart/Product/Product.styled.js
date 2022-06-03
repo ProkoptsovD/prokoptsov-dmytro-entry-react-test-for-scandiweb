@@ -4,35 +4,65 @@ export const OuterWrapper = styled.div`
     display: flex;
 `;
 export const InnerWrapper = styled.div`
-    margin-right: ${({ marginRight }) => marginRight || 'auto'};
-
-    & > div:not(:last-child) {
-        margin-bottom: ${({ theme, marginBottom }) => marginBottom || theme.spacing(4)};
-    }
+    margin-right: auto;
 `;
 
 export const BrandName = styled.p`
-    margin-bottom: ${({ theme, marginBottom }) => marginBottom || theme.spacing(4)};
-    font-weight: ${({ theme, fontWeight }) => fontWeight || theme.typography.fontWeight['600']};
-    font-size: ${({ fontSize }) => fontSize};
-    line-height: ${({ lineHeight }) => lineHeight || '0.9'};
-
-`;
+    ${({ productCardType, theme }) => {
+        if (productCardType === 'mini') {
+            return `
+                font-weight: ${theme.typography.fontWeight['300']};
+                line-height: ${theme.typography.lineHeight['1.6']};
+            `;
+        }
+        if (productCardType === 'default') {
+            return `
+                margin-bottom: ${theme.spacing(4)};
+                font-weight: ${theme.typography.fontWeight['600']};
+                font-size: ${theme.typography.fontSize['700']};
+                line-height: 0.9;
+            `;
+        }
+    }
+}`;
 export const ProductName = styled.h2`
-    margin-bottom: ${({ theme, marginBottom }) => marginBottom || theme.spacing(10)};  
-    font-weight: ${({ theme, fontWeight }) => fontWeight || theme.typography.fontWeight['400']};
-
-    font-size: ${({ fontSize }) => fontSize};
-    line-height: ${({ lineHeight }) => lineHeight || '0.9'};
-    `;
+    ${({ productCardType, theme }) => {
+            if (productCardType === 'mini') {
+                return `
+                    margin-bottom: ${theme.spacing(1)};
+                    font-weight: ${theme.typography.fontWeight['300']};
+                    line-height: ${theme.typography.lineHeight['1.6']};
+                `;
+            }
+            if (productCardType === 'default') {
+                return `
+                    margin-bottom: ${theme.spacing(5)};
+                    font-weight: ${theme.typography.fontWeight['400']};
+                    font-size: ${theme.typography.fontSize['700']};
+                    line-height: 0.9;
+                `;
+            }
+        }
+    }
+`;
 export const Price = styled.strong`
     display: block;
 
-    margin-bottom: ${({ theme, marginBottom }) => marginBottom || theme.spacing(4)};
-    font-weight: ${({ fontWeight }) => fontWeight};
-
-    font-size: ${({ theme, fontSize }) => fontSize || theme.typography.fontSize['600']};
-    line-height: ${({ lineHeight }) => lineHeight || '0.75'};
-    
-    text-transform: uppercase;
+    ${({ productCardType, theme }) => {
+        if (productCardType === 'mini') {
+            return `
+                margin-bottom: ${theme.spacing(2)};
+                font-weight: ${theme.typography.fontWeight['500']};
+                line-height: ${theme.typography.lineHeight['1.6']};
+            `;
+        }
+        if (productCardType === 'default') {
+            return `
+                margin-bottom: ${theme.spacing(5)};
+                font-size: ${theme.typography.fontSize['600']};
+                line-height: 1;
+            `;
+        }
+    }
+}
 `;

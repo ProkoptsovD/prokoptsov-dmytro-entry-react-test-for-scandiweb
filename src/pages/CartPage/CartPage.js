@@ -17,6 +17,8 @@ class CartPage extends Component {
                     cartType="default"
                     galleryType="mini"
                     optionPickerType="default"
+                    quantatyPanelType="default"
+                    productCardType="default"
                 />
             </Section>
         )

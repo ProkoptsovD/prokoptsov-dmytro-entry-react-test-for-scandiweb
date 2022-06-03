@@ -12,24 +12,35 @@ export const NothingAdded = styled.p`
 export const ProductList = styled.ul`
 `;
 export const ListItem = styled.li`
-    ${({ type }) => type === 'default' && css`
-        position: relative;
+    ${({ cartType, theme }) => {
+            if (cartType === 'default') {
+                return css`
+                    padding-top: ${theme.spacing(6)};
+                    padding-bottom: ${theme.spacing(8)};
+                    &:first-child {
+                        border-top: 1px solid  ${theme.colors.neutral['400']};
+                        border-bottom: 1px solid  ${theme.colors.neutral['400']};
+                    }
+                    &:not(:first-child) {
+                        border-bottom: 1px solid  ${theme.colors.neutral['400']};
+                    }
+                    &:not(:last-child) {
+                        margin-bottom: ${theme.spacing(8)};
+                    }
+                `
+            };
+            if (cartType === 'mini') {
+                return css`
+                    position: relative;
+                    &:not(:last-child) {
+                        margin-bottom: ${({ theme }) => theme.spacing(10)};
+                    }
+                `
+            }
+        }
+    }       
+`
 
-        padding-top: ${({ theme }) => theme.spacing(6)};
-        padding-bottom: ${({ theme }) => theme.spacing(8)};
-
-        &:first-child {
-            border-top: 1px solid  ${({ theme }) => theme.colors.neutral['400']};
-            border-bottom: 1px solid  ${({ theme }) => theme.colors.neutral['400']};
-        }
-        &:not(:first-child) {
-            border-bottom: 1px solid  ${({ theme }) => theme.colors.neutral['400']};
-        }
-        &:last-child {
-            margin-bottom: ${({ theme }) => theme.spacing(8)};
-        }
-    `}
-`;
 //======================================= elements for DEFAULT type ======================//
 export const OrderButton = styled(AddToCartButton)`
     min-width: ${({ minWidth }) => minWidth || '280px'};

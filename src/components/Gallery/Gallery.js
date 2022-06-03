@@ -62,7 +62,11 @@ class Gallery extends Component {
         });
     };
     onPicClick = (e) => {
+        const IMG_KEY = 'IMG';
         const { id } = e.target;
+        const isPicClicked = e.target.nodeName === IMG_KEY;
+
+        if (!isPicClicked) return;
 
         this.setState({
             currentPic: id,
@@ -94,7 +98,6 @@ class Gallery extends Component {
     }
     render() {
         const { galleryType } = this.props;
-        console.log(galleryType);
 
         return (
             <GalleryWrapper {...this.props} >

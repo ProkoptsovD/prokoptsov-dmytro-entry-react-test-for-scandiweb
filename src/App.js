@@ -22,6 +22,14 @@ import Toaster from './components/Toaster/Toaster';
 import Cart from './components/Cart/Cart';
 
 class App extends Component {
+	state = {
+		cart: {
+		}
+	}
+	componentDidMount () {
+		this.props.initApp();
+		this.setState({})
+	}
 	renderRoutes = () => {
 		const { categories } = this.props;
 		
@@ -38,9 +46,6 @@ class App extends Component {
 					/>
 				</Fragment>)
 		});
-	}
-	componentDidMount () {
-		this.props.initApp();
 	}
 	render() {
 		const { categories, isOverlayOpened, itemsCount, toastList } = this.props;
@@ -59,7 +64,7 @@ class App extends Component {
 				<main>
 					<Routes>
 						{this.renderRoutes()}
-						<Route path='/cart' element={<CartPage />}/>
+						<Route path='/cart' element={<CartPage title="Cart"/>} />
 						<Route path='/' element={<Navigate to="/all" replace={true}/>} />
 					</Routes>
 				</main>
@@ -70,10 +75,12 @@ class App extends Component {
 				}
 				{
 					isOverlayOpened ?   <Overlay>
-											<Cart 
+											<Cart
 												cartType="mini"
 												galleryType="mini"
 												optionPickerType="mini"
+												quantatyPanelType="mini"
+												productCardType="mini"
 											/>
 										</Overlay>
 									: 	null

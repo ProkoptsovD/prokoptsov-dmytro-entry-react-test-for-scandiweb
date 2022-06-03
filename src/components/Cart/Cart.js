@@ -19,6 +19,13 @@ class Cart extends Component {
         mini: 'mini',
         default: 'default',
     };
+    componentDidUpdate() {
+        console.log('did update');
+    }
+    getSnapshotBeforeUpdate(prev, next) {
+        console.log(prev);
+        console.log(next);
+    }
     renderCartHeader = () => {
         const { itemsTotal } = this.props;
         return (
@@ -86,20 +93,25 @@ class Cart extends Component {
         updateTotalPrice();
     }
     renderAddedProducts = () => {
-        const { addedProducts, disabled , currency, galleryType, optionPickerType } = this.props;
+        const { addedProducts, disabled , currency, cartType, galleryType, optionPickerType, quantatyPanelType, productCardType, id } = this.props;
 
         return addedProducts.map(({ product, selectedOptions, quantaty }) => {
             const increaseQuantatyBinded = this.increaseQuantaty.bind(this, product.id);
             const decreaseQuantatyBinded = this.decreaseQuantaty.bind(this, product.id);
             
             return (
-                <ListItem key={product.id}>
+                <ListItem
+                    key={product.id}
+                    cartType={cartType}
+                >
                     <Product 
                         product={product}
                         disabled={disabled}
                         selectedOptions={selectedOptions}
                         galleryType={galleryType}
                         optionPickerType={optionPickerType}
+                        quantatyPanelType={quantatyPanelType}
+                        productCardType={productCardType}
                         quantaty={quantaty}
                         currency={currency}
                         increaseQuantaty={increaseQuantatyBinded}
