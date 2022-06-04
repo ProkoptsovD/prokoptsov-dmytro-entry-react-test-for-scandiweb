@@ -1,25 +1,26 @@
 import { Component, Fragment } from 'react';
 import { Route, Routes, Navigate } from 'react-router-dom';
-import {ReactComponent as Logo} from './icons/logo.svg';
+import { connect } from 'react-redux';
+import { initAppThunk } from './redux/thunks/initAppThunk';
+import { generateHash } from './helpers/generateHash';
+import { ReactComponent as Logo } from './icons/logo.svg';
 
 import Actionbar from './components/Header/Actionbar';
 import Header from './components/Header';
 import CurrencySwitcher from './components/Header/CurrencySwitcher';
-import MiniCartButton from './components/MiniCart/MiniCartButton';
+import MiniCartButton from './components/MiniCartButton';
 import Navbar from './components/Header/Navbar/';
 import Overlay from './components/Overlay/';
-import MiniCart from './components/MiniCart/';
 import CategoryPage from './pages/CategoryPage/';
 
 import './App.css';
 import ProductPage from './pages/ProductPage';
 import CartPage from './pages/CartPage';
 import NotFoundPage from './pages/NotFoundPage';
-import { connect } from 'react-redux';
-import { initAppThunk } from './redux/thunks/initAppThunk';
-import { generateHash } from './helpers/generateHash';
-import Toaster from './components/Toaster/Toaster';
-import Cart from './components/Cart/Cart';
+import Toaster from './components/Toaster/';
+import Cart from './components/Cart/';
+import OrderPage from './pages/OrderPage/';
+import TermsAndConditionsPage from './pages/TermsAndConditionsPage/TermsAndConditionsPage';
 
 class App extends Component {
 	state = {
@@ -64,7 +65,9 @@ class App extends Component {
 				<main>
 					<Routes>
 						{this.renderRoutes()}
+						<Route path='/cart/:id' element={<OrderPage />} />
 						<Route path='/cart' element={<CartPage title="Cart"/>} />
+						<Route path='/terms-and-conditions' element={<TermsAndConditionsPage />} />
 						<Route path='/' element={<Navigate to="/all" replace={true}/>} />
 					</Routes>
 				</main>

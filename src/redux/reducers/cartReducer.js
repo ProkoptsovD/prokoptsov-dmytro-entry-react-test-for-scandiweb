@@ -57,7 +57,7 @@ const setDefaultAttributes = ({ attributes }, defaultValue) => {
     }, {})
 }
 const findUnique = (allProducts, newProduct) => {
-    return allProducts.findIndex(product => deepEqual(product, newProduct));
+    return allProducts.findIndex(({ selectedOptions, product }) => deepEqual({...product, ...selectedOptions}, newProduct));
 }
 
 export const cartReducer = (state = initialState, action) => {
@@ -76,7 +76,7 @@ export const cartReducer = (state = initialState, action) => {
                 quantaty: 1,
             }
 
-            const itemIndex = findUnique(state.items, itemToAdd);
+            const itemIndex = findUnique(state.items, {...itemToAdd.product, ...itemToAdd.selectedOptions});
             const isUnique = itemIndex < 0;
             const newItemList = isUnique
                                 ? [...state.items, itemToAdd]

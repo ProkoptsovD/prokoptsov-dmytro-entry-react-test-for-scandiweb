@@ -43,16 +43,14 @@ export const OpenCloseSwitcherBtn = styled(IconButton)`
     font-size: ${props => props.theme.typography.fontSize['500']};
     text-align: center;
 
-    outline: 1px solid red;
-
     & svg {
         width:  ${props => props.theme.sizes.currencySwitcher.arrow.w};
         height:  ${props => props.theme.sizes.currencySwitcher.arrow.h};
 
         margin-top:  ${props => props.theme.spacing(2)};
 
-        transform: ${props => props.isOpened ? 'rotateX(0deg)' : 'rotateX(180deg)'};
-        transition: ${props => props.theme.setTransition(null, 'transform')};
+        transform: ${props => props.isOpened ? 'rotate(90deg)' : 'rotate(270deg)'};
+        transition: ${props => props.theme.setTransition('fast', 'transform')};
     }
 `;
 

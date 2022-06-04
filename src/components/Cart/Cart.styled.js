@@ -42,7 +42,7 @@ export const ListItem = styled.li`
 `
 
 //======================================= elements for DEFAULT type ======================//
-export const OrderButton = styled(AddToCartButton)`
+export const OrderButton = styled(Link)`
     min-width: ${({ minWidth }) => minWidth || '280px'};
     min-height: ${({ minHeight }) => minHeight || '43px'};
     
@@ -50,7 +50,6 @@ export const OrderButton = styled(AddToCartButton)`
 
     margin-top: ${({ theme }) => theme.spacing(4)};
 `;
-
 //======================================= elements for MINI type =========================//
 export const CartNameWrapper = styled.div`
     margin-bottom: ${props => props.theme.spacing(8)};

@@ -1,1 +1,1 @@
-export { default } './Toaster';
+export { default } from './Toaster';

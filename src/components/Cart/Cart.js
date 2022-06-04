@@ -48,22 +48,21 @@ class Cart extends Component {
                                     </TotalPriceWrapper>
     };
     renderControls = () => {
-        const { itemsTotal, priceTotal: { total, symbol }, tax, cartType, closeOverlay  } = this.props;
+        const { itemsTotal, priceTotal: { total, symbol }, tax, cartType, closeOverlay } = this.props;
 
         if (!itemsTotal) return null;
-        
+
         switch (cartType) {
-            case this.cartType.mini: {
+            case this.cartType.mini: 
                 return  <>
                             <ViewBagButton to="/cart" onClick={closeOverlay}>
                                 View bag
                             </ViewBagButton>
-                            <CheckOutButton to="/order">
+                            <CheckOutButton to={`/cart/order`}>
                                 Check Out
                             </CheckOutButton>
                         </>
-            };
-            case this.cartType.default: {
+            case this.cartType.default:
                 return  <>
                             <OrederDetails values={{
                                     quantaty: itemsTotal,
@@ -71,11 +70,10 @@ class Cart extends Component {
                                     total: symbol + total,
                                 }}
                             />
-                            <OrderButton>
+                            <OrderButton to='/cart/order'>
                                 Order
                             </OrderButton>
                         </>
-            }
             default:
                 throw new Error('Cart type must be passed to Cart props');
         };     

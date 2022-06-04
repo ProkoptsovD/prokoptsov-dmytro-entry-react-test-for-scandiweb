@@ -24,6 +24,12 @@ export const theme = {
         notification: {
             '100': '#fcd703',
         },
+        danger: {
+            '100': '#F32013',
+        },
+        success: {
+            '100': '#2FB390',
+        }
     },
     typography: {
         fontFamily: {

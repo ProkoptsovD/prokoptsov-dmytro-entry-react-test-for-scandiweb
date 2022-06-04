@@ -1,9 +1,9 @@
-import React, {Component} from "react";
-import PropTypes from 'prop-types';
-import Icons from "../../common/Icons";
-import { MiniCartBtn } from "./MiniCartButton.styled";
+import { Component } from "react";
 import { connect } from "react-redux";
-import { closeOverlay, openOverlay } from "../../../redux/actions/actions";
+import { MiniCartBtn } from "./MiniCartButton.styled";
+import { closeOverlay, openOverlay } from "../../redux/actions/actions";
+import PropTypes from 'prop-types';
+import Icons from "../common/Icons";
 
 class MiniCartButton extends Component {
     handleMiniCartBtnClick = () => {

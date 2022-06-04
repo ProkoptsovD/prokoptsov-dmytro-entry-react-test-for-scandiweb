@@ -1,1 +1,0 @@
-export const alertOptionMessage = 'All options should be selected';

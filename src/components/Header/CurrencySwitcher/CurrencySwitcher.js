@@ -56,6 +56,7 @@ class CurrencySwitcher extends Component {
         return (        
             <Wrapper>
                 <OpenCloseSwitcherBtn
+                    isOpened={isOpened}
                     onClick={this.handleOpenCloseBtnClick}
                 >
                     <ActualCurrency>

@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { Title } from "./CartPage.styled";
 import Section from "../../components/common/Section";
 import Cart from '../../components/Cart/';
+import { withRouter } from "../../hoc/withRouter";
 
 class CartPage extends Component {
     render() {
@@ -29,4 +30,4 @@ CartPage.propTypes = {
     title: PropTypes.string,
 }
 
-export default CartPage;
+export default withRouter(CartPage);

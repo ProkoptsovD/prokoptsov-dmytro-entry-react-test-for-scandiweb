@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import IconButton from "../../common/IconButton";
+import IconButton from "../common/IconButton";
 
 export const MiniCartBtn = styled(IconButton)`
     position: relative;

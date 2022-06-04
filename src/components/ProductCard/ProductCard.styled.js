@@ -55,7 +55,7 @@ export const AddToCartButton = styled(TextButton).attrs(props => ({
     background-color: ${({ theme }) => theme.colors.accent['100']};
     color: ${({ theme }) => theme.colors.light['100']};
 
-    transition: ${({ theme }) => theme.setTransition('fast', 'background-color', 'color', 'transform', 'filter')};
+    transition: ${({ theme }) => theme.setTransition('fast', 'background-color', 'color', 'filter')};
     
     &:disabled {
         cursor: initial;
@@ -63,6 +63,5 @@ export const AddToCartButton = styled(TextButton).attrs(props => ({
     }
     &:not(:disabled):active {
         filter: brightness(90%);
-        transform: scale(0.97);
     }
 `;
