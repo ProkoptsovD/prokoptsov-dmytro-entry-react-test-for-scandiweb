@@ -1,4 +1,5 @@
 import { deepEqual } from "../../helpers/deepEqual";
+import { generateHash } from "../../helpers/generateHash";
 import { ADD_ITEM_TO_CART, DECREASE_ITEMS_QUANTATY, INCREASE_ITEMS_QUANTATY, REMOVE_ITEM_FROM_CART, SUM_TOTAL_PRICE, UPDATE_ACTUAL_CURRENCY_IN_CART } from "../types/types"
 
 const initialState = {
@@ -7,7 +8,7 @@ const initialState = {
     defaultOptionIndex: 0,
     itemsTotal: 0,
     priceTotal: 0,
-    taxFee: 21,
+    taxFeeSize: 0.21,
     taxFeeTotal: 0,
     disableOptionsButtons: {
         miniCart: true,
@@ -69,6 +70,7 @@ export const cartReducer = (state = initialState, action) => {
             const selectedOptions = action.payload.option || setDefaultAttributes(newProduct, defaultValue);
             
             const itemToAdd = {
+                cartId: generateHash(),
                 product: newProduct,
                 selectedOptions,
                 quantaty: 1,
@@ -84,22 +86,12 @@ export const cartReducer = (state = initialState, action) => {
                     ...state,
                     items: newItemList,
                     itemsTotal: increase(state.itemsTotal),
-                    showNotification: false,
-            };
-        case REMOVE_ITEM_FROM_CART:
-            if (!action.payload.id) return state;
-            const itemsInCartAfterRemove = state.items.filter(({id}) => id !== action.payload.id);
-
-            return {
-                ...state,
-                items: itemsInCartAfterRemove,
-                itemsTotal: decrease(state.itemsTotal),
             };
         case INCREASE_ITEMS_QUANTATY: {    
             const { id } = action.payload;
 
             const items = state.items.map(item => {
-                return item.product.id !== id ? item : ({
+                return item.cartId !== id ? item : ({
                     ...item,
                     quantaty: increase(item.quantaty),
                 })
@@ -114,7 +106,7 @@ export const cartReducer = (state = initialState, action) => {
         case DECREASE_ITEMS_QUANTATY: {    
             const { id } = action.payload;
 
-            const items = state.items.map(item => item.product.id !== id ? item : ({
+            const items = state.items.map(item => item.cartId !== id ? item : ({
                 ...item,
                 quantaty: decrease(item.quantaty),
             })).filter(({ quantaty }) => quantaty > 0);
@@ -131,9 +123,12 @@ export const cartReducer = (state = initialState, action) => {
                 currency: action.payload.currency,
             }
         case SUM_TOTAL_PRICE:
+            const sum = sumPrice(state.items, state.currency);
+
             return {
                 ...state,
-                priceTotal: sumPrice(state.items, state.currency),
+                priceTotal: sum,
+                tax: (Number(sum.total) * state.taxFeeSize).toFixed(2),
             }
         default:
             return state;

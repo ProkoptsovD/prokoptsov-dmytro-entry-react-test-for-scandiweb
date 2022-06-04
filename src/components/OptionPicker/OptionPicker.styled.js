@@ -22,7 +22,7 @@ export const OptionName = styled.b`
                 margin-bottom: ${theme.spacing(2)};
                 font-family: ${theme.typography.fontFamily['1']};
                 font-size: ${theme.typography.fontSize['300']};
-                font-weight: ${theme.typography.fontSize['400']};
+                font-weight: ${theme.typography.fontWeight['400']};
                 text-transform: capitalize;
                 line-height: 1.14;
             `

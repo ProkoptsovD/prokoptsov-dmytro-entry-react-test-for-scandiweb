@@ -54,7 +54,7 @@ class OrderDetails extends Component {
 
 OrderDetails.propTypes = {
     fields: PropTypes.objectOf(PropTypes.string),
-    values: PropTypes.objectOf(PropTypes.string),
+    values: PropTypes.object,
 };
 
 export default OrderDetails;

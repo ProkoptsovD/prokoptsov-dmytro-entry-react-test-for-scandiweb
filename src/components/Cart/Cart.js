@@ -1,15 +1,15 @@
 import { Component } from "react";
 import PropTypes from 'prop-types';
+import OrederDetails from "./OrederDetails";
+import Product from '../Cart/Product';
+import { connect } from "react-redux";
 import {
     CheckOutButton, ViewBagButton, OuterWrapper,
     CartNameWrapper, CartName, TotalNumberOfItems,
     ItemWord, TotalPriceWrapper, Total, Price,
     NothingAdded, ProductList, ListItem, OrderButton
 } from "./Cart.styled";
-import { connect } from "react-redux";
 import { closeOverlay, decreaseItemsQuantaty, increaseItemsQuantaty, sumTotalPrice } from "../../redux/actions/actions";
-import OrederDetails from "./OrederDetails";
-import Product from '../Cart/Product';
 
 class Cart extends Component {
     static defaultProps = {
@@ -19,13 +19,6 @@ class Cart extends Component {
         mini: 'mini',
         default: 'default',
     };
-    componentDidUpdate() {
-        console.log('did update');
-    }
-    getSnapshotBeforeUpdate(prev, next) {
-        console.log(prev);
-        console.log(next);
-    }
     renderCartHeader = () => {
         const { itemsTotal } = this.props;
         return (
@@ -55,14 +48,14 @@ class Cart extends Component {
                                     </TotalPriceWrapper>
     };
     renderControls = () => {
-        const { itemsTotal, cartType, closeCart  } = this.props;
-        
+        const { itemsTotal, priceTotal: { total, symbol }, tax, cartType, closeOverlay  } = this.props;
+
         if (!itemsTotal) return null;
         
         switch (cartType) {
             case this.cartType.mini: {
                 return  <>
-                            <ViewBagButton to="/cart" onClick={closeCart}>
+                            <ViewBagButton to="/cart" onClick={closeOverlay}>
                                 View bag
                             </ViewBagButton>
                             <CheckOutButton to="/order">
@@ -72,7 +65,12 @@ class Cart extends Component {
             };
             case this.cartType.default: {
                 return  <>
-                            <OrederDetails />
+                            <OrederDetails values={{
+                                    quantaty: itemsTotal,
+                                    tax: symbol + tax,
+                                    total: symbol + total,
+                                }}
+                            />
                             <OrderButton>
                                 Order
                             </OrderButton>
@@ -93,15 +91,15 @@ class Cart extends Component {
         updateTotalPrice();
     }
     renderAddedProducts = () => {
-        const { addedProducts, disabled , currency, cartType, galleryType, optionPickerType, quantatyPanelType, productCardType, id } = this.props;
+        const { addedProducts, disabled , currency, cartType, galleryType, optionPickerType, quantatyPanelType, productCardType } = this.props;
 
-        return addedProducts.map(({ product, selectedOptions, quantaty }) => {
-            const increaseQuantatyBinded = this.increaseQuantaty.bind(this, product.id);
-            const decreaseQuantatyBinded = this.decreaseQuantaty.bind(this, product.id);
+        return addedProducts.map(({ product, selectedOptions, quantaty, cartId }) => {
+            const increaseQuantatyBinded = this.increaseQuantaty.bind(this, cartId);
+            const decreaseQuantatyBinded = this.decreaseQuantaty.bind(this, cartId);
             
             return (
                 <ListItem
-                    key={product.id}
+                    key={cartId}
                     cartType={cartType}
                 >
                     <Product 
@@ -153,6 +151,7 @@ const mapStateToProps = (state) => ({
     disabled: state.cart.disableOptionsButtons.miniCart,
     currency: state.currency.actualCurrency.index,
     priceTotal: state.cart.priceTotal,
+    tax: state.cart.tax,
 });
 const mapDispatchToProps = (dispatch) => ({
     increase: (id) => {
@@ -164,7 +163,7 @@ const mapDispatchToProps = (dispatch) => ({
     updateTotalPrice: () => {
         dispatch(sumTotalPrice());
     },
-    closeCart: () => {
+    closeOverlay: () => {
         dispatch(closeOverlay());
     }
 });

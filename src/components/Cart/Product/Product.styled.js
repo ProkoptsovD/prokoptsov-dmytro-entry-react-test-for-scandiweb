@@ -1,10 +1,28 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 export const OuterWrapper = styled.div`
     display: flex;
 `;
 export const InnerWrapper = styled.div`
     margin-right: auto;
+
+    ${({ productCardType, theme }) => {
+            if (productCardType === 'default') {
+                return css`
+                    & > div:not(:last-child) {
+                        margin-bottom: ${theme.spacing(4)}
+                    }
+                `
+            }
+            if (productCardType === 'mini') {
+                return css`
+                    & > div:not(:last-child) {
+                        margin-bottom: ${theme.spacing(2)}
+                    }
+                `
+            }
+        }
+    }
 `;
 
 export const BrandName = styled.p`
