@@ -65,10 +65,10 @@ class App extends Component {
 				<main>
 					<Routes>
 						{this.renderRoutes()}
+						<Route path='/' element={<Navigate to="/all" replace={true}/>} />
 						<Route path='/cart/:id' element={<OrderPage />} />
 						<Route path='/cart' element={<CartPage title="Cart"/>} />
 						<Route path='/terms-and-conditions' element={<TermsAndConditionsPage />} />
-						<Route path='/' element={<Navigate to="/all" replace={true}/>} />
 					</Routes>
 				</main>
 				{
