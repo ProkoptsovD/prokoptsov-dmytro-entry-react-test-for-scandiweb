@@ -17,7 +17,7 @@ import './index.css';
 const root = ReactDOM.createRoot(refs.root);
 root.render(
 	<React.StrictMode>
-		<BrowserRouter>
+		<BrowserRouter basename='internet-store-app-for-scandiweb'>
 			<Provider store={store}>
 				<ThemeProvider theme={theme}>
 					<App />
