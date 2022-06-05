@@ -1,6 +1,3 @@
-//============= makes has =========//
-export const hashify = () =>  Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
-
 //============ compares two object =============//
 export const deepEqual = (object1, object2) => {
     const keys1 = Object.keys(object1);
@@ -13,8 +10,8 @@ export const deepEqual = (object1, object2) => {
       const val2 = object2[key];
       const areObjects = isObject(val1) && isObject(val2);
       if (
-        areObjects && !deepEqual(val1, val2) ||
-        !areObjects && val1 !== val2
+        (areObjects && !deepEqual(val1, val2)) ||
+        (!areObjects && val1 !== val2)
       ) {
         return false;
       }

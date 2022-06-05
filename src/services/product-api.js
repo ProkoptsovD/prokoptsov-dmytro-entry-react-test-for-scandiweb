@@ -18,10 +18,12 @@ class Api {
         try {
             const response = await fetch(this.endPoint, this.options(query));
             if (response.ok) {
-                return response.json();
+                const parsedResponse = await response.json();
+                
+                return parsedResponse;
             }
 
-            return 
+            return Promise.reject(new Error(`there is no such page for ${query} `))
         } catch (e) {
             console.log(e);
         }
@@ -36,6 +38,7 @@ class Api {
                         id,
                         brand,
                         name,
+                        category,
                         inStock,
                         gallery,
                         prices {
@@ -62,8 +65,10 @@ class Api {
                 "category": {"title":`${categoryName}`}
             },
         }
+        const response = await this.fetchData(getProductsByCategoryNameQuery);
+        const { category } = await response.data;
 
-        return this.fetchData(getProductsByCategoryNameQuery).then(res => res.json()).then(res => res.data.category);
+        return category;
     };
     getDataToInitApp = async () => {
         const getDataToInitAppQuery = {
@@ -78,8 +83,10 @@ class Api {
                   }
                 }`,
         }
+        const response = await this.fetchData(getDataToInitAppQuery);
+        const { data } = await response;
 
-        return this.fetchData(getDataToInitAppQuery).then(res => res.json()).then(res => res.data);
+        return data;
     };
     getProductById = async (id) => {
         const getProductByIdQuery = {
@@ -115,8 +122,11 @@ class Api {
                       "id":`${id}`,
                   },
         }
-
-        return this.fetchData(getProductByIdQuery).then(res => res.json()).then(res => res.data.product);
+        const response = await this.fetchData(getProductByIdQuery);
+        const { product } = await response.data;
+        
+        return product;
     }
 }
+
 export const productAPI = new Api();

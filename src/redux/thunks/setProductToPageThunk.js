@@ -1,9 +1,9 @@
 import { renderCategoryPage } from '../actions/actions';
-import { appAPI } from '../../api/appAPI';
+import { productAPI } from '../../services/product-api';
 
 export const setProductsToPageThunk = (categoryName) => {
 	return (dispatch) => {
-		appAPI.getProductsByCategoryName(categoryName).then((products) => {
+		productAPI.getProductsByCategoryName(categoryName).then((products) => {
 				dispatch(renderCategoryPage(products));
 			})
 			.catch(console.log);

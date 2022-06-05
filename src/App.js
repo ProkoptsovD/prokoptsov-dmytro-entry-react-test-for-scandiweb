@@ -1,44 +1,112 @@
-import React from 'react';
-import { Navigate, Route, Routes } from 'react-router-dom';
+import { Component, Fragment } from 'react';
+import { Route, Routes, Navigate } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { initAppThunk } from './redux/thunks/initAppThunk';
+import { generateHash } from './helpers/generateHash';
+import { ReactComponent as Logo } from './icons/logo.svg';
+
+import Actionbar from './components/Header/Actionbar';
+import Header from './components/Header';
+import CurrencySwitcher from './components/Header/CurrencySwitcher';
+import MiniCartButton from './components/MiniCartButton';
+import Navbar from './components/Header/Navbar/';
+import Overlay from './components/Overlay/';
+import CategoryPage from './pages/CategoryPage/';
+
 import './App.css';
-import Header from './components/Header/Header';
+import ProductPage from './pages/ProductPage';
+import CartPage from './pages/CartPage';
+import NotFoundPage from './pages/NotFoundPage';
+import Toaster from './components/Toaster/';
+import Cart from './components/Cart/';
+import OrderPage from './pages/OrderPage/';
+import TermsAndConditionsPage from './pages/TermsAndConditionsPage/TermsAndConditionsPage';
 
-class App extends React.Component {
-// 	renderRoutes = (categories) =>
-// 		categories.map(({ name }) => (
-// 		<Route
-// 			key={name}
-// 			path={`/${name}`}
-// 			element={<CategoryPageContainer key={name} id={name} />}
-// 		/>
-// 		)
-
-// );
+class App extends Component {
+	state = {
+		cart: {
+		}
+	}
+	componentDidMount () {
+		this.props.initApp();
+		this.setState({})
+	}
+	renderRoutes = () => {
+		const { categories } = this.props;
+		
+		return categories.map(({ name }) => {
+			return (
+				<Fragment key={generateHash()}>
+					<Route
+						path={`/${name}/:id`}
+						element={<ProductPage key={name} categoryName={name} />}
+					/>
+					<Route
+						path={`/${name}/`}
+						element={<CategoryPage key={name} categoryName={name} />}
+					/>
+				</Fragment>)
+		});
+	}
 	render() {
+		const { categories, isOverlayOpened, itemsCount, toastList } = this.props;
+		const isThereAnyToast = toastList.length !== 0;
+
 		return (
-			<h1>Refactoring</h1>
-			// <>
-			// 	<Header {...this.props} />
-			// 	<main>
-			// 		<Routes>
-			// 			<Route
-			// 				path="/"
-			// 				element={
-			// 					<Navigate replace to={`/${this.props.categorybyDefault}`} />
-			// 				}
-			// 			/>
-			// 			{this.renderRoutes(this.props.categories)}
-			// 			<Route path="*" element={<NotFoundPage />} />
-			// 		</Routes>
-			// 		<CartOverlay
-			// 			isOpened={this.props.isMiniCartOpened}
-			// 			closeMiniCart={this.props.closeMiniCart}
-			// 			cart={this.props.cart}
-			// 		/>
-			// 	</main>
-			// </>
-		);
+			<>
+				<Header>
+					<Navbar tabList={categories}/>
+					<Logo />
+					<Actionbar>
+						<CurrencySwitcher />
+						<MiniCartButton itemsCount={itemsCount}/>
+					</Actionbar>
+				</Header>
+				<main>
+					<Routes>
+						{this.renderRoutes()}
+						<Route path='/cart/:id' element={<OrderPage />} />
+						<Route path='/cart' element={<CartPage title="Cart"/>} />
+						<Route path='/terms-and-conditions' element={<TermsAndConditionsPage />} />
+						<Route path='/' element={<Navigate to="/all" replace={true}/>} />
+					</Routes>
+				</main>
+				{
+					isThereAnyToast
+						? <Toaster toastList={toastList} delay={2000}/>
+						: null
+				}
+				{
+					isOverlayOpened ?   <Overlay>
+											<Cart
+												cartType="mini"
+												galleryType="mini"
+												optionPickerType="mini"
+												quantatyPanelType="mini"
+												productCardType="mini"
+											/>
+										</Overlay>
+									: 	null
+				}
+			</>
+		)
 	}
 }
 
-export default App;
+const mapStateToProps = (state) => {
+    return {
+        categories: state.initial.categories,
+        currencies: state.initial.currencies,
+        itemsCount: state.cart.itemsTotal,
+		isOverlayOpened: state.overlay.isOpened,
+		toastList: state.toast.toastList,
+    }
+}
+const mapDispatchToProps = (dispatch) => ({
+    initApp: () => {
+        dispatch(initAppThunk())
+    },
+});
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);

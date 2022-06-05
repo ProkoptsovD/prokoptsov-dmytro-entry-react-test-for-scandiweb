@@ -3,14 +3,18 @@ import { appReducer } from './reducers/appReducer';
 import { currencyReducer } from './reducers/currencyReducer';
 import { categoryPageReducer } from './reducers/categoryPageReducer';
 import { cartReducer } from './reducers/cartReducer';
-import { cartOverlayReducer } from './reducers/cartOverlayReducer';
+import { overlayReducer } from './reducers/overlayReducer';
 import { galleryReducer } from './reducers/galleryReducer';
+import { productPageReducer } from './reducers/productPageReducer';
+import { toasterReducer } from './reducers/toasterReducer';
 
 export const rootReducer = combineReducers({
 	initial: appReducer,
 	currency: currencyReducer,
 	category: categoryPageReducer,
 	cart: cartReducer,
-	cartOverlay: cartOverlayReducer,
-	gallery: galleryReducer
+	overlay: overlayReducer,
+	gallery: galleryReducer,
+	productPage: productPageReducer,
+	toast: toasterReducer,
 });
