@@ -1,8 +1,0 @@
-@mixin list($gap-size: 6px, $wrap: wrap) {
-    flex-wrap: $wrap;
-    margin: calc(-1 * $gap-size);
-}
-
-@mixin items-in-list($gap-size: 6px,) {
-    margin: $gap-size;
-}

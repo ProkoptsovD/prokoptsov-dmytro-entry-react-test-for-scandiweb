@@ -1,8 +1,0 @@
-@mixin parent($gap-size: 6px, $wrap: wrap) {
-    flex-wrap: $wrap;
-    margin: calc(-1 * $gap-size);
-}
-@mixin child($gap-size: 6px, $margin-total-quantaty: 8, $items-in-row: 3) {
-    flex-basis: calc((100% - $margin-total-quantaty * $gap-size) / $items-in-row);
-    margin: $gap-size;
-}

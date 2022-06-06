@@ -58,7 +58,7 @@ class Cart extends Component {
                             <ViewBagButton to="/cart" onClick={closeOverlay}>
                                 View bag
                             </ViewBagButton>
-                            <CheckOutButton to={`/cart/order`}>
+                            <CheckOutButton to={`/cart/order`} onClick={closeOverlay}>
                                 Check Out
                             </CheckOutButton>
                         </>

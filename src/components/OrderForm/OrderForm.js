@@ -9,17 +9,17 @@ import { alertMessages } from '../../constants/alertMessages';
 
 class OrderForm extends Component {
     state = {
-        isDataValid: {},
-        inputValue: {
-            firstName: '',
-            lastName: '',
-            tel: '',
-            email: '',
-            comment: '',
-        },
-        agreement: {
-            agreed: false,
-        }
+            isDataValid: {},
+                inputValue: {
+                    firstName: '',
+                    lastName: '',
+                    tel: '',
+                    email: '',
+                    comment: '',
+                },
+            agreement: {
+                agreed: false,
+            }
     }
     handleInputChange = (e) => {
         const { name, value } = e.target;
@@ -44,27 +44,26 @@ class OrderForm extends Component {
             }
         }));
     }
-    validateData = (e) => {
-        const { name, value } = e.currentTarget; 
-        const FIELDS_TO_VALIDATE = {
-            email: validateEmail(value),
-            tel: validatePhone(value),
-        }
 
-        this.setState(prevState => ({
-            ...prevState,
-            isDataValid: {
-                ...prevState.isDataValid,
-                [name]: FIELDS_TO_VALIDATE[name],
-            }
-        }));
-    }
     handleFormSubmit = (e) => {
         e.preventDefault();
+
         const { firstName, lastName, tel, email, comment } = e.currentTarget.elements;
         const { agreement: { agreed } } = this.state;
         const { addProductList, alertMessage } = this.props;
-        
+        const isEmailValid = validateEmail(email.value);
+        const isPhoneValid = validatePhone(tel.value);
+        if (!isEmailValid || !isPhoneValid) {
+            this.setState(prevState => ({
+                ...prevState,
+                isDataValid: {
+                    email: isEmailValid,
+                    tel: isPhoneValid,
+                }
+            }));
+            return;
+        }
+
         const dataForServer = {
             customerInfo: {
                 firstName: firstName.value,
@@ -107,7 +106,6 @@ class OrderForm extends Component {
                     First name
                     <FirstNameInput autoFocus 
                         onChange={this.handleInputChange}
-                        onBlur={this.validateData}
                         value={inputValue.firstName}
                     />
                 </InputLabel>
@@ -115,7 +113,6 @@ class OrderForm extends Component {
                     Last name
                     <LastNameInput 
                         onChange={this.handleInputChange}
-                        onBlur={this.validateData}
                         value={inputValue.lastName}
                     />
                 </InputLabel>
@@ -123,7 +120,6 @@ class OrderForm extends Component {
                     Phone
                     <PhoneInput 
                         onChange={this.handleInputChange}
-                        onBlur={this.validateData}
                         value={inputValue.tel}
                         isValid={isDataValid.tel}
                     />
@@ -132,7 +128,6 @@ class OrderForm extends Component {
                     Email
                     <EmailInput 
                         onChange={this.handleInputChange}
-                        onBlur={this.validateData}
                         value={inputValue.email}
                         isValid={isDataValid.email}
                     />

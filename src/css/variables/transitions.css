@@ -1,8 +1,0 @@
-:root {
-    /* ====== duration and timing funcs =======*/
-
-    --duration-normal: 250ms;
-    --duration-fast: 150ms;
-    --timing-func-normal: cubic-bezier(0.4, 0, 0.2, 1);
-
-}

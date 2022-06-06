@@ -22,7 +22,6 @@ import Cart from './components/Cart/';
 import OrderPage from './pages/OrderPage/';
 import TermsAndConditionsPage from './pages/TermsAndConditionsPage/TermsAndConditionsPage';
 import Alert from './components/common/Alert/Alert';
-import { alertMessages } from './constants/alertMessages';
 
 class App extends Component {
 	state = {

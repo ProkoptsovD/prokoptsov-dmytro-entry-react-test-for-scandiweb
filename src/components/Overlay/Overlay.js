@@ -24,7 +24,6 @@ class Overlay extends Component {
         isEscapePressed && closeOverlay();
     }
     handleOverlayClick = (e) => {
-        console.dir(e.target);
         const { closeOverlay } = this.props;
         const isOverlayClicked = e.target === e.currentTarget;
 
