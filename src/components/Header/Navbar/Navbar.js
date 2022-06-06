@@ -7,7 +7,8 @@ class Navbar extends Component {
         return this.props.tabList.map(({name}, idx) => (
             <ListItem key={idx}>
                 <StyledNavLink
-                    to={`/${name}/`}>
+                    to={`/${name}`}
+                >
                     {name}
                 </StyledNavLink>
             </ListItem>

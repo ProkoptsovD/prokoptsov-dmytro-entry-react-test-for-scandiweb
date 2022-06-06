@@ -7,6 +7,7 @@ import { overlayReducer } from './reducers/overlayReducer';
 import { galleryReducer } from './reducers/galleryReducer';
 import { productPageReducer } from './reducers/productPageReducer';
 import { toasterReducer } from './reducers/toasterReducer';
+import { alertReducer } from './reducers/alertReducer';
 
 export const rootReducer = combineReducers({
 	initial: appReducer,
@@ -17,4 +18,5 @@ export const rootReducer = combineReducers({
 	gallery: galleryReducer,
 	productPage: productPageReducer,
 	toast: toasterReducer,
+	alert: alertReducer,
 });

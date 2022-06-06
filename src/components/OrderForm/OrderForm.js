@@ -4,6 +4,8 @@ import { CommentInput, EmailInput, FirstNameInput, Form, InputLabel, LastNameInp
 import Agreement from './Agreement';
 import { validateEmail } from '../../helpers/validateEmail';
 import { validatePhone } from '../../helpers/validatePhone';
+import { showAlert } from '../../redux/actions/actions';
+import { alertMessages } from '../../constants/alertMessages';
 
 class OrderForm extends Component {
     state = {
@@ -61,7 +63,7 @@ class OrderForm extends Component {
         e.preventDefault();
         const { firstName, lastName, tel, email, comment } = e.currentTarget.elements;
         const { agreement: { agreed } } = this.state;
-        const { addProductList } = this.props;
+        const { addProductList, alertMessage } = this.props;
         
         const dataForServer = {
             customerInfo: {
@@ -79,6 +81,7 @@ class OrderForm extends Component {
         console.log(dataForServer);
         
         this.resetForm();
+        alertMessage(alertMessages.orderSuccess, 'success');
     }
     resetForm = () => {
         this.setState({
@@ -159,5 +162,10 @@ class OrderForm extends Component {
 const mapStateToProps = (state) => ({
     addProductList: state.cart.items,
 });
+const mapDispatchToProps = (dispatch) => ({
+    alertMessage: (message, type) => {
+        dispatch(showAlert(message, type));
+    }
+})
 
-export default connect(mapStateToProps, null)(OrderForm);
+export default connect(mapStateToProps, mapDispatchToProps)(OrderForm);

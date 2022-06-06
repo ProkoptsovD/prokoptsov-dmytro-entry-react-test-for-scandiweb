@@ -1,10 +1,13 @@
 import {Component} from "react";
 import { createPortal } from "react-dom";
-import PropTypes from 'prop-types';
-import { Modal, Wrapper } from "./Overlay.styled";
+import { Wrapper } from "./Overlay.styled";
 import { refs } from '../../constants/refs';
 import { connect } from "react-redux";
 import { closeOverlay } from "../../redux/actions/actions";
+import PropTypes from 'prop-types';
+import Modal from "../common/Modal";
+import Container from "../common/Container";
+
 
 class Overlay extends Component {
     componentDidMount() {
@@ -21,22 +24,24 @@ class Overlay extends Component {
         isEscapePressed && closeOverlay();
     }
     handleOverlayClick = (e) => {
+        console.dir(e.target);
         const { closeOverlay } = this.props;
         const isOverlayClicked = e.target === e.currentTarget;
 
         if (!isOverlayClicked) return;
 
         closeOverlay();
-        // this.body.classList.remove('noscroll');
     }
     render() {
+        const { children, modalType } = this.props;
+
         return createPortal(
-            (<Wrapper
-                onClick={this.handleOverlayClick}
-            >
-                <Modal>
-                    {this.props.children}
-                </Modal>
+            (<Wrapper id="overlay">
+                <Container onClick={this.handleOverlayClick}>
+                    <Modal id="modal" modalType={modalType}>
+                        {children}
+                    </Modal>
+                </Container>
             </Wrapper>),
             refs.overlayContainer
         );

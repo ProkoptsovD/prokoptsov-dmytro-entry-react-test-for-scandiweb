@@ -21,6 +21,8 @@ import Toaster from './components/Toaster/';
 import Cart from './components/Cart/';
 import OrderPage from './pages/OrderPage/';
 import TermsAndConditionsPage from './pages/TermsAndConditionsPage/TermsAndConditionsPage';
+import Alert from './components/common/Alert/Alert';
+import { alertMessages } from './constants/alertMessages';
 
 class App extends Component {
 	state = {
@@ -42,14 +44,14 @@ class App extends Component {
 						element={<ProductPage key={name} categoryName={name} />}
 					/>
 					<Route
-						path={`/${name}/`}
+						path={`/${name}`}
 						element={<CategoryPage key={name} categoryName={name} />}
 					/>
 				</Fragment>)
 		});
 	}
 	render() {
-		const { categories, isOverlayOpened, itemsCount, toastList } = this.props;
+		const { categories, isOverlayOpened, itemsCount, toastList, showAlert } = this.props;
 		const isThereAnyToast = toastList.length !== 0;
 
 		return (
@@ -65,10 +67,11 @@ class App extends Component {
 				<main>
 					<Routes>
 						{this.renderRoutes()}
-						<Route path='/' element={<Navigate to="/all" replace={true}/>} />
 						<Route path='/cart/:id' element={<OrderPage />} />
 						<Route path='/cart' element={<CartPage title="Cart"/>} />
 						<Route path='/terms-and-conditions' element={<TermsAndConditionsPage />} />
+						<Route path='/' element={<Navigate to="/all" replace={true}/>} />
+						<Route path='*' element={<NotFoundPage />} />
 					</Routes>
 				</main>
 				{
@@ -77,7 +80,7 @@ class App extends Component {
 						: null
 				}
 				{
-					isOverlayOpened ?   <Overlay>
+					isOverlayOpened ?   <Overlay key='mini-cart' modalType='mini-cart'>
 											<Cart
 												cartType="mini"
 												galleryType="mini"
@@ -87,6 +90,13 @@ class App extends Component {
 											/>
 										</Overlay>
 									: 	null
+				}
+				{
+					showAlert 	? 	<Alert
+										to='/'
+										controlsText={'Back home'}
+									/>
+								: 	null
 				}
 			</>
 		)
@@ -100,6 +110,7 @@ const mapStateToProps = (state) => {
         itemsCount: state.cart.itemsTotal,
 		isOverlayOpened: state.overlay.isOpened,
 		toastList: state.toast.toastList,
+		showAlert: state.alert.showAlert,
     }
 }
 const mapDispatchToProps = (dispatch) => ({

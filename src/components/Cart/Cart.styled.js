@@ -1,6 +1,5 @@
 import styled, { css } from 'styled-components';
 import { Link } from 'react-router-dom';
-import { AddToCartButton } from '../ProductCard/ProductCard.styled';
 
 //======================================= common elements ================================//
 export const OuterWrapper = styled.div`
@@ -40,16 +39,6 @@ export const ListItem = styled.li`
         }
     }       
 `
-
-//======================================= elements for DEFAULT type ======================//
-export const OrderButton = styled(Link)`
-    min-width: ${({ minWidth }) => minWidth || '280px'};
-    min-height: ${({ minHeight }) => minHeight || '43px'};
-    
-    width: 0;
-
-    margin-top: ${({ theme }) => theme.spacing(4)};
-`;
 //======================================= elements for MINI type =========================//
 export const CartNameWrapper = styled.div`
     margin-bottom: ${props => props.theme.spacing(8)};
@@ -79,7 +68,7 @@ export const Total = styled.b`
 export const Price = styled.strong`
     line-height: ${props => props.theme.typography.lineHeight['1.6']};
 `;
-const StyledLink = styled(Link)`
+const LinkCSS = styled(Link)`
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -95,7 +84,7 @@ const StyledLink = styled(Link)`
     background-color: ${props => props.theme.colors.light['100']};
     color: ${props => props.theme.colors.dark['300']};
 
-    transition: ${props => props.theme.setTransition(null, 'background-color', 'color', 'border-color', 'transform')};
+    transition: ${props => props.theme.setTransition(null, 'background-color', 'color', 'border-color', 'filter')};
 
     &:hover {
         border-color: ${props => props.theme.colors.accent['100']};
@@ -104,11 +93,25 @@ const StyledLink = styled(Link)`
     }
 
     &:active {
-        transform: scale(0.97);
+        filter: brightness(90%);
     }
 `;
-export const ViewBagButton = styled(StyledLink)`
+//======================================= elements for DEFAULT type ======================//
+export const OrderButton = styled(LinkCSS)`
+    min-width: ${({ minWidth }) => minWidth || '280px'};
+    min-height: ${({ minHeight }) => minHeight || '43px'};
+
+    margin-top: ${({ theme }) => theme.spacing(4)};
+    border-color: ${props => props.theme.colors.accent['100']};
+    background-color: ${props => props.theme.colors.accent['100']};
+    color: ${props => props.theme.colors.light['100']};
+
+    &:hover, &:focus {
+        filter: brightness(90%);
+    }
+`;
+export const ViewBagButton = styled(LinkCSS)`
     margin-right: ${props => props.theme.spacing(3)};
 `;
-export const CheckOutButton = styled(StyledLink)`
+export const CheckOutButton = styled(LinkCSS)`
 `;

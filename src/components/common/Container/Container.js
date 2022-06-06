@@ -1,13 +1,15 @@
-import React, {Component} from "react";
+import { Component } from "react";
 import PropTypes from 'prop-types';
-import {ContainerDiv} from './Container.styled.js';
+import { ContainerDiv } from './Container.styled.js';
 
 
 class Container extends Component {
     render () {
+        const { children, onClick } = this.props;
+
         return (
-            <ContainerDiv>
-                {this.props.children}
+            <ContainerDiv onClick={onClick ? onClick : () => {}}>
+                {children}
             </ContainerDiv>
         )
     }

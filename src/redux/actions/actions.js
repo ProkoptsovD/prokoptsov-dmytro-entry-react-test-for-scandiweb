@@ -1,3 +1,4 @@
+import { handleBodyScroll } from '../../helpers/handleBodyScroll';
 import {
 	INIT_CURRENCY_SWITCHER,
 	SWITCH_ACTUAL_CURRENCY,
@@ -22,6 +23,8 @@ import {
 	CLEAR_PRODUCT_PAGE,
 	ADD_NOTIFICATION,
 	DELETE_NOTIFICATION,
+	SHOW_ALERT,
+	CLOSE_ALERT,
 } from '../types/types';
 
 export const initApp = (initialData) => {
@@ -70,24 +73,10 @@ export const deleteNotification = (toastId) => ({
 });
 
 //=================== cart actions ================//
-export const addItemToCart = (item, option = null) => {
-	// if (!option) {
-		return {
-			type: ADD_ITEM_TO_CART,
-			payload: {item, option}
-		}
-	// } 
-	
-	// const isEveryOptionPicked = Object.keys(option).length === item.attributes.length;
-	// if (isEveryOptionPicked) {
-	// 	return {
-	// 		type: ADD_ITEM_TO_CART,
-	// 		payload: {item, option}
-	// 	}
-	// } else {
-	// 	return alertNotification();
-	// } 
-};
+export const addItemToCart = (item, option = null) => ({
+		type: ADD_ITEM_TO_CART,
+		payload: {item, option}
+});
 export const removeItemToCart = (itemId) => ({
 	type: REMOVE_ITEM_FROM_CART,
 	payload: {itemId}
@@ -109,12 +98,20 @@ export const sumTotalPrice = () => ({
 });
 
 //================== cart overlay actions =============//
-export const openOverlay = () => ({
-	type: OPEN_OVERLAY,
-});
-export const closeOverlay = () => ({
-	type: CLOSE_OVERLAY,
-});
+export const openOverlay = () => {
+	handleBodyScroll.disable();
+
+	return {
+		type: OPEN_OVERLAY,
+	}
+};
+export const closeOverlay = () => {
+	handleBodyScroll.enable();
+
+	return {
+		type: CLOSE_OVERLAY,
+	}
+};
 
 //================= gallery actions ==================//
 export const initGallery = (picsQuantaty) => ({
@@ -136,3 +133,23 @@ export const renderProductPage = (product) => ({
 export const clearProductPage = () => ({
 	type: CLEAR_PRODUCT_PAGE,
 });
+
+//================ alert ===========================//
+export const showAlert = (message, type) => {
+	handleBodyScroll.disable();
+	
+	return {
+		type: SHOW_ALERT,
+		payload: {
+			message,
+			type,
+		}
+	}
+};
+export const closeAlert = () => {
+	handleBodyScroll.enable();
+
+	return {
+		type: CLOSE_ALERT,
+	}
+};
