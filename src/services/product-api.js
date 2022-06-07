@@ -1,5 +1,6 @@
 class Api {
-    static devEndPoint = 'http://localhost:4000/';
+    static devEndPoint = 'https://scandiwebtest.jezzarah.com/';
+    // static devEndPoint = 'http://localhost:4000/';
     static defaultHeaders = {
         "content-type": "application/json",
         "accept": "application/json"

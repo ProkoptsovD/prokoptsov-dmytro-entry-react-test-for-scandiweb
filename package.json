@@ -1,7 +1,6 @@
 {
-  "name": "internet-store-app-for-scandiweb",
+  "name": "prokoptsov-dmytro-entry-react-test-for-scandiweb",
   "version": "0.1.0",
-  "homepage": "https://ProkoptsovD.github.io/internet-store-app-for-scandiweb",
   "private": true,
   "dependencies": {
     "@reduxjs/toolkit": "^1.8.1",
@@ -21,8 +20,6 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
@@ -47,8 +44,6 @@
     ]
   },
   "devDependencies": {
-    "gh-pages": "^4.0.0",
-    "redux-logger": "^3.0.6",
-    "sass": "^1.51.0"
+    "redux-logger": "^3.0.6"
   }
 }

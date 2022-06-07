@@ -10,13 +10,12 @@ import { theme } from './constants/theme';
 import { refs } from './constants/refs';
 
 import App from './App';
-
 import './index.css';
 
 const root = ReactDOM.createRoot(refs.root);
 root.render(
 	<React.StrictMode>
-		<BrowserRouter>
+		<BrowserRouter basename={process.env.PUBLIC_URL}>
 			<Provider store={store}>
 				<ThemeProvider theme={theme}>
 					<App />

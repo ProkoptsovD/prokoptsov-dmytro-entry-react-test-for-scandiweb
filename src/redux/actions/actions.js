@@ -1,6 +1,5 @@
 import { handleBodyScroll } from '../../helpers/handleBodyScroll';
 import {
-	INIT_CURRENCY_SWITCHER,
 	SWITCH_ACTUAL_CURRENCY,
 	INIT_NAVBAR,
 	INIT_APP,
@@ -25,6 +24,8 @@ import {
 	DELETE_NOTIFICATION,
 	SHOW_ALERT,
 	CLOSE_ALERT,
+	SET_CART_DATA_AFTER_PAGE_RELOAD,
+	CLEAR_CART_AFTER_ORDER_SUBMIT,
 } from '../types/types';
 
 export const initApp = (initialData) => {
@@ -33,6 +34,12 @@ export const initApp = (initialData) => {
 		payload: { initialData },
 	};
 };
+export const setCartDataAfterReload = (cart) => ({
+	type: SET_CART_DATA_AFTER_PAGE_RELOAD,
+	payload: {
+		cart,
+	}
+});
 export const initCurrentCategory = (currentPage) => ({
 	type: INIT_CURRENT_CATEGORY,
 	payload: { currentPage },
@@ -40,10 +47,6 @@ export const initCurrentCategory = (currentPage) => ({
 export const renderCategoryPage = (products) => ({
 	type: RENDER_CATEGORY_PAGE,
 	payload: { products },
-});
-export const initCurrencySwitcher = (currencyByDefault) => ({
-	type: INIT_CURRENCY_SWITCHER,
-	payload: { currencyByDefault },
 });
 export const switchActualCurrency = (newCurrency) => ({
 	type: SWITCH_ACTUAL_CURRENCY,
@@ -96,7 +99,9 @@ export const updateActualCurrencyInCart = (currency) => ({
 export const sumTotalPrice = () => ({
 	type: SUM_TOTAL_PRICE,
 });
-
+export const clearCartAfterOrderSubmit = () => ({
+	type: CLEAR_CART_AFTER_ORDER_SUBMIT,
+})
 //================== cart overlay actions =============//
 export const openOverlay = () => {
 	handleBodyScroll.disable();
