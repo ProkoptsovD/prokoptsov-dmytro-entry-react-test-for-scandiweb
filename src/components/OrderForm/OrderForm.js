@@ -165,7 +165,7 @@ class OrderForm extends Component {
 
 const mapStateToProps = (state) => ({
     addProductList: state.cart.items,
-    totalPrice: state.cart.totalPrice,
+    totalPrice: state.cart.priceTotal,
 });
 const mapDispatchToProps = (dispatch) => ({
     alertMessage: (message, type) => {
