@@ -9,6 +9,7 @@ import ProductCard from "../../components/ProductCard/";
 class ProductPage extends Component {
     componentDidMount() {
         const { getProduct, router: { params : { id } } } = this.props;
+        console.log(id);
         getProduct(id);
     };
     componentWillUnmount() {

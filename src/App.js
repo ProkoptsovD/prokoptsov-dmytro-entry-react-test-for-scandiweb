@@ -28,6 +28,7 @@ class App extends Component {
 		const { initApp, setCart, clearCart, setCurrency, currency } = this.props;
 		const cartFromLocalStorage = storage.load('cart');
 		const currencyFromLocalStorage = storage.load('currency');
+		console.log('did mount');
 		
 		initApp();
 		cartFromLocalStorage
@@ -43,7 +44,7 @@ class App extends Component {
 				<Fragment key={generateHash()}>
 					<Route
 						path={`/${name}/:id`}
-						element={<ProductPage key={name} categoryName={name} />}
+						element={<ProductPage />}
 					/>
 					<Route
 						path={`/${name}`}

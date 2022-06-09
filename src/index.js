@@ -14,7 +14,6 @@ import './index.css';
 
 const root = ReactDOM.createRoot(refs.root);
 root.render(
-	<React.StrictMode>
 		<BrowserRouter basename={process.env.PUBLIC_URL}>
 			<Provider store={store}>
 				<ThemeProvider theme={theme}>
@@ -22,7 +21,6 @@ root.render(
 				</ThemeProvider>
 			</Provider>
 		</BrowserRouter>
-	</React.StrictMode>
 );
 
 reportWebVitals();

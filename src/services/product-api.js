@@ -9,11 +9,14 @@ class Api {
     constructor(...args) {
         this.endPoint = args.endPoint || Api.devEndPoint;
         this.headers = args.headers || Api.defaultHeaders;
+        this.controller = new AbortController();
+        this.signal = this.controller.signal;
     }
     options = (graphqlQuery) => ({
             "method": "POST",
             "headers": this.headers,
             "body": JSON.stringify(graphqlQuery),
+            "signal": this.signal,
         });
     fetchData = async (query) => {
         try {
@@ -29,6 +32,9 @@ class Api {
             console.log(e);
         }
     };
+    cancelRequest = () => {
+        this.controller.abort();
+    }
     getProductsByCategoryName = async (categoryName) => {
         const getProductsByCategoryNameQuery = {
             "operationName": "getProductsByCategoryName",
