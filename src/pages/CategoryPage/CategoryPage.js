@@ -43,21 +43,34 @@ class CategoryPage extends React.Component {
         ));
     }
     componentDidMount() {
-        const { categoryName, renderProductList } = this.props;
-        renderProductList(categoryName);
+        const { renderProductList, productList } = this.props;
+        const categoryName = this.props.router.location.pathname;
+        renderProductList(categoryName.slice(1).toLowerCase());
+        console.log(categoryName);
     }
     componentWillUnmount() {
         this.cancelRequest();
     }
-    componentDidUpdate () {
+    componentDidUpdate (p) {
         const { cart } = this.props;
+        const { renderProductList, productList } = this.props;
+        const categoryName = this.props.router.location.pathname;
+        if (!productList[categoryName.slice(1).toLowerCase()]) {
+            console.log(productList);
+            console.log(productList[categoryName.slice(1).toLowerCase()]);
+            // renderProductList(categoryName.slice(1).toLowerCase());
+        }
         
-        if (!cart.items || !cart.items.length) return;
-
-        storage.save('cart', cart);
+        if (cart.items || cart.items.length) {
+            storage.save('cart', cart);
+        }
     }
+    // shouldComponentUpdate (prev) {
+    //     return prev.productList !== this.props.productList;
+    // }
     render() {
-        const { productList, categoryName } = this.props;
+        const { productList  } = this.props;
+        const categoryName = this.props.router.location.pathname;
 
         return (
             <Section>
@@ -65,7 +78,7 @@ class CategoryPage extends React.Component {
                     {categoryName}
                 </CategoryName>
                 <FlexGrid>
-                    {this.renderProductList(productList)}
+                    {/* {this.renderProductList(productList)} */}
                 </FlexGrid>
             </Section>
         )
@@ -78,7 +91,7 @@ CategoryPage.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
-    productList: state.category.products,
+    productList: state.category,
     currency: state.currency.actualCurrency.index,
     cart: state.cart,
 });

@@ -3,6 +3,7 @@ import styled from 'styled-components';
 export const DetailsTable = styled.table`
     font-size: ${({ theme, fontSize }) => fontSize || theme.typography.fontSize['600']};
     line-height: ${({ lineHeight }) => lineHeight || '1.17'};
+    text-transform: capitalize;
     
     border-spacing: ${({ theme, borderSpacing }) => borderSpacing || theme.spacing(2)};
 `;

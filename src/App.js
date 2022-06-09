@@ -26,12 +26,14 @@ import { clearCartAfterOrderSubmit, setCartDataAfterReload, switchActualCurrency
 class App extends Component {
 	componentDidMount () {
 		const { initApp, setCart, clearCart, setCurrency, currency } = this.props;
+		const cartFromLocalStorage = storage.load('cart');
+		const currencyFromLocalStorage = storage.load('currency');
 		
 		initApp();
-		storage.load('cart')
-						? setCart(storage.load('cart'))
+		cartFromLocalStorage
+						? setCart(cartFromLocalStorage)
 						: clearCart();
-		setCurrency(storage.load('currency') || currency);
+		setCurrency( currencyFromLocalStorage || currency);
 	}
 	renderRoutes = () => {
 		const { categories } = this.props;
@@ -45,7 +47,7 @@ class App extends Component {
 					/>
 					<Route
 						path={`/${name}`}
-						element={<CategoryPage key={name} categoryName={name} />}
+						element={<CategoryPage />}
 					/>
 				</Fragment>)
 		});

@@ -5,7 +5,7 @@ import { Data, DetailsTable, Row, TableBody } from "./OrderDetails.styled";
 class OrderDetails extends Component {
     static defaultProps = {
         fields: {
-            tax: '21%',
+            tax: 'tax 21%',
             quantaty: 'quantaty:',
             total: 'total:',
         },
