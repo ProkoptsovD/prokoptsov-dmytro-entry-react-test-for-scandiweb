@@ -1,16 +1,16 @@
-import React from "react";
+import { Component } from "react";
 import Section from "../../components/common/Section/";
 import PropTypes from 'prop-types';
 import FlexGrid from "../../components/common/FlexGrid/";
 import PreviewCard from "../../components/PreviewCard/PreviewCard";
+import storage from '../../services/storage-api';
 import { CategoryName } from "./CategoryPage.styled";
 import { connect } from "react-redux";
 import { setProductsToPageThunk } from "../../redux/thunks/setProductToPageThunk";
 import { addItemToCart, sumTotalPrice } from "../../redux/actions/actions";
 import { withRouter } from '../../hoc/withRouter';
-import storage from '../../services/storage-api';
 
-class CategoryPage extends React.Component {
+class CategoryPage extends Component {
     componentDidMount() {
         const { renderProductList } = this.props;
         const categoryName = this.props.router.location.pathname.slice(1).toLowerCase();

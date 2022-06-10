@@ -1,8 +1,6 @@
 import { RENDER_CATEGORY_PAGE } from '../types/types';
 
-const initialState = {
-	
-};
+const initialState = {};
 
 export const categoryPageReducer = (state = initialState, action) => {
 	switch (action.type) {
