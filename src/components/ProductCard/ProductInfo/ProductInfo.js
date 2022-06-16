@@ -1,4 +1,4 @@
-import {Component} from 'react';
+import { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Amount, BrandName, Price, ProductName, Wrapper } from './ProductInfo.styled';
 

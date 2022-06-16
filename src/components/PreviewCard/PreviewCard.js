@@ -1,10 +1,10 @@
-import React from "react";
+import { Component } from "react";
 import PropTypes from 'prop-types';
 import Icons from '../common/Icons';
 import { Card, Label, PreviewImage, Price, QuickAddButton, StyledLink } from "./PreviewCard.styled";
-import {ReactComponent as ImagePlaceholder} from '../../icons/image-placeholder.svg';
+import { ReactComponent as ImagePlaceholder } from '../../icons/image-placeholder.svg';
 
-class PreviewCard extends React.Component {
+class PreviewCard extends Component {
     getPrice = () => {
         const { product: { prices }, currency } = this.props;
         

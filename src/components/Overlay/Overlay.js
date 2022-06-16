@@ -1,4 +1,4 @@
-import {Component} from "react";
+import { Component } from "react";
 import { createPortal } from "react-dom";
 import { Wrapper } from "./Overlay.styled";
 import { refs } from '../../constants/refs';
