@@ -1,0 +1,1 @@
+export const getAllToasts = state => state.toast.toastList

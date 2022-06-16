@@ -5,6 +5,8 @@ import { switchActualCurrency, updateActualCurrencyInCart, sumTotalPrice, openCu
 import PropTypes from 'prop-types';
 import Icons from "../../common/Icons";
 import storage from '../../../services/storage-api';
+import { getIntitalCurrencies } from "../../../redux/selectors/app-selector";
+import { getActualCurrency, getCurrencyDropdownListState } from "../../../redux/selectors/currency-selector";
 
 
 class CurrencySwitcher extends Component {
@@ -117,9 +119,9 @@ CurrencySwitcher.propTypes = {
 }
 
 const mapStateToProps = (state) => ({
-    currencyList: state.initial.currencies,
-    actualCurrency: state.currency.actualCurrency.index,
-    isOpened: state.currency.isOpened,
+    currencyList: getIntitalCurrencies(state),
+    actualCurrency: getActualCurrency(state),
+    isOpened: getCurrencyDropdownListState(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({

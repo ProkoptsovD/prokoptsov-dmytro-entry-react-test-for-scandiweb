@@ -7,6 +7,7 @@ import { clearCartAfterOrderSubmit, showAlert } from '../../redux/actions/action
 import { alertMessages } from '../../constants/alertMessages';
 import Agreement from './Agreement';
 import storage from '../../services/storage-api';
+import { getAllItemsInCart, getTotalPriceinCart } from '../../redux/selectors/cart-selector';
 
 class OrderForm extends Component {
     state = {
@@ -53,6 +54,7 @@ class OrderForm extends Component {
         const { addProductList, alertMessage, totalPrice, clearCart } = this.props;
         const isEmailValid = validateEmail(email.value);
         const isPhoneValid = validatePhone(tel.value);
+        
         if (!isEmailValid || !isPhoneValid) {
             this.setState(prevState => ({
                 ...prevState,
@@ -164,8 +166,8 @@ class OrderForm extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    addProductList: state.cart.items,
-    totalPrice: state.cart.priceTotal,
+    addProductList: getAllItemsInCart(state),
+    totalPrice: getTotalPriceinCart(state),
 });
 const mapDispatchToProps = (dispatch) => ({
     alertMessage: (message, type) => {

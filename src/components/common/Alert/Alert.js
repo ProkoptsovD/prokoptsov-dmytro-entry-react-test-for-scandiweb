@@ -6,6 +6,7 @@ import Controls from './Controls/';
 import { connect } from 'react-redux';
 import { closeAlert } from '../../../redux/actions/actions';
 import { handleBodyScroll } from '../../../helpers/handleBodyScroll';
+import { getAlertMessage, getAlertType } from '../../../redux/selectors/alert-selector';
 
 class Alert extends Component {
     componentDidMount () {
@@ -49,8 +50,8 @@ Alert.propTypes = {
 }
 
 const mapStateToProps = (state) => ({
-    message: state.alert.message,
-    type: state.alert.type
+    message: getAlertMessage(state),
+    type: getAlertType(state),
 });
 const mapDispatchToProps = (dispatch) => ({
     closeMessage: () => {

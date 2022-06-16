@@ -22,13 +22,19 @@ import Alert from './components/common/Alert/Alert';
 import storage from './services/storage-api';
 import './App.css';
 import { clearCartAfterOrderSubmit, setCartDataAfterReload, switchActualCurrency } from './redux/actions/actions';
+// =============== selectors ================//
+import { getCart, getTotalItemsInCart } from './redux/selectors/cart-selector';
+import { getIntitalCategories, getIntitalCurrencies } from './redux/selectors/app-selector';
+import { getOverlayState } from './redux/selectors/overlay-selector';
+import { getAllToasts } from './redux/selectors/toast-selector';
+import { getAlertState } from './redux/selectors/alert-selector';
+import { getActualCurrency } from './redux/selectors/currency-selector';
 
 class App extends Component {
 	componentDidMount () {
 		const { initApp, setCart, clearCart, setCurrency, currency } = this.props;
 		const cartFromLocalStorage = storage.load('cart');
 		const currencyFromLocalStorage = storage.load('currency');
-		console.log('did mount');
 		
 		initApp();
 		cartFromLocalStorage
@@ -107,14 +113,14 @@ class App extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        categories: state.initial.categories,
-        currencies: state.initial.currencies,
-        itemsCount: state.cart.itemsTotal,
-		isOverlayOpened: state.overlay.isOpened,
-		toastList: state.toast.toastList,
-		showAlert: state.alert.showAlert,
-		cart: state.cart,
-		currency: state.currency.actualCurrency.index,
+        categories: getIntitalCategories(state),
+        currencies: getIntitalCurrencies(state),
+        itemsCount: getTotalItemsInCart(state),
+		isOverlayOpened: getOverlayState(state),
+		toastList: getAllToasts(state),
+		showAlert: getAlertState(state),
+		cart: getCart(state),
+		currency: getActualCurrency(state),
     }
 }
 const mapDispatchToProps = (dispatch) => ({

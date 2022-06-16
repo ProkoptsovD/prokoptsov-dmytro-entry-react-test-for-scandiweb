@@ -10,6 +10,8 @@ import {
     NothingAdded, ProductList, ListItem, OrderButton
 } from "./Cart.styled";
 import { closeOverlay, decreaseItemsQuantaty, increaseItemsQuantaty, sumTotalPrice } from "../../redux/actions/actions";
+import { getAllItemsInCart, getButtonStateRule, getTaxFee, getTotalItemsInCart, getTotalPriceinCart } from "../../redux/selectors/cart-selector";
+import { getActualCurrency } from "../../redux/selectors/currency-selector";
 
 class Cart extends Component {
     static defaultProps = {
@@ -144,12 +146,12 @@ Cart.propTypes = {
 }
 
 const mapStateToProps = (state) => ({
-    itemsTotal: state.cart.itemsTotal,
-    addedProducts: state.cart.items,
-    disabled: state.cart.disableOptionsButtons.miniCart,
-    currency: state.currency.actualCurrency.index,
-    priceTotal: state.cart.priceTotal,
-    tax: state.cart.tax,
+    itemsTotal: getTotalItemsInCart(state),
+    addedProducts: getAllItemsInCart(state),
+    disabled: getButtonStateRule(state),
+    currency: getActualCurrency(state),
+    priceTotal: getTotalPriceinCart(state),
+    tax: getTaxFee(state),
 });
 const mapDispatchToProps = (dispatch) => ({
     increase: (id) => {

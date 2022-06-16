@@ -4,6 +4,7 @@ import { MiniCartBtn } from "./MiniCartButton.styled";
 import { closeOverlay, openOverlay } from "../../redux/actions/actions";
 import PropTypes from 'prop-types';
 import Icons from "../common/Icons";
+import { getOverlayState } from "../../redux/selectors/overlay-selector";
 
 class MiniCartButton extends Component {
     handleMiniCartBtnClick = () => {
@@ -30,7 +31,7 @@ MiniCartBtn.propTypes = {
 }
 
 const mapStateToProps = (state) => ({
-    isOpened: state.overlay.isOpened,
+    isOpened: getOverlayState(state),
 });
 const mapDispatchToProps = (dispatch) => ({
     open: () => {
