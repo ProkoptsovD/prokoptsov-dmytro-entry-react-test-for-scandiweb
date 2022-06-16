@@ -26,11 +26,12 @@ export const StyledLink = styled(Link)`
         position: absolute;
         inset: 0;
 
-        content: '${props => props.content}';
+        content: '${props => props.content || 'Out of stock'}';
 
         display: ${props => props.instock === 'true' ? 'none' : 'flex'};
         align-items: center;
         justify-content: center;
+        padding-bottom: 50px;
 
         font-size: ${props => props.theme.typography.fontSize['600']};
         text-transform: uppercase;

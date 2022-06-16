@@ -19,8 +19,9 @@ const save = (key, value) => {
     !keys.length ? localStorage.clear() : keys.forEach(key => localStorage.removeItem(key));
   }
   
-  export default {
+const storeApi = {
     save,
     load,
     clear,
-  };
+};
+export default storeApi;
