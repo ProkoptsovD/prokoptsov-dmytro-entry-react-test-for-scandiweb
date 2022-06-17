@@ -116,16 +116,19 @@ export const ViewPort = styled.div`
                     ${!instock && css`
                         &::before {
                             position: absolute;
-                            top: 6px;
-                            left: 6px;
-
-                            content: 'Out of stock';
-                            padding: ${theme.spacing(3)};
-                            font-size: ${theme.typography.fontSize['600']};
-
-                            background-color: ${theme.colors.neutral['600']};
-                            opacity: 0.5;
-                            color: ${theme.colors.light['100']};
+                            inset: 0;
+                    
+                            content: '${props => props.content || 'Out of stock'}';
+                    
+                            display: ${props => props.instock === 'true' ? 'none' : 'flex'};
+                            align-items: center;
+                            justify-content: center;
+                    
+                            font-size: ${props => props.theme.typography.fontSize['600']};
+                            text-transform: uppercase;
+                    
+                            background-color: ${({theme}) => theme.colors.light['200']};
+                            color: ${({theme}) => theme.colors.dark['100']};
                         }
                     `}
                 `

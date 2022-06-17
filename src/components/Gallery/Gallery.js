@@ -2,7 +2,7 @@ import { Component } from "react";
 import PropTypes from 'prop-types';
 import Controls from './Controls/';
 import { ListItem, PictureList, GalleryWrapper, Picture, ViewPort, InnerWrapper } from "./Gallery.styled";
-import {ReactComponent as ImagePlaceholder} from '../../icons/image-placeholder.svg';
+import { ReactComponent as ImagePlaceholder } from '../../icons/image-placeholder.svg';
 
 class Gallery extends Component {
     static defaultProps = {
